@@ -21,7 +21,7 @@ export default {
    */
   loading: { color: '#fff' },
   /*
-   ** Global CSS
+   ** Global  CSS
    */
   css: [
     {
