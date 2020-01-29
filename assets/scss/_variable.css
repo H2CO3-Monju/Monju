@@ -1,1 +1,12 @@
-null
+a {
+  text-decoration: none;
+  color: #53585F;
+}
+
+.pd-1 {
+  padding: 13px;
+}
+
+.greenIcon {
+  color: #C4D929;
+}

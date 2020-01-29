@@ -5,7 +5,7 @@ $_color-white: #fafafa;
 $_color-black: #333333;
 
 $_color-primary: #C4D929;
-$_color-secondary: #fff;
+$_color-secondary: #55c500;
 
 $_color-success: #6084D0;
 $_color-warning: #FFCB67;
@@ -95,3 +95,19 @@ $_button-disabled-border: $_border-color-base;
 $_button-hover-percent: 20%;
 $_button-active-percent: 10%;
 $_button-transition: all .2s cubic-bezier(0.23, 1, 0.32, 1);
+<<<<<<< HEAD
+=======
+
+a {
+  text-decoration: none;
+  color: $_button-default-color;
+}
+
+.pd-1 {
+  padding: 13px;
+}
+
+.greenIcon{
+  color: $_color-primary;
+}
+>>>>>>> ce6b10264a46af6996d5404cc7919657c8d5ca45
