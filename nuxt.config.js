@@ -24,6 +24,10 @@ export default {
    ** Global  CSS
    */
   css: [
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
     {
       src: 'bulma/bulma.sass',
       lang: 'sass'
@@ -49,8 +53,12 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    'nuxt-fontawesome'
+    'nuxt-fontawesome',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['@/assets/scss/_variable.scss']
+  },
   /*
    ** FontAwesome
    */

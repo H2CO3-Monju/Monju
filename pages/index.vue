@@ -2,11 +2,21 @@
   <div class="allWrap">
     <!-- コンテンツ -->
     <div class="container">
-      <section class="area">1</section>
-      <section class="area">2</section>
-      <section class="area">3</section>
-      <section class="area">4</section>
-      <section class="area">5</section>
+      <section class="area">
+        1
+      </section>
+      <section class="area">
+        2
+      </section>
+      <section class="area">
+        3
+      </section>
+      <section class="area">
+        4
+      </section>
+      <section class="area">
+        5
+      </section>
     </div>
   </div>
 </template>
