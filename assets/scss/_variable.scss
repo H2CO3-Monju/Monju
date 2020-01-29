@@ -1,0 +1,110 @@
+
+// global
+// - - - - - - - - - - - - - - - - - - - -
+$_color-white: #fafafa;
+$_color-black: #333333;
+
+$_color-primary: #C4D929;
+$_color-secondary: #55c500;
+
+$_color-success: #6084D0;
+$_color-warning: #FFCB67;
+$_color-danger: #ea1836;
+$_color-info: #878d99;
+
+$_color-text-primary: #53585F;
+$_color-text-secondary: mix($_color-white, $_color-text-primary, 30%);
+
+
+$_border-width-base: 3px;
+$_border-style-base: solid;
+$_border-color-base: #d8dce6;
+$_border-color-lighter: #e6ebf5;
+$_border-default: $_border-width-base $_border-style-base $_border-color-base;
+$_border-radius-base: 4px;
+$_border-radius-small: 2px;
+$_border-radius-circle: 100%;
+
+
+// base
+// - - - - - - - - - - - - - - - - - - - -
+$_button-font-size: 16px;
+$_button-font-weight: 400;
+$_button-border-radius: 4px;
+$_button-default-color: $_color-text-primary;
+$_button-default-fill: $_color-white;
+$_button-default-border: $_border-color-base;
+$_button-padding-vertical: .75em;
+$_button-padding-horizontal: 1.5em;
+
+
+// size
+// - - - - - - - - - - - - - - - - - - - -
+$_button-large-font-size: 16px;
+$_button-large-border-radius: $_button-border-radius;
+$_button-large-padding-vertical: 1.25em;
+$_button-large-padding-horizontal: 1.5em;
+
+$_button-medium-font-size: 16px;
+$_button-medium-border-radius: $_button-border-radius;
+$_button-medium-padding-vertical: 1em;
+$_button-medium-padding-horizontal: 1.5em;
+
+$_button-small-font-size: 12px;
+$_button-small-border-radius: $_button-border-radius;
+$_button-small-padding-vertical: .5em;
+$_button-small-padding-horizontal: 1em;
+
+
+// modifier
+// - - - - - - - - - - - - - - - - - - - -
+$_button-border-primary: $_color-primary;
+$_button-color-primary: $_color-white;
+$_button-fill-primary: $_color-primary;
+
+$_button-border-secondary: $_color-secondary;
+$_button-color-secondary: $_color-white;
+$_button-fill-secondary: $_color-secondary;
+
+$_button-border-success: $_color-success;
+$_button-color-success: $_color-white;
+$_button-fill-success: $_color-success;
+
+$_button-border-warning: $_color-warning;
+$_button-color-warning: $_color-white;
+$_button-fill-warning: $_color-warning;
+
+$_button-border-danger: $_color-danger;
+$_button-color-danger: $_color-white;
+$_button-fill-danger: $_color-danger;
+
+$_button-border-info: $_color-info;
+$_button-color-info: $_color-white;
+$_button-fill-info: $_color-info;
+
+
+// disabled
+// - - - - - - - - - - - - - - - - - - - -
+$_button-disabled-color: $_color-text-secondary;
+$_button-disabled-fill: $_color-white;
+$_button-disabled-border: $_border-color-base;
+
+
+// interaction
+// - - - - - - - - - - - - - - - - - - - -
+$_button-hover-percent: 20%;
+$_button-active-percent: 10%;
+$_button-transition: all .2s cubic-bezier(0.23, 1, 0.32, 1);
+
+a {
+  text-decoration: none;
+  color: $_button-default-color;
+}
+
+.pd-1 {
+  padding: 13px;
+}
+
+.greenIcon{
+  color: $_color-primary;
+}

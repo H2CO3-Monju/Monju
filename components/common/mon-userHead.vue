@@ -1,18 +1,18 @@
 <template>
-  <header class="st-Header">
-    <div class="st-Header_container">
-      <div class="st-Header_start">
+  <header class="st-userHeader">
+    <div class="st-userHeader_container">
+      <div class="st-userHeader_start">
         <!-- ロゴ -->
-        <a class="logo mr-1" href="#">
+        <a class="logo" href="#">
           <img src="~/assets/images/logo_green.svg" alt="ロゴ" />
         </a>
 
         <!-- 検索バー -->
-        <form class="st-Header_serch" action="#" method="get">
+        <form class="st-userHeader_serch" action="#" method="get">
           <div class="control has-addons">
             <i class="fa fa-search"></i>
             <input
-              class="st-Header_searchInput"
+              class="st-userHeader_searchInput"
               placeholder="キーワードを入力"
               type="search"
               autocomplete="off"
@@ -21,31 +21,62 @@
           </div>
         </form>
       </div>
-      <div class="st-Header_end">
-        <a class="st-Header_loginLink" href="#">サインイン</a>
+
+      <div class="st-userHeader_end">
+        <a class="st-userHeader_loginLink" href="#">イベント作成</a>
+        <span class="pd-1"></span>
+        <div class="st-userHead_point">
+          {{ havePoint }}
+          <i class="fab fa-product-hunt fa-lg"></i>
+        </div>
+        <span class="pd-1"></span>
+        <a class="st-userHead_info" href="#">
+          <i class="fas fa-bell fa-lg"></i>
+        </a>
+        <span class="pd-1"></span>
+        <a class="st-userHead_meil" href="#">
+          <i class="fas fa-envelope fa-lg"></i>
+        </a>
+
+        <div class="userCard">
+          <img class="userIcon" src="#" alt="user-icon" />
+          {{ name }}さん
+          <i class="fas fa-caret-down fa-2x greenIcon"></i>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      havePoint: '1000',
+      name: 'おバカ'
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 //ホームのGナビ
-.st-Header {
+.st-userHeader {
   padding: 0 16px;
   background-color: #fff;
   border-top: 5px solid $_color-primary;
+  box-shadow: 0px 0px 10px 0px rgba($color: #000000, $alpha: 0.4);
 
-  .st-Header_container {
+  .st-userHeader_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 52px;
     max-width: 1080px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 
     //左の要素
-    .st-Header_start {
+    .st-userHeader_start {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,7 +95,7 @@
       }
 
       //ホーム内検索フォームの設定
-      .st-Header_serch {
+      .st-userHeader_serch {
         position: relative;
         width: 200px;
         .fa {
@@ -74,7 +105,7 @@
           color: #aaa;
           font-weight: 900;
         }
-        .st-Header_searchInput {
+        .st-userHeader_searchInput {
           width: 100%;
           height: 32px;
           border: none;
@@ -92,14 +123,14 @@
     }
 
     //右の要素
-    .st-Header_end {
+    .st-userHeader_end {
       display: flex;
       align-items: center;
       justify-content: center;
 
-      .st-Header_loginLink {
-        font-size: 1.2rem;
-        color: $_color-text-primary;
+      .st-userHeader_loginLink {
+        background-color: $_color-primary;
+        color: $_color-white;
         border-radius: $_button-border-radius;
         border: 2px solid $_button-default-border;
         -webkit-user-select: none;
@@ -108,7 +139,14 @@
         user-select: none;
         padding: 0 16px;
         cursor: pointer;
-        transition: background-color 0.8s ease-in-out;
+      }
+
+      .userCard {
+        .userIcon {
+          width: 30px;
+          height: auto;
+          border-radius: 50%;
+        }
       }
     }
   }
