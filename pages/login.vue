@@ -136,6 +136,7 @@ export default {
 .allWrap {
   margin-top: 0;
   margin-bottom: 0;
+  min-height: 650px;
   background-image: url('~assets/images/mountain.jpg');
   background-size: cover;
   background-position: center center;
@@ -147,7 +148,7 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       height: 65vh;
-      min-height: 370px;
+      min-height: 400px;
       margin-top: 12.5vh;
       padding-top: 5%;
       padding-bottom: 5%;
