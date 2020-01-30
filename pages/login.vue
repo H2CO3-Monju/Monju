@@ -49,20 +49,20 @@
 
           <div class="login-authentication">
             <button class="login-auth-facebook login-auth_btn">
-              <span class="symbol-input">
+              <span class="login-auth-symbol">
                 <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
               </span>
             </button>
 
             <button class="login-auth-twitter login-auth_btn">
-              <span class="symbol-input">
+              <span class="login-auth-symbol">
                 <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
               </span>
             </button>
 
             <button class="login-auth-github login-auth_btn">
-              <span class="symbol-input">
-                <i class="fab fa-github fa-4x" aria-hidden="true"></i>
+              <span class="login-auth-symbol">
+                <i class="fab fa-github github-symbol" aria-hidden="true"></i>
               </span>
             </button>
           </div>
@@ -83,8 +83,13 @@
   .login-container {
     height: calc(100vh - 57px);
     .login-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
       height: 65vh;
       margin-top: 12.5vh;
+      padding-top: 5%;
+      padding-bottom: 5%;
       background-color: rgba(#eee, 0.8);
       border: solid 1px #fff;
       border-radius: 10%;
@@ -94,24 +99,26 @@
         text-align: center;
         font-size: 1.6em;
       }
-      .inputsWrap {
-        width: 80%;
-        margin: 0 auto;
-        .symbol-input {
-          padding-right: 0;
-          padding-left: 0;
-        }
-        .input {
-          margin: 0 auto;
-          padding: 0;
-          border-top: none;
-          border-right: none;
-          border-bottom: solid 1px;
-          border-left: none;
-          border-radius: 0%;
-          background-color: transparent;
-          box-shadow: none;
-          font-size: 1.2em;
+      .login-form {
+        .inputsWrap {
+          width: 80%;
+          margin: 0 auto 5%;
+          .symbol-input {
+            padding-right: 0;
+            padding-left: 0;
+          }
+          .input {
+            margin: 0 auto;
+            padding: 0;
+            border-top: none;
+            border-right: none;
+            border-bottom: solid 1px;
+            border-left: none;
+            border-radius: 0%;
+            background-color: transparent;
+            box-shadow: none;
+            font-size: 1.2em;
+          }
         }
       }
       .container-login-form-btn {
@@ -123,13 +130,37 @@
         }
       }
       .login_hr {
+        margin: 0;
         border-top: 1px solid #fff;
       }
       .login-authentication {
-        width: 80%;
-        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 0 10%;
         .login-auth_btn {
+          padding: 0;
+          width: 70px;
+          height: 70px;
+          border: none;
           border-radius: 100%;
+        }
+        .login-auth-facebook {
+          color: #fff;
+          background-color: #0057ac;
+        }
+        .login-auth-twitter {
+          color: #fff;
+          background-color: #00aff5;
+        }
+        .login-auth-github {
+          padding-top: 1px;
+          padding-left: 1px;
+          color: #24292e;
+          background-color: #fff;
+        }
+        .github-symbol {
+          font-size: 69px;
         }
       }
     }
