@@ -137,7 +137,7 @@ export default {
   margin-top: 0;
   margin-bottom: 0;
   background-image: url('~assets/images/mountain.jpg');
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center center;
 
   .login-container {
