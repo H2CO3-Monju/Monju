@@ -21,8 +21,10 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
     "bulma": "^0.8.0",
+    "firebase": "^7.7.0",
     "nuxt": "^2.0.0",
-    "nuxt-fontawesome": "^0.4.0"
+    "nuxt-fontawesome": "^0.4.0",
+    "vuex-persistedstate": "^2.7.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",

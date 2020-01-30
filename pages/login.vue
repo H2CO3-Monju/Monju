@@ -2,12 +2,22 @@
   <login>
     <div class="allWrap columns">
       <div class="login-container column is-4 is-offset-4">
-        <div class="login-wrap column">
+        <div v-if="isAuthenticated" class="login-wrap column">
+          <div class="login-title" data-tilt>
+            <h1>{{ user.email }}でログイン中です</h1>
+          </div>
+          <div class="buttons container-login-form-btn">
+            <button v-on:click="logout" class="login-form-btn button">
+              Logout
+            </button>
+          </div>
+        </div>
+        <div v-else class="login-wrap column">
           <div class="login-title" data-tilt>
             <h1>Monjuにログイン</h1>
           </div>
 
-          <form class="login-form validate-form">
+          <div class="login-form validate-form">
             <div
               class="inputsWrap validate-input columns"
               data-validate="Valid email is required: ex@abc.xyz"
@@ -16,6 +26,7 @@
                 <i class="fa fa-envelope" aria-hidden="true"></i>
               </span>
               <input
+                v-model="email"
                 class="input column is-11"
                 type="text"
                 name="email"
@@ -31,6 +42,7 @@
                 <i class="fa fa-lock" aria-hidden="true"></i>
               </span>
               <input
+                v-model="password"
                 class="input is-11"
                 type="password"
                 name="pass"
@@ -39,11 +51,11 @@
             </div>
 
             <div class="buttons container-login-form-btn">
-              <button class="login-form-btn button">
+              <button v-on:click="login" class="login-form-btn button">
                 Login
               </button>
             </div>
-          </form>
+          </div>
 
           <hr class="login_hr" />
 
@@ -72,6 +84,54 @@
   </login>
 </template>
 
+<script>
+import { mapActions, mapState, mapGetters } from 'vuex'
+import firebase from '~/plugins/firebase'
+export default {
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  computed: {
+    ...mapState(['user']),
+    ...mapGetters(['isAuthenticated'])
+  },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setUser(user)
+    })
+  },
+  methods: {
+    ...mapActions(['setUser']),
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((user) => {
+          // ログインしたら飛ぶページを指定
+          // this.$router.push("/member-page")
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    },
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.setUser(null)
+        })
+        .catch((error) => {
+          alert(error)
+        })
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .allWrap {
   margin-top: 0;
@@ -87,6 +147,7 @@
       flex-direction: column;
       justify-content: space-around;
       height: 65vh;
+      min-height: 370px;
       margin-top: 12.5vh;
       padding-top: 5%;
       padding-bottom: 5%;
