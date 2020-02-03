@@ -109,11 +109,16 @@
 <script>
 import { mapActions, mapState, mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
+
+const registUser = firebase.functions().httpsCallable('registUser')
+
 export default {
   data() {
     return {
+      name: '',
       email: '',
-      password: ''
+      password: '',
+      password_confirm: ''
     }
   },
   computed: {
@@ -123,10 +128,43 @@ export default {
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setUser(user)
+      // if (this.isAuthenticated) {
+      //   this.$router.push('/')
+      // }
     })
   },
   methods: {
     ...mapActions(['setUser']),
+
+    regist() {
+      if (!this.name) {
+        window.alert('ユーザーIDを入力してください')
+        return
+      } else if (this.password !== this.password_confirm) {
+        window.alert('パスワードが一致していません')
+        return
+      }
+      console.log(this.name)
+      console.log(this.email)
+      console.log(this.password)
+      console.log(this.password_confirm)
+      registUser({
+        uid: this.name,
+        email: this.email,
+        password: this.password
+      })
+        .then(async (result) => {
+          await this.login()
+          console.log(result)
+          window.alert('登録が完了しました。')
+        })
+        .catch((error) => {
+          console.log(error)
+          console.log(error.code)
+          console.log(error.message)
+        })
+    },
+
     login() {
       firebase
         .auth()
@@ -139,6 +177,7 @@ export default {
           alert(error)
         })
     },
+
     logout() {
       firebase
         .auth()
