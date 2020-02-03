@@ -1,18 +1,29 @@
 <template>
-  <login>
+  <regist>
     <div class="allWrap columns">
-      <div class="login-container column is-4 is-offset-4">
-        <div v-if="isAuthenticated" class="login-wrap column">
-          <di v class="login-title" data-tilt>
-            <h1>読み込み中…</h1>
-          </di>
-        </div>
-        <div v-else class="login-wrap column">
-          <div class="login-title" data-tilt>
-            <h1>Monjuにログイン</h1>
+      <div class="regist-container column is-4 is-offset-4">
+        <div class="regist-wrap column">
+          <div class="regist-title" data-tilt>
+            <h1>Monjuに新規登録</h1>
           </div>
 
-          <div class="login-form validate-form">
+          <div class="regist-form validate-form">
+            <div
+              class="inputsWrap validate-input columns"
+              data-validate="Valid email is required: ex@abc.xyz"
+            >
+              <span class="symbol-input column is-1">
+                <i class="fas fa-user" aria-hidden="true"></i>
+              </span>
+              <input
+                v-model="name"
+                class="input column is-11"
+                type="text"
+                name="name"
+                placeholder="Name"
+              />
+            </div>
+
             <div
               class="inputsWrap validate-input columns"
               data-validate="Valid email is required: ex@abc.xyz"
@@ -45,30 +56,46 @@
               />
             </div>
 
-            <div class="buttons container-login-form-btn">
-              <button v-on:click="login" class="login-form-btn button">
-                Login
+            <div
+              class="inputsWrap validate-input columns"
+              data-validate="Password is required"
+            >
+              <span class="symbol-input column is-1">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+              <input
+                v-model="password_confirm"
+                class="input is-11"
+                type="password"
+                name="pass_confirm"
+                placeholder="Passwordを確認"
+              />
+            </div>
+
+            <div class="buttons container-regist-form-btn">
+              <button v-on:click="regist" class="regist-form-btn button">
+                Regist
               </button>
             </div>
           </div>
 
-          <hr class="login_hr" />
+          <hr class="regist_hr" />
 
-          <div class="login-authentication">
-            <button class="login-auth-facebook login-auth_btn">
-              <span class="login-auth-symbol">
+          <div class="regist-authentication">
+            <button class="regist-auth-facebook regist-auth_btn">
+              <span class="regist-auth-symbol">
                 <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
               </span>
             </button>
 
-            <button class="login-auth-twitter login-auth_btn">
-              <span class="login-auth-symbol">
+            <button class="regist-auth-twitter regist-auth_btn">
+              <span class="regist-auth-symbol">
                 <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
               </span>
             </button>
 
-            <button class="login-auth-github login-auth_btn">
-              <span class="login-auth-symbol">
+            <button class="regist-auth-github regist-auth_btn">
+              <span class="regist-auth-symbol">
                 <i class="fab fa-github github-symbol" aria-hidden="true"></i>
               </span>
             </button>
@@ -76,7 +103,7 @@
         </div>
       </div>
     </div>
-  </login>
+  </regist>
 </template>
 
 <script>
@@ -96,9 +123,6 @@ export default {
   mounted() {
     firebase.auth().onAuthStateChanged((user) => {
       this.setUser(user)
-      if (this.isAuthenticated) {
-        this.$router.push('/')
-      }
     })
   },
   methods: {
@@ -139,27 +163,27 @@ export default {
   background-size: cover;
   background-position: center center;
 
-  .login-container {
+  .regist-container {
     height: calc(100vh - 57px);
-    .login-wrap {
+    .regist-wrap {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      height: 65vh;
-      min-height: 400px;
-      margin-top: 12.5vh;
+      height: 75vh;
+      min-height: 460px;
+      margin-top: 7.5vh;
       padding-top: 5%;
       padding-bottom: 5%;
       background-color: rgba(#eee, 0.8);
       border: solid 1px #fff;
       border-radius: 10%;
-      .login-title {
+      .regist-title {
         width: 80%;
         margin: 0 auto;
         text-align: center;
         font-size: 1.6em;
       }
-      .login-form {
+      .regist-form {
         .inputsWrap {
           width: 80%;
           margin: 0 auto 5%;
@@ -181,39 +205,39 @@ export default {
           }
         }
       }
-      .container-login-form-btn {
+      .container-regist-form-btn {
         justify-content: center;
-        .login-form-btn {
+        .regist-form-btn {
           background-color: #c4d929;
           border-color: transparent;
           color: #fff;
         }
       }
-      .login_hr {
+      .regist_hr {
         margin: 0;
         border-top: 1px solid #fff;
       }
-      .login-authentication {
+      .regist-authentication {
         display: flex;
         justify-content: space-around;
         align-items: center;
         margin: 0 10%;
-        .login-auth_btn {
+        .regist-auth_btn {
           padding: 0;
           width: 70px;
           height: 70px;
           border: none;
           border-radius: 100%;
         }
-        .login-auth-facebook {
+        .regist-auth-facebook {
           color: #fff;
           background-color: #0057ac;
         }
-        .login-auth-twitter {
+        .regist-auth-twitter {
           color: #fff;
           background-color: #00aff5;
         }
-        .login-auth-github {
+        .regist-auth-github {
           padding-top: 1px;
           padding-left: 1px;
           color: #24292e;
