@@ -2,20 +2,37 @@
   <regist>
     <div class="allWrap columns">
       <div class="regist-container column is-4 is-offset-4">
-        <!-- <div v-if="isAuthenticated" class="regist-wrap column">
+        <div v-if="isAuthenticated" class="regist-wrap column">
           <div class="regist-title" data-tilt>
             <h1>読み込み中…</h1>
           </div>
-        </div> -->
+        </div>
 
-        <div v-if="isConfirm" class="regist-wrap column">
+        <div v-else-if="isConfirm" class="regist-wrap column">
           <di class="regist-title" data-tilt>
             <h1>この内容でよろしかったですか？</h1>
           </di>
           <div class="regist-confirm">
             <p>ユーザーネーム: {{ name }}</p>
             <p>メールアドレス: {{ email }}</p>
-            <p>パスワード: {{ password }}</p>
+            <p v-if="isHidden" class="regist-confirm-password">
+              パスワード: {{ hidePassword }}
+              <span
+                v-on:click="switchSymbol"
+                class="regist-confirm-password-symbol"
+              >
+                <i class="fas fa-eye-slash" aria-hidden="true"></i>
+              </span>
+            </p>
+            <p v-else class="regist-confirm-password">
+              パスワード: {{ password }}
+              <span
+                v-on:click="switchSymbol"
+                class="regist-confirm-password-symbol"
+              >
+                <i class="fas fa-eye" aria-hidden="true"></i>
+              </span>
+            </p>
           </div>
           <div class="buttons container-regist-form-btn">
             <button v-on:click="regist" class="regist-form-btn button">
@@ -31,67 +48,87 @@
 
           <div class="regist-form validate-form">
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <span class="symbol-input column is-1">
-                <i class="fas fa-user" aria-hidden="true"></i>
-              </span>
-              <input
-                v-model="name"
-                class="input column is-11"
-                type="text"
-                name="name"
-                placeholder="ユーザーネーム"
-              />
+              <div class="symbolAndInput columns">
+                <span class="inputSymbol column is-1 column">
+                  <i class="fas fa-user" aria-hidden="true"></i>
+                </span>
+                <input
+                  v-model="name"
+                  class="input column is-11"
+                  type="text"
+                  name="name"
+                  placeholder="ユーザーネーム"
+                />
+              </div>
+              <p v-if="!!nameError" class="input-error">
+                {{ nameError }}
+              </p>
             </div>
 
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <span class="symbol-input column is-1">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-              </span>
-              <input
-                v-model="email"
-                class="input column is-11"
-                type="text"
-                name="email"
-                placeholder="メールアドレス"
-              />
+              <div class="symbolAndInput columns">
+                <span class="inputSymbol column is-1">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+                <input
+                  v-model="email"
+                  class="input column is-11"
+                  type="text"
+                  name="email"
+                  placeholder="メールアドレス"
+                />
+              </div>
+              <p v-if="!!emailError" class="input-error">
+                {{ emailError }}
+              </p>
             </div>
 
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input"
               data-validate="Password is required"
             >
-              <span class="symbol-input column is-1">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-              </span>
-              <input
-                v-model="password"
-                class="input is-11"
-                type="password"
-                name="pass"
-                placeholder="パスワード"
-              />
+              <div class="symbolAndInput columns">
+                <span class="inputSymbol column is-1">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+                <input
+                  v-model="password"
+                  class="input is-11"
+                  type="password"
+                  name="pass"
+                  placeholder="パスワード"
+                />
+              </div>
+              <p v-if="!!passwordError" class="input-error">
+                {{ passwordError }}
+              </p>
             </div>
 
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input"
               data-validate="Password is required"
             >
-              <span class="symbol-input column is-1">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-              </span>
-              <input
-                v-model="password_confirm"
-                class="input is-11"
-                type="password"
-                name="pass_confirm"
-                placeholder="パスワードを確認"
-              />
+              <div class="symbolAndInput columns">
+                <span class="inputSymbol column is-1">
+                  <i class="fa fa-lock" aria-hidden="true"></i>
+                </span>
+                <input
+                  v-model="password_confirm"
+                  class="input is-11"
+                  type="password"
+                  name="pass_confirm"
+                  placeholder="パスワードを確認"
+                />
+              </div>
+              <p v-if="!!passwordConfirmError" class="input-error">
+                {{ passwordConfirmError }}
+              </p>
             </div>
 
             <div class="buttons container-regist-form-btn">
@@ -143,7 +180,7 @@ const checkUserName = (name) => {
     // 半角英字と半角数字を含んでいないか、ハイフンとアンダースコア以外の文字を使用している場合
     // 実例: (aBcCd), (11223), (aab_-) => エラー, (aa1_-),(AAa11) => 許可
     text =
-      'ユーザーネームは半角英字と半角数字を必ず含んでください。使用できる記号はハイフンとアンダースコアのみです'
+      'ユーザーネームは半角英字と半角数字を必ず含んでください。使用できる記号はハイフン(-)とアンダースコア(_)のみです'
   }
   return text
 }
@@ -162,7 +199,7 @@ const checkEmail = (email) => {
 }
 const checkPassword = (password, confirm) => {
   let text = null
-  if (!password || !confirm) {
+  if (!password) {
     text = 'パスワードが入力されていません'
   } else if (password !== confirm) {
     text = 'パスワードが一致していません'
@@ -180,51 +217,78 @@ const checkPassword = (password, confirm) => {
   }
   return text
 }
+const checkConfirmPassword = (confirm) => {
+  let text = null
+  if (!confirm) {
+    text = 'パスワードをもう一度入力してください'
+  }
+  return text
+}
 
 export default {
   data() {
     return {
-      isConfirm: false,
       name: '',
       email: '',
       password: '',
-      password_confirm: ''
+      password_confirm: '',
+      isConfirm: false,
+      isHidden: true,
+      nameError: false,
+      emailError: false,
+      passwordError: false,
+      passwordConfirmError: false
     }
   },
   computed: {
     ...mapState(['user']),
-    ...mapGetters(['isAuthenticated'])
+    ...mapGetters(['isAuthenticated']),
+    hidePassword() {
+      let hiddenPassword = ''
+      for (let i = 0; i < this.password.length; i++) {
+        hiddenPassword += '*'
+      }
+      return hiddenPassword
+    }
   },
   mounted() {
     const errorCheck = () => {
-      if (location.hash === '#confirm') {
-        const errorMsg1 = checkUserName(this.name)
-        const errorMsg2 = checkEmail(this.email)
-        const errorMsg3 = checkPassword(this.password, this.password_confirm)
-        console.log(errorMsg1)
-        console.log(errorMsg2)
-        console.log(errorMsg3)
-        if (!errorMsg1 && !errorMsg2 && !errorMsg3) {
-          this.isConfirm = true
-        } else {
-          this.$router.push('')
-          this.isConfirm = false
-        }
+      if (location.hash !== '#confirm') {
+        this.isConfirm = false
+        return
+      }
+      this.nameError = checkUserName(this.name)
+      this.emailError = checkEmail(this.email)
+      this.passwordError = checkPassword(this.password, this.password_confirm)
+      this.passwordConfirmError = checkConfirmPassword(this.password_confirm)
+      if (
+        !this.nameError &&
+        !this.emailError &&
+        !this.passwordError &&
+        !this.passwordConfirmError
+      ) {
+        this.isConfirm = true
       } else {
+        this.$router.push('')
         this.isConfirm = false
       }
     }
     firebase.auth().onAuthStateChanged((user) => {
       this.setUser(user)
-      // if (this.isAuthenticated) {
-      //   this.$router.push('/')
-      // }
+      if (this.isAuthenticated) {
+        this.$router.push('/')
+      }
     })
     errorCheck()
     window.addEventListener('hashchange', errorCheck)
   },
   methods: {
     ...mapActions(['setUser']),
+
+    switchSymbol() {
+      console.log('test')
+      this.isHidden = !this.isHidden
+    },
 
     regist() {
       if (!this.name) {
@@ -280,6 +344,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p {
+  margin: 0;
+  padding: 0;
+}
 .allWrap {
   margin-top: 0;
   margin-bottom: 0;
@@ -294,28 +362,38 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      height: 75vh;
+      height: 82vh;
       min-height: 460px;
-      margin-top: 7.5vh;
-      padding-top: 5%;
-      padding-bottom: 5%;
+      margin-top: 4vh;
       background-color: rgba(#eee, 0.8);
       border: solid 1px #fff;
       border-radius: 10%;
       .regist-title {
-        width: 80%;
+        max-width: 90%;
         margin: 0 auto;
         text-align: center;
         font-size: 1.6em;
       }
-      .regist-confirm p {
+      .regist-confirm {
+        max-width: 80%;
+        margin: 0 auto;
         font-size: 1.2em;
       }
+      .regist-confirm-password {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .regist-confirm-password-symbol {
+        cursor: pointer;
+      }
       .regist-form {
-        .inputsWrap {
+        .symbolAndInput {
           width: 80%;
           margin: 0 auto 5%;
-          .symbol-input {
+          .inputSymbol {
             padding-right: 0;
             padding-left: 0;
           }
@@ -331,6 +409,13 @@ export default {
             box-shadow: none;
             font-size: 1.2em;
           }
+        }
+        .input-error {
+          width: 80%;
+          margin: -5% auto 5%;
+          padding-left: 7%;
+          font-size: 0.9em;
+          color: #f34573;
         }
       }
       .container-regist-form-btn {

@@ -14,10 +14,10 @@
 
           <div class="login-form validate-form">
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input columns"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <span class="symbol-input column is-1">
+              <span class="inputSymbol column is-1">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
               </span>
               <input
@@ -30,10 +30,10 @@
             </div>
 
             <div
-              class="inputsWrap validate-input columns"
+              class="input-wrap validate-input columns"
               data-validate="Password is required"
             >
-              <span class="symbol-input column is-1">
+              <span class="inputSymbol column is-1">
                 <i class="fa fa-lock" aria-hidden="true"></i>
               </span>
               <input
@@ -148,22 +148,20 @@ export default {
       height: 65vh;
       min-height: 400px;
       margin-top: 12.5vh;
-      padding-top: 5%;
-      padding-bottom: 5%;
       background-color: rgba(#eee, 0.8);
       border: solid 1px #fff;
       border-radius: 10%;
       .login-title {
-        width: 80%;
+        max-width: 80%;
         margin: 0 auto;
         text-align: center;
         font-size: 1.6em;
       }
       .login-form {
-        .inputsWrap {
+        .input-wrap {
           width: 80%;
           margin: 0 auto 5%;
-          .symbol-input {
+          .inputSymbol {
             padding-right: 0;
             padding-left: 0;
           }
