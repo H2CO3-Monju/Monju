@@ -14,6 +14,7 @@ $_color-info: #878d99;
 
 $_color-text-primary: #53585F;
 $_color-text-secondary: mix($_color-white, $_color-text-primary, 30%);
+$_color-text-blueBlack: #7994A7;
 
 
 $_border-width-base: 3px;
@@ -95,8 +96,6 @@ $_button-disabled-border: $_border-color-base;
 $_button-hover-percent: 20%;
 $_button-active-percent: 10%;
 $_button-transition: all .2s cubic-bezier(0.23, 1, 0.32, 1);
-<<<<<<< HEAD
-=======
 
 a {
   text-decoration: none;
@@ -110,4 +109,3 @@ a {
 .greenIcon{
   color: $_color-primary;
 }
->>>>>>> ce6b10264a46af6996d5404cc7919657c8d5ca45

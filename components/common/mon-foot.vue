@@ -1,5 +1,5 @@
 <template>
-  <div class="footerWrap">
+  <div class="footerWrap .footer">
     <footer class="footer">
       © Monjyu
     </footer>

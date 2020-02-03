@@ -1,9 +1,9 @@
 <template>
-  <header class="st-userHeader">
+  <header class="st-userHeader .navbar is-black">
     <div class="st-userHeader_container">
-      <div class="st-userHeader_start">
+      <div class="st-userHeader_start navbar-brand">
         <!-- ロゴ -->
-        <a class="logo" href="#">
+        <a class="logo navbar-item" href="#">
           <img src="~/assets/images/logo_green.svg" alt="ロゴ" />
         </a>
 
@@ -25,6 +25,7 @@
       <div class="st-userHeader_end">
         <a class="st-userHeader_loginLink" href="#">イベント作成</a>
         <span class="pd-1"></span>
+
         <div class="st-userHead_point">
           {{ havePoint }}
           <i class="fab fa-product-hunt fa-lg"></i>
@@ -37,10 +38,15 @@
         <a class="st-userHead_meil" href="#">
           <i class="fas fa-envelope fa-lg"></i>
         </a>
+        <span class="pd-1"></span>
 
         <div class="userCard">
-          <img class="userIcon" src="#" alt="user-icon" />
-          {{ name }}さん
+          <img
+            class="userIcon"
+            src="~/assets/images/user.jpg"
+            alt="user-icon"
+          />
+          {{ userName }}さん
           <i class="fas fa-caret-down fa-2x greenIcon"></i>
         </div>
       </div>
@@ -53,7 +59,7 @@ export default {
   data() {
     return {
       havePoint: '1000',
-      name: 'おバカ'
+      userName: '涼雅'
     }
   }
 }
@@ -142,9 +148,10 @@ export default {
       }
 
       .userCard {
+        font-size: 1.1em;
         .userIcon {
           width: 30px;
-          height: auto;
+          height: 30px;
           border-radius: 50%;
         }
       }

@@ -1,5 +1,5 @@
 <template>
-  <header class="st-Header">
+  <header class="st-Header .navbar">
     <div class="st-Header_container">
       <div class="st-Header_start">
         <!-- ロゴ -->
