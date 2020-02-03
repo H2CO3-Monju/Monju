@@ -2,7 +2,29 @@
   <regist>
     <div class="allWrap columns">
       <div class="regist-container column is-4 is-offset-4">
-        <div class="regist-wrap column">
+        <!-- <div v-if="isAuthenticated" class="regist-wrap column">
+          <div class="regist-title" data-tilt>
+            <h1>読み込み中…</h1>
+          </div>
+        </div> -->
+
+        <div v-if="isConfirm" class="regist-wrap column">
+          <di class="regist-title" data-tilt>
+            <h1>この内容でよろしかったですか？</h1>
+          </di>
+          <div class="regist-confirm">
+            <p>ユーザーネーム: {{ name }}</p>
+            <p>メールアドレス: {{ email }}</p>
+            <p>パスワード: {{ password }}</p>
+          </div>
+          <div class="buttons container-regist-form-btn">
+            <button v-on:click="regist" class="regist-form-btn button">
+              Regist
+            </button>
+          </div>
+        </div>
+
+        <div v-else class="regist-wrap column">
           <div class="regist-title" data-tilt>
             <h1>Monjuに新規登録</h1>
           </div>
@@ -20,7 +42,7 @@
                 class="input column is-11"
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="ユーザーネーム"
               />
             </div>
 
@@ -36,7 +58,7 @@
                 class="input column is-11"
                 type="text"
                 name="email"
-                placeholder="Email"
+                placeholder="メールアドレス"
               />
             </div>
 
@@ -52,7 +74,7 @@
                 class="input is-11"
                 type="password"
                 name="pass"
-                placeholder="Password"
+                placeholder="パスワード"
               />
             </div>
 
@@ -68,14 +90,14 @@
                 class="input is-11"
                 type="password"
                 name="pass_confirm"
-                placeholder="Passwordを確認"
+                placeholder="パスワードを確認"
               />
             </div>
 
             <div class="buttons container-regist-form-btn">
-              <button v-on:click="regist" class="regist-form-btn button">
+              <a href="#confirm" class="regist-form-btn button">
                 Regist
-              </button>
+              </a>
             </div>
           </div>
 
@@ -115,6 +137,7 @@ const registUser = firebase.functions().httpsCallable('registUser')
 export default {
   data() {
     return {
+      isConfirm: false,
       name: '',
       email: '',
       password: '',
@@ -126,12 +149,21 @@ export default {
     ...mapGetters(['isAuthenticated'])
   },
   mounted() {
+    const hashchange = () => {
+      if (location.hash === '#confirm') {
+        this.isConfirm = true
+      } else {
+        this.isConfirm = false
+      }
+    }
     firebase.auth().onAuthStateChanged((user) => {
       this.setUser(user)
       // if (this.isAuthenticated) {
       //   this.$router.push('/')
       // }
     })
+    hashchange()
+    window.addEventListener('hashchange', hashchange)
   },
   methods: {
     ...mapActions(['setUser']),
@@ -144,10 +176,6 @@ export default {
         window.alert('パスワードが一致していません')
         return
       }
-      console.log(this.name)
-      console.log(this.email)
-      console.log(this.password)
-      console.log(this.password_confirm)
       registUser({
         uid: this.name,
         email: this.email,
@@ -221,6 +249,9 @@ export default {
         margin: 0 auto;
         text-align: center;
         font-size: 1.6em;
+      }
+      .regist-confirm p {
+        font-size: 1.2em;
       }
       .regist-form {
         .inputsWrap {
