@@ -25,7 +25,7 @@
                 class="input column is-11"
                 type="text"
                 name="email"
-                placeholder="Email"
+                placeholder="メールアドレス"
               />
             </div>
 
@@ -41,7 +41,7 @@
                 class="input is-11"
                 type="password"
                 name="pass"
-                placeholder="Password"
+                placeholder="パスワード"
               />
             </div>
 

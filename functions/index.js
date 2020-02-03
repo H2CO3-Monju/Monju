@@ -21,7 +21,7 @@ const checkUid = (uid) => {
 
 const checkPassword = (password) => {
   // 6文字未満のパスワードはfirebase側で自動でエラーを吐いてくれる
-  if(password.length > 50) {
+  if(50 < password.length) {
     throw new functions.https.HttpsError('invalid-argument','Please input password 50 characters or less.');
   } else if( !(password.match(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+$/)) ) {
     // 半角英大文字、半角英小文字、数字のいずれかが一つでも存在しないか、それ以外の文字が入力された場合

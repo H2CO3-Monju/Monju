@@ -133,6 +133,53 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 
 const registUser = firebase.functions().httpsCallable('registUser')
+const checkUserName = (name) => {
+  let text = null
+  if (!name) {
+    text = 'ユーザーネームが入力されていません'
+  } else if (name.length < 5) {
+    text = 'ユーザーネームは5文字以上で入力してください'
+  } else if (!name.match(/^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d-_]+$/)) {
+    // 半角英字と半角数字を含んでいないか、ハイフンとアンダースコア以外の文字を使用している場合
+    // 実例: (aBcCd), (11223), (aab_-) => エラー, (aa1_-),(AAa11) => 許可
+    text =
+      'ユーザーネームは半角英字と半角数字を必ず含んでください。使用できる記号はハイフンとアンダースコアのみです'
+  }
+  return text
+}
+const checkEmail = (email) => {
+  let text = null
+  if (!email) {
+    text = 'メールアドレスが入力されていません'
+  } else if (
+    !email.match(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+    )
+  ) {
+    text = 'メールアドレスが正しくありません'
+  }
+  return text
+}
+const checkPassword = (password, confirm) => {
+  let text = null
+  if (!password || !confirm) {
+    text = 'パスワードが入力されていません'
+  } else if (password !== confirm) {
+    text = 'パスワードが一致していません'
+  } else if (password.length < 6) {
+    text = 'パスワードは6文字以上入力してください'
+  } else if (password.length > 50) {
+    text = 'パスワードは50文字以内で入力してください'
+  } else if (
+    !password.match(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]+$/)
+  ) {
+    // 半角英大文字、半角英小文字、数字のいずれかが一つでも存在しないか、それ以外の文字が入力された場合
+    // 実例: (Abc-01), (abc001) => エラー, (Abc001) => 許可
+    text =
+      'パスワードは半角英大文字、半角英小文字、半角数字のみを使用し、全て必ず含んでください'
+  }
+  return text
+}
 
 export default {
   data() {
@@ -149,9 +196,20 @@ export default {
     ...mapGetters(['isAuthenticated'])
   },
   mounted() {
-    const hashchange = () => {
+    const errorCheck = () => {
       if (location.hash === '#confirm') {
-        this.isConfirm = true
+        const errorMsg1 = checkUserName(this.name)
+        const errorMsg2 = checkEmail(this.email)
+        const errorMsg3 = checkPassword(this.password, this.password_confirm)
+        console.log(errorMsg1)
+        console.log(errorMsg2)
+        console.log(errorMsg3)
+        if (!errorMsg1 && !errorMsg2 && !errorMsg3) {
+          this.isConfirm = true
+        } else {
+          this.$router.push('')
+          this.isConfirm = false
+        }
       } else {
         this.isConfirm = false
       }
@@ -162,8 +220,8 @@ export default {
       //   this.$router.push('/')
       // }
     })
-    hashchange()
-    window.addEventListener('hashchange', hashchange)
+    errorCheck()
+    window.addEventListener('hashchange', errorCheck)
   },
   methods: {
     ...mapActions(['setUser']),
