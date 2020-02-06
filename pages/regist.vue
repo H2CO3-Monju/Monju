@@ -1,14 +1,8 @@
 <template>
   <regist>
-    <div class="allWrap columns">
-      <div class="regist-container column is-4 is-offset-4">
-        <div v-if="isAuthenticated" class="regist-wrap column">
-          <div class="regist-title" data-tilt>
-            <h1>読み込み中…</h1>
-          </div>
-        </div>
-
-        <div v-else-if="isConfirm" class="regist-wrap column">
+    <div class="allWrap columns is-mobile">
+      <div class="regist-container column is-4">
+        <div v-if="isConfirm" class="regist-wrap column">
           <di class="regist-title" data-tilt>
             <h1>この内容でよろしかったですか？</h1>
           </di>
@@ -51,7 +45,7 @@
               class="input-wrap validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <div class="symbolAndInput columns">
+              <div class="symbolAndInput columns is-mobile">
                 <span class="inputSymbol column is-1 column">
                   <i class="fas fa-user" aria-hidden="true"></i>
                 </span>
@@ -63,7 +57,7 @@
                   placeholder="ユーザーネーム"
                 />
               </div>
-              <p v-if="!!nameError" class="input-error">
+              <p v-if="!!nameError" class="input-error-msg">
                 {{ nameError }}
               </p>
             </div>
@@ -72,7 +66,7 @@
               class="input-wrap validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
             >
-              <div class="symbolAndInput columns">
+              <div class="symbolAndInput columns is-mobile">
                 <span class="inputSymbol column is-1">
                   <i class="fa fa-envelope" aria-hidden="true"></i>
                 </span>
@@ -84,7 +78,7 @@
                   placeholder="メールアドレス"
                 />
               </div>
-              <p v-if="!!emailError" class="input-error">
+              <p v-if="!!emailError" class="input-error-msg">
                 {{ emailError }}
               </p>
             </div>
@@ -93,7 +87,7 @@
               class="input-wrap validate-input"
               data-validate="Password is required"
             >
-              <div class="symbolAndInput columns">
+              <div class="symbolAndInput columns is-mobile">
                 <span class="inputSymbol column is-1">
                   <i class="fa fa-lock" aria-hidden="true"></i>
                 </span>
@@ -105,7 +99,7 @@
                   placeholder="パスワード"
                 />
               </div>
-              <p v-if="!!passwordError" class="input-error">
+              <p v-if="!!passwordError" class="input-error-msg">
                 {{ passwordError }}
               </p>
             </div>
@@ -114,7 +108,7 @@
               class="input-wrap validate-input"
               data-validate="Password is required"
             >
-              <div class="symbolAndInput columns">
+              <div class="symbolAndInput columns is-mobile">
                 <span class="inputSymbol column is-1">
                   <i class="fa fa-lock" aria-hidden="true"></i>
                 </span>
@@ -126,7 +120,7 @@
                   placeholder="パスワードを確認"
                 />
               </div>
-              <p v-if="!!passwordConfirmError" class="input-error">
+              <p v-if="!!passwordConfirmError" class="input-error-msg">
                 {{ passwordConfirmError }}
               </p>
             </div>
@@ -226,6 +220,11 @@ const checkConfirmPassword = (confirm) => {
 }
 
 export default {
+  middleware({ store, redirect }) {
+    if (!store.state.authenticated) {
+      return redirect('/')
+    }
+  },
   data() {
     return {
       name: '',
@@ -357,7 +356,9 @@ p {
   background-position: center center;
 
   .regist-container {
+    min-width: 400px;
     height: calc(100vh - 57px);
+    margin: 0 auto;
     .regist-wrap {
       display: flex;
       flex-direction: column;
@@ -409,8 +410,11 @@ p {
             box-shadow: none;
             font-size: 1.2em;
           }
+          // .input-error-active {
+          //   border-bottom: #c81912 solid 2px;
+          // }
         }
-        .input-error {
+        .input-error-msg {
           width: 80%;
           margin: -5% auto 5%;
           padding-left: 7%;
@@ -436,6 +440,7 @@ p {
         align-items: center;
         margin: 0 10%;
         .regist-auth_btn {
+          cursor: pointer;
           padding: 0;
           width: 70px;
           height: 70px;

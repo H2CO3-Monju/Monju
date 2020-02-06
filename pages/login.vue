@@ -1,13 +1,8 @@
 <template>
   <login>
-    <div class="allWrap columns">
-      <div class="login-container column is-4 is-offset-4">
-        <div v-if="isAuthenticated" class="login-wrap column">
-          <di v class="login-title" data-tilt>
-            <h1>読み込み中…</h1>
-          </di>
-        </div>
-        <div v-else class="login-wrap column">
+    <div class="allWrap columns is-mobile">
+      <div class="login-container column is-4">
+        <div class="login-wrap column">
           <div class="login-title" data-tilt>
             <h1>Monjuにログイン</h1>
           </div>
@@ -83,6 +78,11 @@
 import { mapActions, mapState, mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 export default {
+  middleware({ store, redirect }) {
+    if (!store.state.authenticated) {
+      return redirect('/')
+    }
+  },
   data() {
     return {
       email: '',
@@ -92,14 +92,6 @@ export default {
   computed: {
     ...mapState(['user']),
     ...mapGetters(['isAuthenticated'])
-  },
-  mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
-      this.setUser(user)
-      if (this.isAuthenticated) {
-        this.$router.push('/')
-      }
-    })
   },
   methods: {
     ...mapActions(['setUser']),
@@ -140,7 +132,9 @@ export default {
   background-position: center center;
 
   .login-container {
+    min-width: 380px;
     height: calc(100vh - 57px);
+    margin: 0 auto;
     .login-wrap {
       display: flex;
       flex-direction: column;
@@ -197,6 +191,7 @@ export default {
         align-items: center;
         margin: 0 10%;
         .login-auth_btn {
+          cursor: pointer;
           padding: 0;
           width: 70px;
           height: 70px;

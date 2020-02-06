@@ -1,8 +1,8 @@
 <template>
-<!--
-  ログアウトボタンがまだヘッダー内に未実装だったため、ログアウト用に作ったファイル
-  後々消します
--->
+  <!--
+    ログアウトボタンがまだヘッダー内に未実装だったため、ログアウト用に作ったファイル
+    後々消します
+  -->
   <login>
     <div class="allWrap columns">
       <div class="login-container column is-4 is-offset-4">
