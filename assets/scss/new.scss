@@ -1,0 +1,98 @@
+$font_color: #7994a7;
+$light_blue: #b2cde0;
+$catskill_white: #f9fcfb;
+$tundora: #444;
+
+.bg {
+  padding: 5vh 0;
+  background-color: $tundora;
+}
+.container {
+  width: 85%;
+  height: 1000px;
+  margin: 0 auto;
+  padding: 50px 60px;
+  border-radius: 20px;
+  color: $font_color;
+  background-color: $catskill_white;
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  .text-input {
+    color: $tundora;
+    font-size: 1.2em;
+  }
+  .mainContents-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    .event-img-wrap {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 400px;
+      margin-right: 40px;
+      color: $light_blue;
+      // min-width: 400px;
+      .event-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 266px;
+        border: $light_blue 3px dashed;
+        .image-icon-wrap {
+          display: inline-block;
+          .image-icons {
+            cursor: pointer;
+            position: relative;
+            &::after {
+              position: absolute;
+              top: -58px;
+              right: -6px;
+              font-size: 2em;
+              font-family: 'Font Awesome 5 Free';
+              font-weight: bold;
+              text-shadow: 3px 3px 0 $catskill_white,
+                -3px -3px 0 $catskill_white, -3px 3px 0 $catskill_white,
+                3px -3px 0 $catskill_white, 0px 3px 0 $catskill_white,
+                0 -3px 0 $catskill_white, -3px 0 0 $catskill_white,
+                -3px 0 0 $catskill_white, 3px 0 0 $catskill_white;
+              content: '\f067';
+            }
+          }
+          .hidden {
+            display: none;
+          }
+        }
+      }
+    }
+    .title-tag-wrap {
+      flex-grow: 1;
+      flex-basis: 400px;
+      .title-tag-input {
+        height: 2em;
+        border: $light_blue 1px solid;
+        border-radius: 10px;
+      }
+      .title-input {
+        width: 100%;
+      }
+      .tag-input {
+        width: 45%;
+      }
+    }
+  }
+
+  .termAndTime {
+    .time-inputs-wrap {
+      .input-date {
+        border: none;
+      }
+    }
+  }
+}
