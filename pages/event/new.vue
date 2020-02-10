@@ -70,6 +70,16 @@
 
       <div class="event-type">
         <h2>勉強会の種類</h2>
+        <div class="event-type_inputs">
+          <div>
+            <input type="radio" name="event-type" value="presentation" />
+            <label for="presentation">発表勉強会</label>
+          </div>
+          <div>
+            <input type="radio" name="event-type" value="communication" />
+            <label for="communication">発表勉強会</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -79,7 +79,7 @@ import { mapActions, mapState, mapGetters } from 'vuex'
 import firebase from '~/plugins/firebase'
 export default {
   middleware({ store, redirect }) {
-    // setTimeOutをしないとstoreから値を取得できない
+    // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
     setTimeout(() => {
       if (store.getters.isAuthenticated) {
         return redirect('/')

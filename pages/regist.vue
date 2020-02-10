@@ -221,7 +221,7 @@ const checkConfirmPassword = (confirm) => {
 
 export default {
   middleware({ store, redirect }) {
-    // setTimeOutをしないとstoreから値を取得できない
+    // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
     setTimeout(() => {
       console.log('isAuthenticated: ', store.getters.isAuthenticated)
       if (store.getters.isAuthenticated) {

@@ -2,13 +2,14 @@ $font_color: #7994a7;
 $light_blue: #b2cde0;
 $catskill_white: #f9fcfb;
 $tundora: #444;
+$percent: 0.8;
 
 .bg {
   padding: 5vh 0;
   background-color: $tundora;
 }
 .container {
-  width: 85%;
+  width: 70%;
   height: 1000px;
   margin: 0 auto;
   padding: 50px 60px;
@@ -18,9 +19,11 @@ $tundora: #444;
   h1 {
     margin-bottom: 20px;
     font-size: 2em;
+    font-weight: bold;
   }
   h2 {
     font-size: 1.4em;
+    font-weight: bold;
   }
   .text-input {
     color: $tundora;
@@ -74,25 +77,48 @@ $tundora: #444;
     .title-tag-wrap {
       flex-grow: 1;
       flex-basis: 400px;
-      .title-tag-input {
-        height: 2em;
-        border: $light_blue 1px solid;
-        border-radius: 10px;
-      }
-      .title-input {
-        width: 100%;
-      }
-      .tag-input {
-        width: 45%;
+      .title-wrap, .tag-wrap {
+        margin-bottom: 20px;
+        .title-tag-input {
+          height: 2em;
+          border: $light_blue 1px solid;
+          border-radius: 10px;
+        }
+        .title-input {
+          width: 100%;
+        }
+        .tag-input {
+          width: 45%;
+        }
       }
     }
   }
 
-  .termAndTime {
-    .time-inputs-wrap {
-      .input-date {
-        border: none;
-      }
+  .termAndTime, .deadline {
+    margin-bottom: 20px;
+    h2 {
+      margin-bottom: 5px;
     }
+    input, select {
+      margin: 0 5px 5px;
+      padding: 0;
+      height: 31px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
+      outline: none;
+      background: #c4d929;
+      color: #fff;
+      font-size: 1.2em;
+      text-align: center;
+    }
+  }
+
+  .event-type_inputs {
+    display: flex;
+    flex-wrap: row;
+    justify-content: space-around;
+    width: 30%;
+    font-size: 1.2em;
   }
 }
