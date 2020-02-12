@@ -75,7 +75,7 @@
 
       <div class="event-type item">
         <h2>勉強会の種類</h2>
-        <div class="event-type_inputs">
+        <div v-on:click="switchContent" class="event-type_inputs">
           <div>
             <label for="presentation_input">
               <input
@@ -98,67 +98,100 @@
 
       <hr />
 
-      <div class="entryFee item">
-        <h2>参加費</h2>
-        <div class="entryFee__inner">
-          <select class="entryFee__inner-select lightblue-input" name="fee">
-            <option value="100yen">100</option>
-            <option value="200yen">200</option>
-            <option value="300yen">300</option>
-            <option value="400yen">400</option>
-            <option value="500yen">500</option>
-            <option value="600yen">600</option>
-            <option value="700yen">700</option>
-            <option value="800yen">800</option>
-            <option value="900yen">900</option>
-            <option value="1000yen">1000</option>
-            <option value="1100yen">1100</option>
-            <option value="1200yen">1200</option>
-            <option value="1300yen">1300</option>
-            <option value="1400yen">1400</option>
-            <option value="1500yen">1500</option>
-            <option value="1600yen">1600</option>
-            <option value="1700yen">1700</option>
-            <option value="1800yen">1800</option>
-            <option value="1900yen">1900</option>
-            <option value="2000yen">2000</option>
-          </select>
-          <i class="fab fa-product-hunt entryFee__inner-fontawesome"></i>
+      <div v-if="isEventTypePresentation">
+        <div class="entryFee item">
+          <h2>参加費</h2>
+          <div class="entryFee__inner">
+            <select class="entryFee__inner-select lightblue-input" name="fee">
+              <option value="100yen">100</option>
+              <option value="200yen">200</option>
+              <option value="300yen">300</option>
+              <option value="400yen">400</option>
+              <option value="500yen">500</option>
+              <option value="600yen">600</option>
+              <option value="700yen">700</option>
+              <option value="800yen">800</option>
+              <option value="900yen">900</option>
+              <option value="1000yen">1000</option>
+              <option value="1100yen">1100</option>
+              <option value="1200yen">1200</option>
+              <option value="1300yen">1300</option>
+              <option value="1400yen">1400</option>
+              <option value="1500yen">1500</option>
+              <option value="1600yen">1600</option>
+              <option value="1700yen">1700</option>
+              <option value="1800yen">1800</option>
+              <option value="1900yen">1900</option>
+              <option value="2000yen">2000</option>
+            </select>
+            <i class="fab fa-product-hunt entryFee__inner-fontawesome"></i>
+          </div>
+          <p><small>※上限は2000円までです</small></p>
         </div>
-        <p><small>※上限は2000円までです</small></p>
-      </div>
 
-      <div class="presenterSelect item">
-        <h2>発表者の選択</h2>
-        <input
-          type="text"
-          class="presenterSelect_input lightblue-input"
-          placeholder="入力してください"
-        />
-        <p><small>※発表者の上限は10人までです</small></p>
-      </div>
-
-      <div class="fixed-member item">
-        <h2>定員</h2>
-        <div>
+        <div class="presenterSelect item">
+          <h2>発表者の選択</h2>
           <input
-            id="fixed-member_input"
-            type="number"
-            class="fixed-member_input lightblue-input"
+            type="text"
+            class="presenterSelect_input lightblue-input"
+            placeholder="入力してください"
           />
-          <label for="fixed-member_input">人</label>
+          <p><small>※発表者の上限は10人までです</small></p>
         </div>
-        <p><small>※発表勉強会の参加者の上限は10人です</small></p>
+
+        <div class="fixed-member item">
+          <h2>定員</h2>
+          <div>
+            <input
+              id="fixed-member_input"
+              type="number"
+              class="fixed-member_input lightblue-input"
+            />
+            <label for="fixed-member_input">人</label>
+          </div>
+          <p><small>※発表勉強会の参加者の上限は10人です</small></p>
+        </div>
+
+        <div class="autoCloseText item">
+          <p>
+            <small>
+              <span class="riceMark">＊</span>定員が締め切りまでに
+              <input
+                class="autoCloseText_input lightblue-input"
+                type="number"
+              />
+              人集まらなかったら自動的にイベントを閉鎖する
+            </small>
+          </p>
+        </div>
       </div>
 
-      <div class="autoCloseText item">
-        <p>
-          <small>
-            <span class="riceMark">＊</span>定員が締め切りまでに
-            <input class="autoCloseText_input lightblue-input" type="number" />
-            人集まらなかったら自動的にイベントを閉鎖する
-          </small>
-        </p>
+      <div v-else>
+        <div class="fixed-member item">
+          <h2>定員</h2>
+          <div>
+            <input
+              id="fixed-member_input"
+              type="number"
+              class="fixed-member_input lightblue-input"
+            />
+            <label for="fixed-member_input">人</label>
+          </div>
+          <p><small>※交流勉強会の参加者の上限は5人です</small></p>
+        </div>
+
+        <div class="autoCloseText item">
+          <p>
+            <small>
+              <span class="riceMark">＊</span>定員が締め切りまでに
+              <input
+                class="autoCloseText_input lightblue-input"
+                type="number"
+              />
+              人集まらなかったら自動的にイベントを閉鎖する
+            </small>
+          </p>
+        </div>
       </div>
 
       <div class="details item">
@@ -191,10 +224,26 @@ const showImg = () => {
   })
 }
 export default {
+  data() {
+    return {
+      isEventTypePresentation: true
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       showImg()
     })
+  },
+  methods: {
+    switchContent() {
+      const inputs = document.getElementsByName('event-type')
+      const isPresentation = inputs[0].checked
+      if (isPresentation) {
+        this.isEventTypePresentation = true
+      } else {
+        this.isEventTypePresentation = false
+      }
+    }
   }
 }
 </script>
