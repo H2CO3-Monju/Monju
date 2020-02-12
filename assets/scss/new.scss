@@ -1,10 +1,11 @@
 $font_color: #7994a7;
 $light_blue: #b2cde0;
-$catskill_white: #f9fcfb;
-$tundora: #444;
+$catskill_white: #fff;
+$tundora: #f2f3f6;
 $percent: 0.8;
 
 .bg {
+  margin-top: 20px;
   padding: 5vh 0;
   background-color: $tundora;
 }
@@ -26,13 +27,12 @@ $percent: 0.8;
     font-weight: bold;
   }
   .lightblue-input {
-    height: 2em;
     padding-left: 0.5em;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
-    color: $tundora;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #000;
     font-size: 1.2em * $percent;
     border: $light_blue 1px solid;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   .mainContents-wrap {
     display: flex;
@@ -85,8 +85,12 @@ $percent: 0.8;
     .title-tag-wrap {
       flex-grow: 1;
       flex-basis: 330px;
-      .title-wrap, .tag-wrap {
+      .title-wrap,
+      .tag-wrap {
         margin-bottom: 20px;
+        .title-tag-input {
+          height: 2em;
+        }
         .title-input {
           width: 100%;
         }
@@ -101,17 +105,19 @@ $percent: 0.8;
     margin-bottom: 20px;
   }
 
-  .termAndTime, .deadline {
+  .termAndTime,
+  .deadline {
     h2 {
       margin-bottom: 5px;
     }
-    input, select {
+    input,
+    select {
       margin: 0 5px 5px;
       padding: 6px 0;
       height: 31px * $percent;
       border: none;
       border-radius: 5px;
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       outline: none;
       background: #c4d929;
       color: #fff;
@@ -145,6 +151,7 @@ $percent: 0.8;
       position: relative;
       margin: 0 5px 5px;
       &:before {
+        z-index: 1;
         position: absolute;
         top: 0.8em;
         right: 2.3em;
@@ -157,7 +164,8 @@ $percent: 0.8;
         border-top: 6px solid $font_color;
         pointer-events: none;
       }
-      select {
+      .entryFee_select {
+        height: 2em;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -166,6 +174,7 @@ $percent: 0.8;
         color: $font_color;
         font-weight: bold;
         text-align: center;
+        background-color: $catskill_white;
       }
       .entryFee-fontawesome {
         margin-left: 0.3em;
@@ -175,8 +184,28 @@ $percent: 0.8;
   }
 
   .presenterSelect {
-    input {
+    .presenterSelect_input {
+      height: 2em;
       margin: 0 5px 5px;
+    }
+  }
+
+  .fixed-member {
+    .fixed-member_input {
+      margin: 0 5px 5px;
+      width: 100px;
+      height: 2em;
+    }
+  }
+
+  .autoCloseText {
+    .riceMark {
+      color: #f34573;
+      font-weight: bold;
+    }
+    .autoCloseText_input {
+      width: 50px;
+      height: 1.4em;
     }
   }
 }

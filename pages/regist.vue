@@ -55,6 +55,7 @@
                   type="text"
                   name="name"
                   placeholder="ユーザーネーム"
+                  autocomplete="off"
                 />
               </div>
               <p v-if="!!nameError" class="input-error-msg">
@@ -76,6 +77,7 @@
                   type="text"
                   name="email"
                   placeholder="メールアドレス"
+                  autocomplete="off"
                 />
               </div>
               <p v-if="!!emailError" class="input-error-msg">
@@ -97,6 +99,7 @@
                   type="password"
                   name="pass"
                   placeholder="パスワード"
+                  autocomplete="off"
                 />
               </div>
               <p v-if="!!passwordError" class="input-error-msg">
@@ -301,6 +304,7 @@ export default {
         window.alert('パスワードが一致していません')
         return
       }
+      console.log('ちょっと待ってね！')
       registUser({
         uid: this.name,
         email: this.email,

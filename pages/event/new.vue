@@ -59,7 +59,9 @@
           </select>
         </div>
         <p>
-          ※時間は原則1時間〜５時間までです。延長は出来ないので、時間は多めに見積もって作成してください。
+          <small>
+            ※時間は原則1時間〜５時間までです。延長は出来ないので、時間は多めに見積もって作成してください。
+          </small>
         </p>
       </div>
 
@@ -76,15 +78,15 @@
         <div class="event-type_inputs">
           <div>
             <input
+              id="presentation_input"
               type="radio"
               name="event-type"
-              value="presentation"
               checked
             />
-            <label for="presentation">発表勉強会</label>
+            <label for="presentation_input">発表勉強会</label>
           </div>
           <div>
-            <input type="radio" name="event-type" value="communication" />
+            <input id="communication_input" type="radio" name="event-type" />
             <label for="communication">交流勉強会</label>
           </div>
         </div>
@@ -95,7 +97,7 @@
       <div class="entryFee item">
         <h2>参加費</h2>
         <div class="entryFee_select">
-          <select class="lightblue-input" name="fee">
+          <select class="entryFee_select lightblue-input" name="fee">
             <option value="100yen">100</option>
             <option value="200yen">200</option>
             <option value="300yen">300</option>
@@ -119,17 +121,44 @@
           </select>
           <i class="fab fa-product-hunt entryFee-fontawesome"></i>
         </div>
-        <p>※上限は2000円までです</p>
+        <p><small>※上限は2000円までです</small></p>
       </div>
 
       <div class="presenterSelect item">
         <h2>発表者の選択</h2>
         <input
           type="text"
-          class="lightblue-input"
+          class="presenterSelect_input lightblue-input"
           placeholder="入力してください"
         />
-        <p>※発表者の上限は10人までです</p>
+        <p><small>※発表者の上限は10人までです</small></p>
+      </div>
+
+      <div class="fixed-member item">
+        <h2>定員</h2>
+        <div>
+          <input
+            id="fixed-member_input"
+            type="number"
+            class="fixed-member_input lightblue-input"
+          />
+          <label for="fixed-member_input">人</label>
+        </div>
+        <p><small>※発表勉強会の参加者の上限は10人です</small></p>
+      </div>
+
+      <div class="autoCloseText item">
+        <p>
+          <small>
+            <span class="riceMark">＊</span>定員が締め切りまでに
+            <input class="autoCloseText_input lightblue-input" type="number" />
+            人集まらなかったら自動的にイベントを閉鎖する
+          </small>
+        </p>
+      </div>
+
+      <div class="details item">
+        <h2>詳細</h2>
       </div>
     </div>
   </div>
