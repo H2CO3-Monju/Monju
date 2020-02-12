@@ -102,39 +102,5 @@ export default {
 </script>
 
 <style lang="scss">
-.userInfo {
-  width: 1180px;
-  height: auto;
-  margin: 0 auto;
-  .userInfo-userIcon {
-    width: 20%;
-    height: 25%;
-    margin: 0 auto;
-    img {
-      overflow: hidden;
-      width: 125px;
-      height: 125px;
-      border-radius: 50%;
-    }
-    .Icons {
-      justify-content: space-around;
-    }
-  }
-  .userInfo-userData {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    .userInfo-userName {
-      font-size: 1.6em;
-      color: $_color-text-blueBlack;
-      border-bottom: 5px solid $_color-text-blueBlack;
-    }
-    .userInfo-userGreed {
-      background: $_border-color-lighter;
-      margin-top: 15px;
-      padding: 15px;
-      box-shadow: 10px rgba($color: #000000, $alpha: 0.4);
-    }
-  }
-}
+@import '~assets/scss/mytop.scss';
 </style>

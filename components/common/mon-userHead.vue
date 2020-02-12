@@ -23,7 +23,11 @@
       </div>
 
       <div class="st-userHeader_end">
-        <a class="st-userHeader_loginLink" href="#">イベント作成</a>
+        <nuxt-link class="st-userHeader_Link" to="/new">
+          <button class="button">
+            イベント作成
+          </button>
+        </nuxt-link>
         <span class="pd-1"></span>
 
         <div class="st-userHead_point">
@@ -31,23 +35,56 @@
           <i class="fab fa-product-hunt fa-lg"></i>
         </div>
         <span class="pd-1"></span>
-        <a class="st-userHead_info" href="#">
+
+        <nuxt-link class="st-userHead_info" to="/">
           <i class="fas fa-bell fa-lg"></i>
-        </a>
-        <span class="pd-1"></span>
-        <a class="st-userHead_meil" href="#">
-          <i class="fas fa-envelope fa-lg"></i>
-        </a>
+        </nuxt-link>
         <span class="pd-1"></span>
 
-        <div class="userCard">
-          <img
-            class="userIcon"
-            src="~/assets/images/user.jpg"
-            alt="user-icon"
-          />
-          {{ userName }}さん
-          <i class="fas fa-caret-down fa-2x greenIcon"></i>
+        <nuxt-link class="st-userHead_meil" to="/">
+          <i class="fas fa-envelope fa-lg"></i>
+        </nuxt-link>
+        <span class="pd-1"></span>
+
+        <div class="userCard dropdown" :class="{ 'is-active': isActive }">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu2"
+              @click="isActive = !isActive"
+            >
+              <img
+                class="userIcon"
+                src="~/assets/images/user.jpg"
+                alt="user-icon"
+              />
+              <span class="userName">
+                {{ userName }}
+                <small>さん</small>
+              </span>
+              <i class="fas fa-caret-down fa-lg greenIcon"></i>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+            <div class="dropdown-content">
+              <div class="dropdown-item">
+                <nuxt-link to="/mytop">マイページ</nuxt-link>
+              </div>
+              <div class="dropdown-item">
+                <nuxt-link to="/SetUp/setting-Pro">設定</nuxt-link>
+              </div>
+              <div class="dropdown-item">
+                <nuxt-link to="/info/info">お知らせ</nuxt-link>
+              </div>
+              <div class="dropdown-item">
+                <nuxt-link to="/info/qa">ヘルプ</nuxt-link>
+              </div>
+              <div class="dropdown-item">
+                <span>ログアウト</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -59,103 +96,13 @@ export default {
   data() {
     return {
       havePoint: '1000',
-      userName: '涼雅'
+      userName: '五文字以上',
+      isActive: false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-//ホームのGナビ
-.st-userHeader {
-  padding: 0 16px;
-  background-color: #fff;
-  border-top: 5px solid $_color-primary;
-  box-shadow: 0px 0px 10px 0px rgba($color: #000000, $alpha: 0.4);
-
-  .st-userHeader_container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 52px;
-    max-width: 1080px;
-    margin: 0 auto;
-
-    //左の要素
-    .st-userHeader_start {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      position: relative;
-
-      //ロゴの設定
-      .logo {
-        display: flex;
-        align-items: center;
-        margin-right: 8px;
-        img {
-          width: auto;
-          height: 50px;
-        }
-      }
-
-      //ホーム内検索フォームの設定
-      .st-userHeader_serch {
-        position: relative;
-        width: 200px;
-        .fa {
-          position: absolute;
-          top: 6px;
-          left: 9px;
-          color: #aaa;
-          font-weight: 900;
-        }
-        .st-userHeader_searchInput {
-          width: 100%;
-          height: 32px;
-          border: none;
-          border-radius: 4px;
-          background-color: #fff;
-          font-size: 16px;
-          box-shadow: inset 0 1px 2px #ccc;
-          padding-left: 32px;
-          padding-right: 8px;
-          -webkit-appearance: textfield;
-          -moz-appearance: textfield;
-          appearance: textfield;
-        }
-      }
-    }
-
-    //右の要素
-    .st-userHeader_end {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .st-userHeader_loginLink {
-        background-color: $_color-primary;
-        color: $_color-white;
-        border-radius: $_button-border-radius;
-        border: 2px solid $_button-default-border;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        padding: 0 16px;
-        cursor: pointer;
-      }
-
-      .userCard {
-        font-size: 1.1em;
-        .userIcon {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-      }
-    }
-  }
-}
+@import '~assets/scss/header.scss';
 </style>
