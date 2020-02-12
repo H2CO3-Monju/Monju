@@ -2,14 +2,15 @@ $font_color: #7994a7;
 $light_blue: #b2cde0;
 $catskill_white: #f9fcfb;
 $tundora: #444;
+$percent: 0.8;
 
 .bg {
   padding: 5vh 0;
   background-color: $tundora;
 }
 .container {
-  width: 85%;
-  height: 1000px;
+  width: 70%;
+  height: 2000px;
   margin: 0 auto;
   padding: 50px 60px;
   border-radius: 20px;
@@ -17,14 +18,21 @@ $tundora: #444;
   background-color: $catskill_white;
   h1 {
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 2em * $percent;
+    font-weight: bold;
   }
   h2 {
-    font-size: 1.4em;
+    font-size: 1.4em * $percent;
+    font-weight: bold;
   }
-  .text-input {
+  .lightblue-input {
+    height: 2em;
+    padding-left: 0.5em;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
     color: $tundora;
-    font-size: 1.2em;
+    font-size: 1.2em * $percent;
+    border: $light_blue 1px solid;
+    border-radius: 10px;
   }
   .mainContents-wrap {
     display: flex;
@@ -34,7 +42,7 @@ $tundora: #444;
     .event-img-wrap {
       flex-grow: 0;
       flex-shrink: 0;
-      flex-basis: 400px;
+      flex-basis: 330px;
       margin-right: 40px;
       color: $light_blue;
       // min-width: 400px;
@@ -42,8 +50,8 @@ $tundora: #444;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 400px;
-        height: 266px;
+        width: 400px * $percent;
+        height: 266px * $percent;
         border: $light_blue 3px dashed;
         .image-icon-wrap {
           display: inline-block;
@@ -64,6 +72,9 @@ $tundora: #444;
                 -3px 0 0 $catskill_white, 3px 0 0 $catskill_white;
               content: '\f067';
             }
+            .image-icons-fontawesome {
+              font-size: 5em;
+            }
           }
           .hidden {
             display: none;
@@ -73,26 +84,99 @@ $tundora: #444;
     }
     .title-tag-wrap {
       flex-grow: 1;
-      flex-basis: 400px;
-      .title-tag-input {
-        height: 2em;
-        border: $light_blue 1px solid;
-        border-radius: 10px;
-      }
-      .title-input {
-        width: 100%;
-      }
-      .tag-input {
-        width: 45%;
+      flex-basis: 330px;
+      .title-wrap, .tag-wrap {
+        margin-bottom: 20px;
+        .title-input {
+          width: 100%;
+        }
+        .tag-input {
+          width: 45%;
+        }
       }
     }
   }
 
-  .termAndTime {
-    .time-inputs-wrap {
-      .input-date {
-        border: none;
+  .item {
+    margin-bottom: 20px;
+  }
+
+  .termAndTime, .deadline {
+    h2 {
+      margin-bottom: 5px;
+    }
+    input, select {
+      margin: 0 5px 5px;
+      padding: 6px 0;
+      height: 31px * $percent;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
+      outline: none;
+      background: #c4d929;
+      color: #fff;
+      font-size: 1.2em * $percent;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .event-type {
+    .event-type_inputs {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-around;
+      font-size: 1.2em * $percent;
+    }
+  }
+
+  hr {
+    border-top: $light_blue 1px solid;
+  }
+
+  .entryFee {
+    display: inline-block;
+    h2 {
+      margin-bottom: 5px;
+    }
+    .entryFee_select {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      margin: 0 5px 5px;
+      &:before {
+        position: absolute;
+        top: 0.8em;
+        right: 2.3em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $font_color;
+        pointer-events: none;
       }
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 5px 38px 5px 6px;
+        outline: none;
+        color: $font_color;
+        font-weight: bold;
+        text-align: center;
+      }
+      .entryFee-fontawesome {
+        margin-left: 0.3em;
+        font-size: 1.3em;
+      }
+    }
+  }
+
+  .presenterSelect {
+    input {
+      margin: 0 5px 5px;
     }
   }
 }

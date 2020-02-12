@@ -7,7 +7,10 @@
           <div class="event-img">
             <label class="image-icon-wrap">
               <span class="image-icons">
-                <i class="far fa-image fa-5x" aria-hidden="true"></i>
+                <i
+                  class="far fa-image image-icons-fontawesome"
+                  aria-hidden="true"
+                ></i>
               </span>
               <input
                 id="eventImg"
@@ -26,7 +29,7 @@
             <h2>タイトル</h2>
             <input
               type="text"
-              class="title-tag-input title-input text-input"
+              class="title-tag-input title-input lightblue-input"
               placeholder="簡潔かつ目が惹かれるようなタイトルを！"
             />
           </div>
@@ -34,7 +37,7 @@
             <h2>タグ</h2>
             <input
               type="text"
-              class="title-tag-input tag-input text-input"
+              class="title-tag-input tag-input lightblue-input"
               placeholder="入力してください"
             />
             <p><small>※タグの追加は5つまでです</small></p>
@@ -42,7 +45,7 @@
         </div>
       </div>
 
-      <div class="termAndTime">
+      <div class="termAndTime item">
         <h2>期間と日時</h2>
         <div class="time-inputs-wrap">
           <input class="input-date" type="date" />
@@ -60,7 +63,7 @@
         </p>
       </div>
 
-      <div class="deadline">
+      <div class="deadline item">
         <h2>締め切り</h2>
         <div class="time-input-wrap">
           <input type="date" />
@@ -68,8 +71,65 @@
         </div>
       </div>
 
-      <div class="event-type">
+      <div class="event-type item">
         <h2>勉強会の種類</h2>
+        <div class="event-type_inputs">
+          <div>
+            <input
+              type="radio"
+              name="event-type"
+              value="presentation"
+              checked
+            />
+            <label for="presentation">発表勉強会</label>
+          </div>
+          <div>
+            <input type="radio" name="event-type" value="communication" />
+            <label for="communication">交流勉強会</label>
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="entryFee item">
+        <h2>参加費</h2>
+        <div class="entryFee_select">
+          <select class="lightblue-input" name="fee">
+            <option value="100yen">100</option>
+            <option value="200yen">200</option>
+            <option value="300yen">300</option>
+            <option value="400yen">400</option>
+            <option value="500yen">500</option>
+            <option value="600yen">600</option>
+            <option value="700yen">700</option>
+            <option value="800yen">800</option>
+            <option value="900yen">900</option>
+            <option value="1000yen">1000</option>
+            <option value="1100yen">1100</option>
+            <option value="1200yen">1200</option>
+            <option value="1300yen">1300</option>
+            <option value="1400yen">1400</option>
+            <option value="1500yen">1500</option>
+            <option value="1600yen">1600</option>
+            <option value="1700yen">1700</option>
+            <option value="1800yen">1800</option>
+            <option value="1900yen">1900</option>
+            <option value="2000yen">2000</option>
+          </select>
+          <i class="fab fa-product-hunt entryFee-fontawesome"></i>
+        </div>
+        <p>※上限は2000円までです</p>
+      </div>
+
+      <div class="presenterSelect item">
+        <h2>発表者の選択</h2>
+        <input
+          type="text"
+          class="lightblue-input"
+          placeholder="入力してください"
+        />
+        <p>※発表者の上限は10人までです</p>
       </div>
     </div>
   </div>
