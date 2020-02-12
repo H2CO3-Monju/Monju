@@ -10,7 +10,7 @@ $percent: 0.8;
 }
 .container {
   width: 70%;
-  height: 1000px;
+  height: 2000px;
   margin: 0 auto;
   padding: 50px 60px;
   border-radius: 20px;
@@ -26,6 +26,8 @@ $percent: 0.8;
     font-weight: bold;
   }
   .lightblue-input {
+    height: 2em;
+    padding-left: 0.5em;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
     color: $tundora;
     font-size: 1.2em * $percent;
@@ -85,9 +87,6 @@ $percent: 0.8;
       flex-basis: 330px;
       .title-wrap, .tag-wrap {
         margin-bottom: 20px;
-        .title-tag-input {
-          height: 2em;
-        }
         .title-input {
           width: 100%;
         }
@@ -98,8 +97,11 @@ $percent: 0.8;
     }
   }
 
-  .termAndTime, .deadline {
+  .item {
     margin-bottom: 20px;
+  }
+
+  .termAndTime, .deadline {
     h2 {
       margin-bottom: 5px;
     }
@@ -121,10 +123,9 @@ $percent: 0.8;
 
   .event-type {
     .event-type_inputs {
-      display: flex;
-      flex-wrap: row;
+      display: inline-flex;
+      flex-direction: row;
       justify-content: space-around;
-      width: 30% * $percent;
       font-size: 1.2em * $percent;
     }
   }
@@ -133,19 +134,19 @@ $percent: 0.8;
     border-top: $light_blue 1px solid;
   }
 
-  .entry-fee {
+  .entryFee {
     display: inline-block;
     h2 {
       margin-bottom: 5px;
     }
-    .entry-fee_select {
+    .entryFee_select {
       display: inline-flex;
       align-items: center;
       position: relative;
       margin: 0 5px 5px;
       &:before {
         position: absolute;
-        top: 1em;
+        top: 0.8em;
         right: 2.3em;
         width: 0;
         height: 0;
@@ -160,16 +161,22 @@ $percent: 0.8;
         appearance: none;
         -webkit-appearance: none;
         -moz-appearance: none;
-        padding: 8px 38px 8px 8px;
+        padding: 5px 38px 5px 6px;
         outline: none;
         color: $font_color;
         font-weight: bold;
         text-align: center;
       }
-      .entry-fee-fontawesome {
+      .entryFee-fontawesome {
         margin-left: 0.3em;
         font-size: 1.3em;
       }
+    }
+  }
+
+  .presenterSelect {
+    input {
+      margin: 0 5px 5px;
     }
   }
 }

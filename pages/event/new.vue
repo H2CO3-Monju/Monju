@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="termAndTime">
+      <div class="termAndTime item">
         <h2>期間と日時</h2>
         <div class="time-inputs-wrap">
           <input class="input-date" type="date" />
@@ -63,7 +63,7 @@
         </p>
       </div>
 
-      <div class="deadline">
+      <div class="deadline item">
         <h2>締め切り</h2>
         <div class="time-input-wrap">
           <input type="date" />
@@ -71,25 +71,30 @@
         </div>
       </div>
 
-      <div class="event-type">
+      <div class="event-type item">
         <h2>勉強会の種類</h2>
         <div class="event-type_inputs">
           <div>
-            <input type="radio" name="event-type" value="presentation" />
+            <input
+              type="radio"
+              name="event-type"
+              value="presentation"
+              checked
+            />
             <label for="presentation">発表勉強会</label>
           </div>
           <div>
             <input type="radio" name="event-type" value="communication" />
-            <label for="communication">発表勉強会</label>
+            <label for="communication">交流勉強会</label>
           </div>
         </div>
       </div>
 
       <hr />
 
-      <div class="entry-fee">
+      <div class="entryFee item">
         <h2>参加費</h2>
-        <div class="entry-fee_select">
+        <div class="entryFee_select">
           <select class="lightblue-input" name="fee">
             <option value="100yen">100</option>
             <option value="200yen">200</option>
@@ -112,9 +117,19 @@
             <option value="1900yen">1900</option>
             <option value="2000yen">2000</option>
           </select>
-          <i class="fab fa-product-hunt entry-fee-fontawesome"></i>
+          <i class="fab fa-product-hunt entryFee-fontawesome"></i>
         </div>
         <p>※上限は2000円までです</p>
+      </div>
+
+      <div class="presenterSelect item">
+        <h2>発表者の選択</h2>
+        <input
+          type="text"
+          class="lightblue-input"
+          placeholder="入力してください"
+        />
+        <p>※発表者の上限は10人までです</p>
       </div>
     </div>
   </div>
