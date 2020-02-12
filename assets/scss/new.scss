@@ -150,7 +150,12 @@ $percent: 0.8;
       display: inline-flex;
       flex-direction: row;
       justify-content: space-around;
+      margin-left: 5px;
       font-size: 1.2em * $percent;
+    }
+    label {
+      cursor: pointer;
+      margin-right: 15px;
     }
   }
 

@@ -77,17 +77,21 @@
         <h2>勉強会の種類</h2>
         <div class="event-type_inputs">
           <div>
-            <input
-              id="presentation_input"
-              type="radio"
-              name="event-type"
-              checked
-            />
-            <label for="presentation_input">発表勉強会</label>
+            <label for="presentation_input">
+              <input
+                id="presentation_input"
+                type="radio"
+                name="event-type"
+                checked
+              />
+              発表勉強会
+            </label>
           </div>
           <div>
-            <input id="communication_input" type="radio" name="event-type" />
-            <label for="communication">交流勉強会</label>
+            <label for="communication_input">
+              <input id="communication_input" type="radio" name="event-type" />
+              交流勉強会
+            </label>
           </div>
         </div>
       </div>
