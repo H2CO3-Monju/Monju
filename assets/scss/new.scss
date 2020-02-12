@@ -18,16 +18,19 @@ $percent: 0.8;
   background-color: $catskill_white;
   h1 {
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 2em * $percent;
     font-weight: bold;
   }
   h2 {
-    font-size: 1.4em;
+    font-size: 1.4em * $percent;
     font-weight: bold;
   }
-  .text-input {
+  .lightblue-input {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
     color: $tundora;
-    font-size: 1.2em;
+    font-size: 1.2em * $percent;
+    border: $light_blue 1px solid;
+    border-radius: 10px;
   }
   .mainContents-wrap {
     display: flex;
@@ -37,7 +40,7 @@ $percent: 0.8;
     .event-img-wrap {
       flex-grow: 0;
       flex-shrink: 0;
-      flex-basis: 400px;
+      flex-basis: 330px;
       margin-right: 40px;
       color: $light_blue;
       // min-width: 400px;
@@ -45,8 +48,8 @@ $percent: 0.8;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 400px;
-        height: 266px;
+        width: 400px * $percent;
+        height: 266px * $percent;
         border: $light_blue 3px dashed;
         .image-icon-wrap {
           display: inline-block;
@@ -67,6 +70,9 @@ $percent: 0.8;
                 -3px 0 0 $catskill_white, 3px 0 0 $catskill_white;
               content: '\f067';
             }
+            .image-icons-fontawesome {
+              font-size: 5em;
+            }
           }
           .hidden {
             display: none;
@@ -76,13 +82,11 @@ $percent: 0.8;
     }
     .title-tag-wrap {
       flex-grow: 1;
-      flex-basis: 400px;
+      flex-basis: 330px;
       .title-wrap, .tag-wrap {
         margin-bottom: 20px;
         .title-tag-input {
           height: 2em;
-          border: $light_blue 1px solid;
-          border-radius: 10px;
         }
         .title-input {
           width: 100%;
@@ -101,24 +105,71 @@ $percent: 0.8;
     }
     input, select {
       margin: 0 5px 5px;
-      padding: 0;
-      height: 31px;
+      padding: 6px 0;
+      height: 31px * $percent;
       border: none;
       border-radius: 5px;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, .16);
       outline: none;
       background: #c4d929;
       color: #fff;
-      font-size: 1.2em;
+      font-size: 1.2em * $percent;
+      font-weight: bold;
       text-align: center;
     }
   }
 
-  .event-type_inputs {
-    display: flex;
-    flex-wrap: row;
-    justify-content: space-around;
-    width: 30%;
-    font-size: 1.2em;
+  .event-type {
+    .event-type_inputs {
+      display: flex;
+      flex-wrap: row;
+      justify-content: space-around;
+      width: 30% * $percent;
+      font-size: 1.2em * $percent;
+    }
+  }
+
+  hr {
+    border-top: $light_blue 1px solid;
+  }
+
+  .entry-fee {
+    display: inline-block;
+    h2 {
+      margin-bottom: 5px;
+    }
+    .entry-fee_select {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      margin: 0 5px 5px;
+      &:before {
+        position: absolute;
+        top: 1em;
+        right: 2.3em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $font_color;
+        pointer-events: none;
+      }
+      select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding: 8px 38px 8px 8px;
+        outline: none;
+        color: $font_color;
+        font-weight: bold;
+        text-align: center;
+      }
+      .entry-fee-fontawesome {
+        margin-left: 0.3em;
+        font-size: 1.3em;
+      }
+    }
   }
 }

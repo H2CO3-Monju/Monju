@@ -7,7 +7,10 @@
           <div class="event-img">
             <label class="image-icon-wrap">
               <span class="image-icons">
-                <i class="far fa-image fa-5x" aria-hidden="true"></i>
+                <i
+                  class="far fa-image image-icons-fontawesome"
+                  aria-hidden="true"
+                ></i>
               </span>
               <input
                 id="eventImg"
@@ -26,7 +29,7 @@
             <h2>タイトル</h2>
             <input
               type="text"
-              class="title-tag-input title-input text-input"
+              class="title-tag-input title-input lightblue-input"
               placeholder="簡潔かつ目が惹かれるようなタイトルを！"
             />
           </div>
@@ -34,7 +37,7 @@
             <h2>タグ</h2>
             <input
               type="text"
-              class="title-tag-input tag-input text-input"
+              class="title-tag-input tag-input lightblue-input"
               placeholder="入力してください"
             />
             <p><small>※タグの追加は5つまでです</small></p>
@@ -80,6 +83,38 @@
             <label for="communication">発表勉強会</label>
           </div>
         </div>
+      </div>
+
+      <hr />
+
+      <div class="entry-fee">
+        <h2>参加費</h2>
+        <div class="entry-fee_select">
+          <select class="lightblue-input" name="fee">
+            <option value="100yen">100</option>
+            <option value="200yen">200</option>
+            <option value="300yen">300</option>
+            <option value="400yen">400</option>
+            <option value="500yen">500</option>
+            <option value="600yen">600</option>
+            <option value="700yen">700</option>
+            <option value="800yen">800</option>
+            <option value="900yen">900</option>
+            <option value="1000yen">1000</option>
+            <option value="1100yen">1100</option>
+            <option value="1200yen">1200</option>
+            <option value="1300yen">1300</option>
+            <option value="1400yen">1400</option>
+            <option value="1500yen">1500</option>
+            <option value="1600yen">1600</option>
+            <option value="1700yen">1700</option>
+            <option value="1800yen">1800</option>
+            <option value="1900yen">1900</option>
+            <option value="2000yen">2000</option>
+          </select>
+          <i class="fab fa-product-hunt entry-fee-fontawesome"></i>
+        </div>
+        <p>※上限は2000円までです</p>
       </div>
     </div>
   </div>
