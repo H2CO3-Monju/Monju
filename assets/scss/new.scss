@@ -1,12 +1,13 @@
 $font_color: #7994a7;
 $light_blue: #b2cde0;
-$catskill_white: #fff;
-$tundora: #f2f3f6;
+$container_white: #fff;
+$bg_color: #f2f3f6;
 $percent: 0.8;
+$keyRimePie: #c4d929;
 
 .bg {
   padding: 5vh 0;
-  background-color: $tundora;
+  background-color: $bg_color;
 }
 .container {
   width: 70%;
@@ -15,7 +16,7 @@ $percent: 0.8;
   padding: 50px 60px;
   border-radius: 20px;
   color: $font_color;
-  background-color: $catskill_white;
+  background-color: $container_white;
   h1 {
     margin-bottom: 20px;
     font-size: 2em * $percent;
@@ -64,11 +65,11 @@ $percent: 0.8;
               font-size: 2em;
               font-family: 'Font Awesome 5 Free';
               font-weight: bold;
-              text-shadow: 3px 3px 0 $catskill_white,
-                -3px -3px 0 $catskill_white, -3px 3px 0 $catskill_white,
-                3px -3px 0 $catskill_white, 0px 3px 0 $catskill_white,
-                0 -3px 0 $catskill_white, -3px 0 0 $catskill_white,
-                -3px 0 0 $catskill_white, 3px 0 0 $catskill_white;
+              text-shadow: 3px 3px 0 $container_white,
+                -3px -3px 0 $container_white, -3px 3px 0 $container_white,
+                3px -3px 0 $container_white, 0px 3px 0 $container_white,
+                0 -3px 0 $container_white, -3px 0 0 $container_white,
+                -3px 0 0 $container_white, 3px 0 0 $container_white;
               content: '\f067';
             }
             .image-icons-fontawesome {
@@ -118,7 +119,7 @@ $percent: 0.8;
       border-radius: 5px;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       outline: none;
-      background: #c4d929;
+      background: $keyRimePie;
       color: #fff;
       font-size: 1.2em * $percent;
       font-weight: bold;
@@ -174,7 +175,7 @@ $percent: 0.8;
       color: $font_color;
       font-weight: bold;
       text-align: center;
-      background-color: $catskill_white;
+      background-color: $container_white;
     }
     &__inner-fontawesome {
       margin-left: 0.3em;
@@ -209,10 +210,43 @@ $percent: 0.8;
   }
 
   .details {
-    .details-tabs {
+    h2 {
+      margin-bottom: 5px;
+    }
+    &__inner-tabs {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       justify-content: flex-start;
+    }
+    %__inner-tab {
+      cursor: pointer;
+      width: 125px;
+      padding: 7px 7px 5px 7px;
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+      border-radius: 40px 40px 0 0;
+      font-size: 1.1em * $percent;
+      text-align: center;
+    }
+    &__inner-tab {
+        @extend %__inner-tab;
+          border-color: $light_blue;
+      &--active {
+        @extend %__inner-tab;
+          font-weight: bold;
+          border-color: $keyRimePie;
+          background-color: $keyRimePie;
+          color: $container_white;
+      }
+    }
+    &__inner-markdown {
+      width: 100%;
+      height: 400px;
+      padding: 6px 12px;
+      border: solid 1px $light_blue;
+      color: #444;
+      font-size: 1em;
     }
   }
 }

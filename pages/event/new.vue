@@ -159,13 +159,13 @@
 
       <div class="details item">
         <h2>詳細</h2>
-        <div class="details-tabs-wrap">
-          <ul class="details-tabs">
-            <li class="details-tabs-tab">マークダウン</li>
-            <li>プレビュー</li>
+        <div class="details__inner">
+          <ul class="details__inner-tabs">
+            <li class="details__inner-tab--active">マークダウン</li>
+            <li class="details__inner-tab">プレビュー</li>
           </ul>
         </div>
-        <div class="details-markdown"></div>
+        <textarea class="details__inner-markdown" rows="20"></textarea>
       </div>
     </div>
   </div>
