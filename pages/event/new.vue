@@ -6,12 +6,13 @@
         <div class="event-img-wrap">
           <div class="event-img">
             <label class="image-icon-wrap">
-              <span class="image-icons">
+              <span id="image-icons-span" class="image-icons">
                 <i
                   class="far fa-image image-icons-fontawesome"
                   aria-hidden="true"
                 ></i>
               </span>
+              <img id="preview" class="event-image" />
               <input
                 id="eventImg"
                 class="hidden"
@@ -21,7 +22,6 @@
               />
             </label>
           </div>
-          <img id="preview" />
         </div>
 
         <div class="title-tag-wrap">
@@ -172,6 +172,10 @@
 </template>
 
 <script>
+const hideIcon = () => {
+  const icons = document.getElementById('image-icons-span')
+  icons.classList.add('hidden')
+}
 const showImg = () => {
   document.getElementById('eventImg').addEventListener('change', (e) => {
     const reader = new FileReader()
@@ -179,6 +183,7 @@ const showImg = () => {
       document.getElementById('preview').setAttribute('src', e.target.result)
     }
     reader.readAsDataURL(e.target.files[0])
+    hideIcon()
   })
 }
 export default {
