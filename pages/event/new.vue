@@ -96,8 +96,8 @@
 
       <div class="entryFee item">
         <h2>参加費</h2>
-        <div class="entryFee_select">
-          <select class="entryFee_select lightblue-input" name="fee">
+        <div class="entryFee__inner">
+          <select class="entryFee__inner-select lightblue-input" name="fee">
             <option value="100yen">100</option>
             <option value="200yen">200</option>
             <option value="300yen">300</option>
@@ -119,7 +119,7 @@
             <option value="1900yen">1900</option>
             <option value="2000yen">2000</option>
           </select>
-          <i class="fab fa-product-hunt entryFee-fontawesome"></i>
+          <i class="fab fa-product-hunt entryFee__inner-fontawesome"></i>
         </div>
         <p><small>※上限は2000円までです</small></p>
       </div>
@@ -159,6 +159,13 @@
 
       <div class="details item">
         <h2>詳細</h2>
+        <div class="details-tabs-wrap">
+          <ul class="details-tabs">
+            <li class="details-tabs-tab">マークダウン</li>
+            <li>プレビュー</li>
+          </ul>
+        </div>
+        <div class="details-markdown"></div>
       </div>
     </div>
   </div>
