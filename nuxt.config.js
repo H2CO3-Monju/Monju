@@ -56,7 +56,8 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-fontawesome',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/vuetify'
   ],
   styleResources: {
     scss: ['@/assets/scss/_variable.scss']
