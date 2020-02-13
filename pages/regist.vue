@@ -282,7 +282,7 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       this.setUser(user)
       if (this.isAuthenticated) {
-        // this.$router.push('/')
+        this.$router.push('/')
       }
     })
     errorCheck()

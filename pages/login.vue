@@ -98,6 +98,14 @@ export default {
     ...mapState(['user']),
     ...mapGetters(['isAuthenticated'])
   },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setUser(user)
+      if (this.isAuthenticated) {
+        this.$router.push('/')
+      }
+    })
+  },
   methods: {
     ...mapActions(['setUser']),
     login() {
