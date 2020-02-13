@@ -40,29 +40,18 @@
               type="text"
               class="title-tag__input-title--tag lightblue-input"
               placeholder="入力してください"
+              autocomplete="off"
             />
             <p><small>※タグの追加は5つまでです</small></p>
           </div>
           <ul id="tags" class="tags">
             <li v-for="tag in tags" class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>
+              <i
+                v-on:click="deleteTag"
+                class="fas fa-times tags__fontawesome"
+              ></i>
               {{ tag.message }}
             </li>
-            <!-- <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>javascript
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>GoogleAppsScript
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>GoogleCloudPlatform
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>関数型プログラミング
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>初心者歓迎
-            </li> -->
           </ul>
         </div>
       </div>
@@ -277,6 +266,14 @@ export default {
         const message = { message: input.value }
         this.tags.push(message)
       })
+    },
+    deleteTag(event) {
+      const targetLi = event.target.parentNode
+      const ul = targetLi.parentNode
+      const liNodes = ul.querySelectorAll('li')
+      const liArray = Array.from(liNodes)
+      const targetIndex = liArray.findIndex((element) => element === targetLi)
+      this.tags.splice(targetIndex, 1)
     }
   }
 }
