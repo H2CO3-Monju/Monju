@@ -103,7 +103,8 @@ $percent: 0.8;
     .title-tag {
       flex-grow: 1;
       flex-basis: 330px;
-      &__inner {
+      margin-bottom: 20px;
+      &__title {
         margin-bottom: 20px;
       }
       %__input-title {
@@ -115,6 +116,28 @@ $percent: 0.8;
         &--tag {
           @extend %__input-title;
             width: 45%;
+        }
+      }
+      .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 20px;
+        &__tag {
+          margin-right: 8px;
+          margin-bottom: 8px;
+          padding-right: 8px;
+          border: solid 1px $font_color;
+          border-radius: 3px;
+          font-size: 0.8em;
+        }
+        &__fontawesome {
+          cursor: pointer;
+          margin: 0;
+          padding: 2px 8px;
+          text-align: center;
+          font-size: 0.8em;
         }
       }
     }

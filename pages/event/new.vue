@@ -25,7 +25,7 @@
         </div>
 
         <div class="title-tag">
-          <div class="title-tag__inner">
+          <div class="title-tag__title">
             <h2>タイトル</h2>
             <input
               type="text"
@@ -33,7 +33,7 @@
               placeholder="簡潔かつ目が惹かれるようなタイトルを！"
             />
           </div>
-          <div class="title-tag__inner">
+          <div class="title-tag__tag">
             <h2>タグ</h2>
             <input
               type="text"
@@ -42,6 +42,23 @@
             />
             <p><small>※タグの追加は5つまでです</small></p>
           </div>
+          <ul class="tags">
+            <li class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>javascript
+            </li>
+            <li class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>GoogleAppsScript
+            </li>
+            <li class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>GoogleCloudPlatform
+            </li>
+            <li class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>関数型プログラミング
+            </li>
+            <li class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>初心者歓迎
+            </li>
+          </ul>
         </div>
       </div>
 
