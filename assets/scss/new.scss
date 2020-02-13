@@ -100,20 +100,21 @@ $percent: 0.8;
         }
       }
     }
-    .title-tag-wrap {
+    .title-tag {
       flex-grow: 1;
       flex-basis: 330px;
-      .title-wrap,
-      .tag-wrap {
+      &__inner {
         margin-bottom: 20px;
-        .title-tag-input {
-          height: 2em;
-        }
-        .title-input {
+      }
+      %__input-title {
+        height: 2em;
+      }
+      &__input-title {
+        @extend %__input-title;
           width: 100%;
-        }
-        .tag-input {
-          width: 45%;
+        &--tag {
+          @extend %__input-title;
+            width: 45%;
         }
       }
     }

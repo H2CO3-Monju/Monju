@@ -24,20 +24,20 @@
           </div>
         </div>
 
-        <div class="title-tag-wrap">
-          <div class="title-wrap">
+        <div class="title-tag">
+          <div class="title-tag__inner">
             <h2>タイトル</h2>
             <input
               type="text"
-              class="title-tag-input title-input lightblue-input"
+              class="title-tag__input-title lightblue-input"
               placeholder="簡潔かつ目が惹かれるようなタイトルを！"
             />
           </div>
-          <div class="tag-wrap">
+          <div class="title-tag__inner">
             <h2>タグ</h2>
             <input
               type="text"
-              class="title-tag-input tag-input lightblue-input"
+              class="title-tag__input-title--tag lightblue-input"
               placeholder="入力してください"
             />
             <p><small>※タグの追加は5つまでです</small></p>
