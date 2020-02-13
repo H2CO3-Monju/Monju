@@ -36,13 +36,14 @@
           <div class="title-tag__tag">
             <h2>タグ</h2>
             <input
+              id="tag_input"
               type="text"
               class="title-tag__input-title--tag lightblue-input"
               placeholder="入力してください"
             />
             <p><small>※タグの追加は5つまでです</small></p>
           </div>
-          <ul class="tags">
+          <ul id="tags" class="tags">
             <li class="tags__tag">
               <i class="fas fa-times tags__fontawesome"></i>javascript
             </li>
@@ -231,7 +232,8 @@ const hideIcon = () => {
   icons.classList.add('hidden')
 }
 const showImg = () => {
-  document.getElementById('eventImg').addEventListener('change', (e) => {
+  const eventImg = document.getElementById('eventImg')
+  eventImg.addEventListener('change', (e) => {
     const reader = new FileReader()
     reader.onload = (e) => {
       document.getElementById('preview').setAttribute('src', e.target.result)
@@ -240,6 +242,23 @@ const showImg = () => {
     hideIcon()
   })
 }
+// const addTag = () => {
+//   const input = document.getElementById('tag_input')
+//   const tags = document.getElementById('tags')
+//   input.addEventListener('keydown', (e) => {
+//     if (e.keyCode !== 13) return
+//     const liElement = new Vue({
+//       tagName: 'li',
+//       className: 'tags__tag',
+//       template: 'display text'
+//     })
+//     const fontawesomeElement = new Vue({
+//       tagName: 'i',
+//       className: 'fas fa-times tags__fontawesome'
+//     })
+//     tags.appendChild(liElement.$el)
+//   })
+// }
 export default {
   data() {
     return {
@@ -249,6 +268,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       showImg()
+      // addTag()
     })
   },
   methods: {
