@@ -1,5 +1,5 @@
 <template>
-  <div class="allWrap">
+  <div class="allWrap pd-2">
     <div class="columns">
       <aside class="userSet_menu menu column is-one-third">
         <p class="menu-label">
