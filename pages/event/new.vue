@@ -44,7 +44,11 @@
             <p><small>※タグの追加は5つまでです</small></p>
           </div>
           <ul id="tags" class="tags">
-            <li class="tags__tag">
+            <li v-for="tag in tags" class="tags__tag">
+              <i class="fas fa-times tags__fontawesome"></i>
+              {{ tag.message }}
+            </li>
+            <!-- <li class="tags__tag">
               <i class="fas fa-times tags__fontawesome"></i>javascript
             </li>
             <li class="tags__tag">
@@ -58,7 +62,7 @@
             </li>
             <li class="tags__tag">
               <i class="fas fa-times tags__fontawesome"></i>初心者歓迎
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -242,33 +246,18 @@ const showImg = () => {
     hideIcon()
   })
 }
-// const addTag = () => {
-//   const input = document.getElementById('tag_input')
-//   const tags = document.getElementById('tags')
-//   input.addEventListener('keydown', (e) => {
-//     if (e.keyCode !== 13) return
-//     const liElement = new Vue({
-//       tagName: 'li',
-//       className: 'tags__tag',
-//       template: 'display text'
-//     })
-//     const fontawesomeElement = new Vue({
-//       tagName: 'i',
-//       className: 'fas fa-times tags__fontawesome'
-//     })
-//     tags.appendChild(liElement.$el)
-//   })
-// }
+
 export default {
   data() {
     return {
-      isEventTypePresentation: true
+      isEventTypePresentation: true,
+      tags: []
     }
   },
   mounted() {
     this.$nextTick(() => {
       showImg()
-      // addTag()
+      this.addTag()
     })
   },
   methods: {
@@ -280,6 +269,14 @@ export default {
       } else {
         this.isEventTypePresentation = false
       }
+    },
+    addTag() {
+      const input = document.getElementById('tag_input')
+      input.addEventListener('keydown', (e) => {
+        if (e.keyCode !== 13) return
+        const message = { message: input.value }
+        this.tags.push(message)
+      })
     }
   }
 }
