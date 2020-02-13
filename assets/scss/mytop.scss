@@ -6,12 +6,11 @@
   .userInfo-userIcon {
     width: 20%;
     height: 25%;
-    margin: 0 auto;
 
     img {
       overflow: hidden;
-      width: 125px;
-      height: 125px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
     }
 
@@ -37,5 +36,8 @@
       padding: 15px;
       box-shadow: 10px rgba($color: #000000, $alpha: 0.4);
     }
+  }
+
+  .userInfo-userPlans {
   }
 }

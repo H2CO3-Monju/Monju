@@ -7,6 +7,10 @@ a {
   padding: 13px;
 }
 
+.pd-2 {
+  padding: 5vh;
+}
+
 .greenIcon {
   color: #C4D929;
 }

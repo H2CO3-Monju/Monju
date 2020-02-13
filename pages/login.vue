@@ -1,6 +1,6 @@
 <template>
   <login>
-    <div class="allWrap columns is-mobile">
+    <div class="allWrap pd-2 columns is-mobile">
       <div class="login-container column is-4">
         <div class="login-wrap column">
           <div class="login-title" data-tilt>

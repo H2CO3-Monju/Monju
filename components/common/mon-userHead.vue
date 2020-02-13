@@ -23,7 +23,7 @@
       </div>
 
       <div class="st-userHeader_end">
-        <nuxt-link class="st-userHeader_Link" to="/new">
+        <nuxt-link class="st-userHeader_Link" to="/event/new">
           <button class="button">
             イベント作成
           </button>
