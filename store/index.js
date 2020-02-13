@@ -18,7 +18,7 @@ export const actions = {
 
 export const getters = {
   isAuthenticated(state) {
-    console.log(state.user)
+    // console.log(state.user)
     return !!state.user
   }
 }

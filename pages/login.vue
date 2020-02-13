@@ -21,6 +21,7 @@
                 type="text"
                 name="email"
                 placeholder="メールアドレス"
+                autocomplete="off"
               />
             </div>
 
@@ -37,6 +38,7 @@
                 type="password"
                 name="pass"
                 placeholder="パスワード"
+                autocomplete="off"
               />
             </div>
 
@@ -96,6 +98,14 @@ export default {
     ...mapState(['user']),
     ...mapGetters(['isAuthenticated'])
   },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setUser(user)
+      if (this.isAuthenticated) {
+        this.$router.push('/')
+      }
+    })
+  },
   methods: {
     ...mapActions(['setUser']),
     login() {
@@ -103,8 +113,9 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
+          console.log(user)
           // ログイン後トップへ移動
-          // this.$router.push('/')
+          this.$router.push('/')
         })
         .catch((error) => {
           alert(error)
