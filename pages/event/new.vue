@@ -27,6 +27,20 @@
         <div class="title-tag">
           <div class="title-tag__title">
             <h2>タイトル</h2>
+            <v-form v-model="valid">
+              <v-text-field
+                v-model="title"
+                :rules="titleRules"
+                :counter="255"
+                :class="{ toggle: true }"
+                color="blue darken-1"
+                style="border-color: red;"
+                dense
+                outlined
+                solo
+                required
+              ></v-text-field>
+            </v-form>
             <input
               type="text"
               class="title-tag__input-title lightblue-input"
@@ -240,7 +254,13 @@ export default {
   data() {
     return {
       isEventTypePresentation: true,
-      tags: []
+      tags: [],
+      valid: false,
+      title: '',
+      titleRules: [
+        (v) => !!v || 'タイトルは必須項目です',
+        (v) => v.length < 255 || 'タイトルは255文字以内で入力してください。'
+      ]
     }
   },
   mounted() {
@@ -273,12 +293,330 @@ export default {
       const liNodes = ul.querySelectorAll('li')
       const liArray = Array.from(liNodes)
       const targetIndex = liArray.findIndex((element) => element === targetLi)
+      // tags配列のtargetIndex番目の要素から1つ目までを削除
       this.tags.splice(targetIndex, 1)
     }
   }
 }
 </script>
 
+<style>
+fieldset {
+  border-color: red !important;
+}
+</style>
 <style lang="scss" scoped>
-@import '~assets/scss/new.scss';
+$font_color: #7994a7;
+$light_blue: #b2cde0;
+$container_white: #fff;
+$bg_color: #f2f3f6;
+$keyRimePie: #c4d929;
+$input_color: #444;
+$percent: 0.8;
+
+.toggle {
+  margin: 100px;
+}
+
+.login-title {
+  font-size: 1000px !important;
+}
+
+fieldset {
+  border-color: red !important;
+}
+
+ul {
+  padding: 0;
+}
+.bg {
+  padding: 5vh 0;
+  background-color: $bg_color;
+}
+.container {
+  width: 70%;
+  height: 2000px;
+  margin: 0 auto;
+  padding: 50px 60px;
+  border-radius: 20px;
+  color: $font_color;
+  background-color: $container_white;
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2em * $percent;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 1.4em * $percent;
+    font-weight: bold;
+  }
+  .lightblue-input {
+    padding-left: 0.5em;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: $input_color;
+    font-size: 1.2em * $percent;
+    border: $light_blue 1px solid;
+    border-radius: 5px;
+  }
+  .mainContents-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    .event-img-wrap {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 330px;
+      margin-right: 40px;
+      margin-bottom: 20px;
+      color: $light_blue;
+      .event-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px * $percent;
+        height: 266px * $percent;
+        border: $light_blue 3px dashed;
+        .image-icon-wrap {
+          position: relative;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          .image-icons {
+            cursor: pointer;
+            position: relative;
+            &::after {
+              position: absolute;
+              top: -6px;
+              right: -6px;
+              font-size: 2em;
+              font-family: 'Font Awesome 5 Free';
+              font-weight: bold;
+              text-shadow: 3px 3px 0 $container_white,
+                -3px -3px 0 $container_white, -3px 3px 0 $container_white,
+                3px -3px 0 $container_white, 0px 3px 0 $container_white,
+                0 -3px 0 $container_white, -3px 0 0 $container_white,
+                -3px 0 0 $container_white, 3px 0 0 $container_white;
+              content: '\f067';
+            }
+            .image-icons-fontawesome {
+              font-size: 5em;
+            }
+          }
+          .event-image {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+          }
+          .hidden {
+            display: none;
+          }
+        }
+      }
+    }
+    .title-tag {
+      flex-grow: 1;
+      flex-basis: 330px;
+      margin-bottom: 20px;
+      &__title {
+        margin-bottom: 20px;
+      }
+      %__input-title {
+        height: 2em;
+      }
+      &__input-title {
+        @extend %__input-title;
+        width: 100%;
+        &--tag {
+          @extend %__input-title;
+          width: 45%;
+        }
+      }
+      .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 20px;
+        &__tag {
+          margin-right: 8px;
+          margin-bottom: 8px;
+          padding-right: 8px;
+          border: solid 1px $font_color;
+          border-radius: 3px;
+          font-size: 0.8em;
+        }
+        &__fontawesome {
+          cursor: pointer;
+          margin: 0;
+          padding: 2px 8px;
+          text-align: center;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+
+  .item {
+    margin-bottom: 20px;
+  }
+
+  .termAndTime,
+  .deadline {
+    h2 {
+      margin-bottom: 5px;
+    }
+    input,
+    select {
+      margin: 0 5px 5px;
+      padding: 6px 0;
+      height: 31px * $percent;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      outline: none;
+      background: $keyRimePie;
+      color: #fff;
+      font-size: 1.2em * $percent;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .event-type {
+    .event-type_inputs {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-left: 5px;
+      font-size: 1.2em * $percent;
+    }
+    label {
+      cursor: pointer;
+      margin-right: 15px;
+    }
+  }
+
+  hr {
+    border-top: $light_blue 1px solid;
+  }
+
+  .entryFee {
+    display: inline-block;
+    h2 {
+      margin-bottom: 5px;
+    }
+    &__inner {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      margin: 0 5px 5px;
+      &:before {
+        z-index: 1;
+        position: absolute;
+        top: 0.8em;
+        right: 2.3em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $font_color;
+        pointer-events: none;
+      }
+    }
+    &__inner-select {
+      height: 2em;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 5px 38px 5px 6px;
+      outline: none;
+      color: $input_color;
+      text-align: center;
+      background-color: $container_white;
+    }
+    &__inner-fontawesome {
+      margin-left: 0.3em;
+      font-size: 1.3em;
+    }
+  }
+
+  .presenterSelect {
+    .presenterSelect_input {
+      height: 2em;
+      margin: 0 5px 5px;
+    }
+  }
+
+  .fixed-member {
+    .fixed-member_input {
+      margin: 0 5px 5px;
+      width: 100px;
+      height: 2em;
+    }
+  }
+
+  .autoCloseText {
+    .riceMark {
+      color: #f34573;
+      font-weight: bold;
+    }
+    .autoCloseText_input {
+      width: 50px;
+      height: 1.4em;
+    }
+  }
+
+  .details {
+    h2 {
+      margin-bottom: 5px;
+    }
+    &__inner-tabs {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    %__inner-tab {
+      cursor: pointer;
+      width: 125px;
+      padding: 7px 7px 5px 7px;
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+      border-radius: 40px 40px 0 0;
+      font-size: 1.1em * $percent;
+      text-align: center;
+    }
+    &__inner-tab {
+      @extend %__inner-tab;
+      border-color: $light_blue;
+      &--active {
+        @extend %__inner-tab;
+        font-weight: bold;
+        border-color: $keyRimePie;
+        background-color: $keyRimePie;
+        color: $container_white;
+      }
+    }
+    &__inner-markdown {
+      width: 100%;
+      height: 400px;
+      padding: 6px 12px;
+      border: solid 1px $light_blue;
+      color: $input_color;
+      font-size: 1em;
+    }
+  }
+}
 </style>
