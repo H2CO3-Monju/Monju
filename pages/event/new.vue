@@ -28,6 +28,7 @@
           <div class="title-tag__title">
             <h2>タイトル</h2>
             <inputText
+              :id="'title_input'"
               :rules="titleRules"
               :counter="255"
               :placeholder="'簡潔かつ目が惹かれるようなタイトルを！'"

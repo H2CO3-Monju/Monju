@@ -12,19 +12,24 @@
       <!-- <p><small>※タグの追加は5つまでです</small></p> -->
     </div>
     <ul id="tags" class="tags">
-      <li v-for="tag in tags" class="tags__tag">
-        <i v-on:click="deleteTag" class="fas fa-times tags__fontawesome"></i>
-        {{ tag.message }}
-      </li>
+      <tag
+        class="tags__tag"
+        :value="tag"
+        :key="index"
+        v-on:delete="deleteFromTags"
+        v-for="(tag, index) in tags"
+      />
     </ul>
   </div>
 </template>
 
 <script>
 import inputText from '@/components/new/inputText'
+import tag from '@/components/new/tag'
 export default {
   components: {
-    inputText
+    inputText,
+    tag
   },
   data() {
     return {
@@ -48,13 +53,7 @@ export default {
         this.tags.push(message)
       })
     },
-    deleteTag(event) {
-      const targetLi = event.target.parentNode
-      const ul = targetLi.parentNode
-      const liNodes = ul.querySelectorAll('li')
-      const liArray = Array.from(liNodes)
-      const targetIndex = liArray.findIndex((element) => element === targetLi)
-      // tags配列のtargetIndex番目の要素から1つ目までを削除
+    deleteFromTags(targetIndex) {
       this.tags.splice(targetIndex, 1)
     }
   }
@@ -78,13 +77,6 @@ h2 {
     padding-right: 8px;
     border: solid 1px $_font_color;
     border-radius: 3px;
-    font-size: 0.8em;
-  }
-  &__fontawesome {
-    cursor: pointer;
-    margin: 0;
-    padding: 2px 8px;
-    text-align: center;
     font-size: 0.8em;
   }
 }

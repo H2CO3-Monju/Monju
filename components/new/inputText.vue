@@ -21,10 +21,10 @@ export default {
   props: {
     id: {
       type: String,
-      required: false
+      required: true
     },
     rules: {
-      type: Function,
+      type: Array,
       required: true
     },
     counter: {
@@ -54,8 +54,8 @@ export default {
   },
   methods: {
     test() {
-      const inputWrap = document.getElementsByClassName('v-text-field__slot')[0]
-      const input = inputWrap.querySelector('input')
+      const input = document.getElementById(this.id)
+      const inputWrap = input.parentNode
       const fieldsetWrap = inputWrap.parentNode
       const fieldset = fieldsetWrap.querySelector('fieldset')
       input.addEventListener('focus', (e) => {
