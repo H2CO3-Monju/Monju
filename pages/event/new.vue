@@ -27,25 +27,7 @@
         <div class="title-tag">
           <div class="title-tag__title">
             <h2>タイトル</h2>
-            <v-form v-model="valid">
-              <v-text-field
-                v-model="title"
-                :rules="titleRules"
-                :counter="255"
-                :class="{ toggle: true }"
-                color="blue darken-1"
-                style="border-color: red;"
-                dense
-                outlined
-                solo
-                required
-              ></v-text-field>
-            </v-form>
-            <input
-              type="text"
-              class="title-tag__input-title lightblue-input"
-              placeholder="簡潔かつ目が惹かれるようなタイトルを！"
-            />
+            <inputText />
           </div>
           <div class="title-tag__tag">
             <h2>タグ</h2>
@@ -234,6 +216,7 @@
 </template>
 
 <script>
+import inputText from '@/components/new/inputText'
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
   icons.classList.add('hidden')
@@ -251,16 +234,13 @@ const showImg = () => {
 }
 
 export default {
+  components: {
+    inputText
+  },
   data() {
     return {
       isEventTypePresentation: true,
-      tags: [],
-      valid: false,
-      title: '',
-      titleRules: [
-        (v) => !!v || 'タイトルは必須項目です',
-        (v) => v.length < 255 || 'タイトルは255文字以内で入力してください。'
-      ]
+      tags: []
     }
   },
   mounted() {
@@ -300,30 +280,9 @@ export default {
 }
 </script>
 
-<style>
-fieldset {
-  border-color: red !important;
-}
-</style>
 <style lang="scss" scoped>
-$font_color: #7994a7;
-$light_blue: #b2cde0;
-$container_white: #fff;
-$bg_color: #f2f3f6;
-$keyRimePie: #c4d929;
-$input_color: #444;
-$percent: 0.8;
-
-.toggle {
-  margin: 100px;
-}
-
 .login-title {
   font-size: 1000px !important;
-}
-
-fieldset {
-  border-color: red !important;
 }
 
 ul {
@@ -331,7 +290,7 @@ ul {
 }
 .bg {
   padding: 5vh 0;
-  background-color: $bg_color;
+  background-color: $_bg_color;
 }
 .container {
   width: 70%;
@@ -339,23 +298,23 @@ ul {
   margin: 0 auto;
   padding: 50px 60px;
   border-radius: 20px;
-  color: $font_color;
-  background-color: $container_white;
+  color: $_font_color;
+  background-color: $_container_white;
   h1 {
     margin-bottom: 20px;
-    font-size: 2em * $percent;
+    font-size: 2em * $_percent;
     font-weight: bold;
   }
   h2 {
-    font-size: 1.4em * $percent;
+    font-size: 1.4em * $_percent;
     font-weight: bold;
   }
   .lightblue-input {
     padding-left: 0.5em;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    color: $input_color;
-    font-size: 1.2em * $percent;
-    border: $light_blue 1px solid;
+    color: $_input_color;
+    font-size: 1.2em * $_percent;
+    border: $_light_blue 1px solid;
     border-radius: 5px;
   }
   .mainContents-wrap {
@@ -369,14 +328,14 @@ ul {
       flex-basis: 330px;
       margin-right: 40px;
       margin-bottom: 20px;
-      color: $light_blue;
+      color: $_light_blue;
       .event-img {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 400px * $percent;
-        height: 266px * $percent;
-        border: $light_blue 3px dashed;
+        width: 400px * $_percent;
+        height: 266px * $_percent;
+        border: $_light_blue 3px dashed;
         .image-icon-wrap {
           position: relative;
           display: inline-flex;
@@ -394,11 +353,11 @@ ul {
               font-size: 2em;
               font-family: 'Font Awesome 5 Free';
               font-weight: bold;
-              text-shadow: 3px 3px 0 $container_white,
-                -3px -3px 0 $container_white, -3px 3px 0 $container_white,
-                3px -3px 0 $container_white, 0px 3px 0 $container_white,
-                0 -3px 0 $container_white, -3px 0 0 $container_white,
-                -3px 0 0 $container_white, 3px 0 0 $container_white;
+              text-shadow: 3px 3px 0 $_container_white,
+                -3px -3px 0 $_container_white, -3px 3px 0 $_container_white,
+                3px -3px 0 $_container_white, 0px 3px 0 $_container_white,
+                0 -3px 0 $_container_white, -3px 0 0 $_container_white,
+                -3px 0 0 $_container_white, 3px 0 0 $_container_white;
               content: '\f067';
             }
             .image-icons-fontawesome {
@@ -427,20 +386,6 @@ ul {
       flex-grow: 1;
       flex-basis: 330px;
       margin-bottom: 20px;
-      &__title {
-        margin-bottom: 20px;
-      }
-      %__input-title {
-        height: 2em;
-      }
-      &__input-title {
-        @extend %__input-title;
-        width: 100%;
-        &--tag {
-          @extend %__input-title;
-          width: 45%;
-        }
-      }
       .tags {
         display: flex;
         flex-direction: row;
@@ -451,7 +396,7 @@ ul {
           margin-right: 8px;
           margin-bottom: 8px;
           padding-right: 8px;
-          border: solid 1px $font_color;
+          border: solid 1px $_font_color;
           border-radius: 3px;
           font-size: 0.8em;
         }
@@ -479,14 +424,14 @@ ul {
     select {
       margin: 0 5px 5px;
       padding: 6px 0;
-      height: 31px * $percent;
+      height: 31px * $_percent;
       border: none;
       border-radius: 5px;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       outline: none;
-      background: $keyRimePie;
+      background: $_keyRimePie;
       color: #fff;
-      font-size: 1.2em * $percent;
+      font-size: 1.2em * $_percent;
       font-weight: bold;
       text-align: center;
     }
@@ -498,7 +443,7 @@ ul {
       flex-direction: row;
       justify-content: space-around;
       margin-left: 5px;
-      font-size: 1.2em * $percent;
+      font-size: 1.2em * $_percent;
     }
     label {
       cursor: pointer;
@@ -507,7 +452,7 @@ ul {
   }
 
   hr {
-    border-top: $light_blue 1px solid;
+    border-top: $_light_blue 1px solid;
   }
 
   .entryFee {
@@ -531,7 +476,7 @@ ul {
         content: '';
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
-        border-top: 6px solid $font_color;
+        border-top: 6px solid $_font_color;
         pointer-events: none;
       }
     }
@@ -542,9 +487,9 @@ ul {
       -moz-appearance: none;
       padding: 5px 38px 5px 6px;
       outline: none;
-      color: $input_color;
+      color: $_input_color;
       text-align: center;
-      background-color: $container_white;
+      background-color: $_container_white;
     }
     &__inner-fontawesome {
       margin-left: 0.3em;
@@ -595,26 +540,26 @@ ul {
       border-width: 1px 1px 0 1px;
       border-style: solid;
       border-radius: 40px 40px 0 0;
-      font-size: 1.1em * $percent;
+      font-size: 1.1em * $_percent;
       text-align: center;
     }
     &__inner-tab {
       @extend %__inner-tab;
-      border-color: $light_blue;
+      border-color: $_light_blue;
       &--active {
         @extend %__inner-tab;
         font-weight: bold;
-        border-color: $keyRimePie;
-        background-color: $keyRimePie;
-        color: $container_white;
+        border-color: $_keyRimePie;
+        background-color: $_keyRimePie;
+        color: $_container_white;
       }
     }
     &__inner-markdown {
       width: 100%;
       height: 400px;
       padding: 6px 12px;
-      border: solid 1px $light_blue;
-      color: $input_color;
+      border: solid 1px $_light_blue;
+      color: $_input_color;
       font-size: 1em;
     }
   }

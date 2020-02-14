@@ -1,21 +1,19 @@
-
 // global
 // - - - - - - - - - - - - - - - - - - - -
 $_color-white: #fafafa;
 $_color-black: #333333;
 
-$_color-primary: #C4D929;
+$_color-primary: #c4d929;
 $_color-secondary: #55c500;
 
-$_color-success: #6084D0;
-$_color-warning: #FFCB67;
+$_color-success: #6084d0;
+$_color-warning: #ffcb67;
 $_color-danger: #ea1836;
 $_color-info: #878d99;
 
-$_color-text-primary: #53585F;
+$_color-text-primary: #53585f;
 $_color-text-secondary: mix($_color-white, $_color-text-primary, 30%);
-$_color-text-blueBlack: #7994A7;
-
+$_color-text-blueBlack: #7994a7;
 
 $_border-width-base: 3px;
 $_border-style-base: solid;
@@ -26,7 +24,6 @@ $_border-radius-base: 4px;
 $_border-radius-small: 2px;
 $_border-radius-circle: 100%;
 
-
 // base
 // - - - - - - - - - - - - - - - - - - - -
 $_button-font-size: 16px;
@@ -35,9 +32,8 @@ $_button-border-radius: 4px;
 $_button-default-color: $_color-text-primary;
 $_button-default-fill: $_color-white;
 $_button-default-border: $_border-color-base;
-$_button-padding-vertical: .75em;
+$_button-padding-vertical: 0.75em;
 $_button-padding-horizontal: 1.5em;
-
 
 // size
 // - - - - - - - - - - - - - - - - - - - -
@@ -53,9 +49,8 @@ $_button-medium-padding-horizontal: 1.5em;
 
 $_button-small-font-size: 12px;
 $_button-small-border-radius: $_button-border-radius;
-$_button-small-padding-vertical: .5em;
+$_button-small-padding-vertical: 0.5em;
 $_button-small-padding-horizontal: 1em;
-
 
 // modifier
 // - - - - - - - - - - - - - - - - - - - -
@@ -83,19 +78,17 @@ $_button-border-info: $_color-info;
 $_button-color-info: $_color-white;
 $_button-fill-info: $_color-info;
 
-
 // disabled
 // - - - - - - - - - - - - - - - - - - - -
 $_button-disabled-color: $_color-text-secondary;
 $_button-disabled-fill: $_color-white;
 $_button-disabled-border: $_border-color-base;
 
-
 // interaction
 // - - - - - - - - - - - - - - - - - - - -
 $_button-hover-percent: 20%;
 $_button-active-percent: 10%;
-$_button-transition: all .2s cubic-bezier(0.23, 1, 0.32, 1);
+$_button-transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 
 a {
   text-decoration: none;
@@ -110,6 +103,23 @@ a {
   padding: 5vh;
 }
 
-.greenIcon{
+.greenIcon {
   color: $_color-primary;
 }
+
+// vuetifyのscss書き換え
+// $text-field-outlined-fieldset-border: 2px solid #b2cde0 !default;
+$text-field-padding: 11px 0 0;
+$text-field-outlined-legend-line-height: 2em;
+$text-field-dense-prepend-append-margin-top: 100px;
+$text-field-solo-dense-outer-margin-top: 100px;
+$text-field-solo-outer-margin-top: 100px;
+
+// イベント作成ページで使う変数
+$_font_color: #7994a7;
+$_light_blue: #b2cde0;
+$_container_white: #fff;
+$_bg_color: #f2f3f6;
+$_keyRimePie: #c4d929;
+$_input_color: #444;
+$_percent: 0.8;
