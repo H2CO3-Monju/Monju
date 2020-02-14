@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss" scoped>
 h2 {
-  font-size: 1.4em * $_percent;
+  font-size: 1.12em;
   font-weight: bold;
 }
 .tags {

@@ -304,18 +304,18 @@ ul {
   background-color: $_container_white;
   h1 {
     margin-bottom: 20px;
-    font-size: 2em * $_percent;
+    font-size: 1.6em;
     font-weight: bold;
   }
   h2 {
-    font-size: 1.4em * $_percent;
+    font-size: 1.12em;
     font-weight: bold;
   }
   .lightblue-input {
     padding-left: 0.5em;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     color: $_input_color;
-    font-size: 1.2em * $_percent;
+    font-size: 1.12em;
     border: $_light_blue 1px solid;
     border-radius: 5px;
   }
@@ -335,8 +335,8 @@ ul {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 400px * $_percent;
-        height: 266px * $_percent;
+        width: 320px;
+        height: 213px;
         border: $_light_blue 3px dashed;
         .image-icon-wrap {
           position: relative;
@@ -426,14 +426,14 @@ ul {
     select {
       margin: 0 5px 5px;
       padding: 6px 0;
-      height: 31px * $_percent;
+      height: 24.8px;
       border: none;
       border-radius: 5px;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       outline: none;
       background: $_keyRimePie;
       color: #fff;
-      font-size: 1.2em * $_percent;
+      font-size: 0.96em;
       font-weight: bold;
       text-align: center;
     }
@@ -445,7 +445,7 @@ ul {
       flex-direction: row;
       justify-content: space-around;
       margin-left: 5px;
-      font-size: 1.2em * $_percent;
+      font-size: 0.96em;
     }
     label {
       cursor: pointer;
@@ -542,7 +542,7 @@ ul {
       border-width: 1px 1px 0 1px;
       border-style: solid;
       border-radius: 40px 40px 0 0;
-      font-size: 1.1em * $_percent;
+      font-size: 0.88em;
       text-align: center;
     }
     &__inner-tab {
