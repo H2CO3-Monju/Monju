@@ -27,9 +27,13 @@
         <div class="title-tag">
           <div class="title-tag__title">
             <h2>タイトル</h2>
-            <inputText />
+            <inputText
+              :rules="titleRules"
+              :counter="255"
+              :placeholder="'簡潔かつ目が惹かれるようなタイトルを！'"
+            />
           </div>
-          <div class="title-tag__tag">
+          <!-- <div class="title-tag__tag">
             <h2>タグ</h2>
             <input
               id="tag_input"
@@ -39,16 +43,8 @@
               autocomplete="off"
             />
             <p><small>※タグの追加は5つまでです</small></p>
-          </div>
-          <ul id="tags" class="tags">
-            <li v-for="tag in tags" class="tags__tag">
-              <i
-                v-on:click="deleteTag"
-                class="fas fa-times tags__fontawesome"
-              ></i>
-              {{ tag.message }}
-            </li>
-          </ul>
+          </div> -->
+          <tagWrap />
         </div>
       </div>
 
@@ -217,6 +213,7 @@
 
 <script>
 import inputText from '@/components/new/inputText'
+import tagWrap from '@/components/new/tagWrap'
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
   icons.classList.add('hidden')
@@ -235,12 +232,17 @@ const showImg = () => {
 
 export default {
   components: {
-    inputText
+    inputText,
+    tagWrap
   },
   data() {
     return {
       isEventTypePresentation: true,
-      tags: []
+      tags: [],
+      titleRules: [
+        (v) => !!v || 'タイトルは必須項目です',
+        (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
+      ]
     }
   },
   mounted() {

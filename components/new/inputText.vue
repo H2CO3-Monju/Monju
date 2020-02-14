@@ -1,11 +1,13 @@
 <template>
-  <v-form v-model="valid" lazy-validation>
+  <v-form v-model="valid" v-on:submit.prevent lazy-validation>
     <v-text-field
       v-model="title"
+      :id="id"
       :class="[valid ? 'normalClass' : 'errorClass']"
-      :rules="titleRules"
-      :counter="255"
-      placeholder="簡潔かつ目が惹かれるようなタイトルを！"
+      :rules="rules"
+      :counter="counter"
+      :placeholder="placeholder"
+      :autocomplete="autocomplete"
       dense
       outlined
       solo
@@ -16,14 +18,33 @@
 
 <script>
 export default {
+  props: {
+    id: {
+      type: String,
+      required: false
+    },
+    rules: {
+      type: Function,
+      required: true
+    },
+    counter: {
+      type: Number,
+      required: true
+    },
+    placeholder: {
+      type: String,
+      required: true
+    },
+    autocomplete: {
+      type: String,
+      default: 'on',
+      required: false
+    }
+  },
   data() {
     return {
       valid: false,
-      title: '',
-      titleRules: [
-        (v) => !!v || 'タイトルは必須項目です',
-        (v) => v.length < 255 || 'タイトルは255文字以内で入力してください。'
-      ]
+      title: ''
     }
   },
   mounted() {
