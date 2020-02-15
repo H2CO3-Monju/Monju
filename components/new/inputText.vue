@@ -63,6 +63,7 @@ export default {
       })
       input.addEventListener('blur', (e) => {
         fieldset.classList.remove('focusClass')
+        this.checkValidate()
       })
     },
     checkValidate() {

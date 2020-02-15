@@ -35,7 +35,10 @@ export default {
     return {
       tags: [],
       tagRules: [
-        (v) => this.tags.length !== 0 || 'タグは最低でも1つは必要です',
+        (v) =>
+          document.activeElement === document.getElementById('tag_input') ||
+          this.tags.length !== 0 ||
+          'タグは最低でも1つは必要です',
         (v) => v.length <= 24 || 'タグは24文字以内で入力してください。',
         (v) =>
           this.tags.length <= 5 ||
