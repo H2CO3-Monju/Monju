@@ -1,6 +1,6 @@
 <template>
   <li>
-    <i v-on:click="deleteTag" class="fas fa-times tags__fontawesome"></i>
+    <i @click="deleteTag" class="fas fa-times tags__fontawesome"></i>
     {{ value.message }}
   </li>
 </template>

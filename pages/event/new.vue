@@ -79,7 +79,7 @@
 
       <div class="event-type item">
         <h2>勉強会の種類</h2>
-        <div v-on:click="switchContent" class="event-type_inputs">
+        <div @click="switchContent" class="event-type_inputs">
           <div>
             <label for="presentation_input">
               <input
@@ -239,7 +239,6 @@ export default {
   data() {
     return {
       isEventTypePresentation: true,
-      tags: [],
       titleRules: [
         (v) => !!v || 'タイトルは必須項目です',
         (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
@@ -249,7 +248,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       showImg()
-      this.addTag()
     })
   },
   methods: {
@@ -261,33 +259,29 @@ export default {
       } else {
         this.isEventTypePresentation = false
       }
-    },
-    addTag() {
-      const input = document.getElementById('tag_input')
-      input.addEventListener('keydown', (e) => {
-        if (e.keyCode !== 13) return
-        const message = { message: input.value }
-        this.tags.push(message)
-      })
-    },
-    deleteTag(event) {
-      const targetLi = event.target.parentNode
-      const ul = targetLi.parentNode
-      const liNodes = ul.querySelectorAll('li')
-      const liArray = Array.from(liNodes)
-      const targetIndex = liArray.findIndex((element) => element === targetLi)
-      // tags配列のtargetIndex番目の要素から1つ目までを削除
-      this.tags.splice(targetIndex, 1)
     }
+    // addTag() {
+    //   const input = document.getElementById('tag_input')
+    //   input.addEventListener('keydown', (e) => {
+    //     if (e.keyCode !== 13) return
+    //     const message = { message: input.value }
+    //     this.tags.push(message)
+    //   })
+    // },
+    // deleteTag(event) {
+    //   const targetLi = event.target.parentNode
+    //   const ul = targetLi.parentNode
+    //   const liNodes = ul.querySelectorAll('li')
+    //   const liArray = Array.from(liNodes)
+    //   const targetIndex = liArray.findIndex((element) => element === targetLi)
+    //   // tags配列のtargetIndex番目の要素から1つ目までを削除
+    //   this.tags.splice(targetIndex, 1)
+    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.login-title {
-  font-size: 1000px !important;
-}
-
 ul {
   padding: 0;
 }
@@ -389,28 +383,6 @@ ul {
       flex-grow: 1;
       flex-basis: 330px;
       margin-bottom: 20px;
-      .tags {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        margin-top: 20px;
-        &__tag {
-          margin-right: 8px;
-          margin-bottom: 8px;
-          padding-right: 8px;
-          border: solid 1px $_font_color;
-          border-radius: 3px;
-          font-size: 0.8em;
-        }
-        &__fontawesome {
-          cursor: pointer;
-          margin: 0;
-          padding: 2px 8px;
-          text-align: center;
-          font-size: 0.8em;
-        }
-      }
     }
   }
 

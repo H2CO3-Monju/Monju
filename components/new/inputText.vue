@@ -1,5 +1,5 @@
 <template>
-  <v-form v-model="valid" v-on:submit.prevent lazy-validation>
+  <v-form ref="form" v-model="valid" @submit.prevent lazy-validation>
     <v-text-field
       v-model="title"
       :id="id"
@@ -49,11 +49,12 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.test()
+      this.changeInputColor()
+      this.checkValidate()
     })
   },
   methods: {
-    test() {
+    changeInputColor() {
       const input = document.getElementById(this.id)
       const inputWrap = input.parentNode
       const fieldsetWrap = inputWrap.parentNode
@@ -63,6 +64,13 @@ export default {
       })
       input.addEventListener('blur', (e) => {
         fieldset.classList.remove('focusClass')
+      })
+    },
+    checkValidate() {
+      const input = document.getElementById(this.id)
+      input.addEventListener('keydown', (e) => {
+        if (e.keyCode !== 13) return
+        this.$refs.form.validate()
       })
     }
   }

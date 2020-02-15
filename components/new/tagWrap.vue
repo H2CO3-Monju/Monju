@@ -16,7 +16,7 @@
         class="tags__tag"
         :value="tag"
         :key="index"
-        v-on:delete="deleteFromTags"
+        @delete="deleteFromTags"
         v-for="(tag, index) in tags"
       />
     </ul>
@@ -35,7 +35,8 @@ export default {
     return {
       tags: [],
       tagRules: [
-        (v) => v.length <= 24 || 'タグは24文字以内で入力してください。'
+        (v) => v.length <= 24 || 'タグは24文字以内で入力してください。',
+        (v) => this.tags.length < 5 || 'タグの追加は5つまでです。'
       ]
     }
   },
