@@ -8,6 +8,7 @@
         :counter="24"
         :placeholder="'入力してください'"
         :autocomplete="'off'"
+        ref="inputText"
       />
       <!-- <p><small>※タグの追加は5つまでです</small></p> -->
     </div>
@@ -36,7 +37,9 @@ export default {
       tags: [],
       tagRules: [
         (v) => v.length <= 24 || 'タグは24文字以内で入力してください。',
-        (v) => this.tags.length < 5 || 'タグの追加は5つまでです。'
+        (v) =>
+          this.tags.length <= 5 ||
+          `タグの追加は5個までです。${this.tags.length - 5}個削除してください。`
       ]
     }
   },
@@ -50,12 +53,15 @@ export default {
       const input = document.getElementById('tag_input')
       input.addEventListener('keydown', (e) => {
         if (e.keyCode !== 13) return
+        if (this.tags.length >= 10) return
         const message = { message: input.value }
         this.tags.push(message)
+        this.$refs.inputText.checkValidate()
       })
     },
     deleteFromTags(targetIndex) {
       this.tags.splice(targetIndex, 1)
+      this.$refs.inputText.checkValidate()
     }
   }
 }

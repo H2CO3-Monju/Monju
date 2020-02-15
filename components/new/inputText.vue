@@ -50,7 +50,6 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.changeInputColor()
-      this.checkValidate()
     })
   },
   methods: {
@@ -67,11 +66,7 @@ export default {
       })
     },
     checkValidate() {
-      const input = document.getElementById(this.id)
-      input.addEventListener('keydown', (e) => {
-        if (e.keyCode !== 13) return
-        this.$refs.form.validate()
-      })
+      this.$refs.form.validate()
     }
   }
 }
@@ -103,5 +98,4 @@ export default {
 .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
   border-color: #ff5252 !important;
 }
-// fieldset=border,.v-input__slot=box-shadow
 </style>
