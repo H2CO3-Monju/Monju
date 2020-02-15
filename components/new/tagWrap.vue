@@ -61,6 +61,10 @@ export default {
         if (e.keyCode !== 13) return
         if (input.value === '') return
         if (this.tags.length >= 10) return
+        const isDouble = !!this.tags.find(
+          (element) => element.message === input.value
+        )
+        if (isDouble) return
         const message = { message: input.value }
         this.tags.push(message)
         this.$refs.inputText.checkValidate()
