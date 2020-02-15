@@ -1,7 +1,7 @@
 <template>
   <v-form ref="form" v-model="valid" @submit.prevent lazy-validation>
     <v-text-field
-      v-model="title"
+      v-model="value"
       :id="id"
       :class="[valid ? 'normalClass' : 'errorClass']"
       :rules="rules"
@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       valid: false,
-      title: ''
+      value: ''
     }
   },
   mounted() {
@@ -67,6 +67,9 @@ export default {
     },
     checkValidate() {
       this.$refs.form.validate()
+    },
+    deleteValue() {
+      this.value = ''
     }
   }
 }

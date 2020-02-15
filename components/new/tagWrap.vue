@@ -10,7 +10,6 @@
         :autocomplete="'off'"
         ref="inputText"
       />
-      <!-- <p><small>※タグの追加は5つまでです</small></p> -->
     </div>
     <ul id="tags" class="tags">
       <tag
@@ -39,7 +38,14 @@ export default {
         (v) => v.length <= 24 || 'タグは24文字以内で入力してください。',
         (v) =>
           this.tags.length <= 5 ||
-          `タグの追加は5個までです。${this.tags.length - 5}個削除してください。`
+          `タグの追加は5個までです。${this.tags.length -
+            5}個削除してください。`,
+        (v) => {
+          const isNotDouble = !this.tags.find(
+            (element) => element.message === v
+          )
+          return isNotDouble || 'そのタグは既に追加済みです'
+        }
       ]
     }
   },
@@ -53,10 +59,12 @@ export default {
       const input = document.getElementById('tag_input')
       input.addEventListener('keydown', (e) => {
         if (e.keyCode !== 13) return
+        if (input.value === '') return
         if (this.tags.length >= 10) return
         const message = { message: input.value }
         this.tags.push(message)
         this.$refs.inputText.checkValidate()
+        this.$refs.inputText.deleteValue()
       })
     },
     deleteFromTags(targetIndex) {
