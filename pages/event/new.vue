@@ -34,6 +34,7 @@
               :placeholder="'簡潔かつ目が惹かれるようなタイトルを！'"
             />
           </div>
+
           <tagWrap />
         </div>
       </div>
@@ -97,15 +98,7 @@
       <div v-if="isEventTypePresentation">
         <entryFee />
 
-        <div class="presenterSelect item">
-          <h2>発表者の選択</h2>
-          <input
-            type="text"
-            class="presenterSelect_input lightblue-input"
-            placeholder="入力してください"
-          />
-          <p><small>※発表者の上限は10人までです</small></p>
-        </div>
+        <presenterSelect />
 
         <div class="fixed-member item">
           <h2>定員</h2>
@@ -183,6 +176,7 @@ import inputDate from '@/components/new/inputDate'
 import selectComponent from '@/components/new/selectComponent'
 import timeSelect from '@/components/new/timeSelect'
 import entryFee from '@/components/new/entryFee'
+import presenterSelect from '@/components/new/presenterSelect'
 
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
@@ -207,7 +201,8 @@ export default {
     inputDate,
     selectComponent,
     timeSelect,
-    entryFee
+    entryFee,
+    presenterSelect
   },
   data() {
     return {

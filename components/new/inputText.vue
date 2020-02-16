@@ -2,6 +2,7 @@
   <v-form
     class="inptTextWrap"
     ref="form"
+    :style="style"
     v-model="valid"
     @submit.prevent
     lazy-validation
@@ -44,6 +45,10 @@ export default {
     autocomplete: {
       type: String,
       default: 'on',
+      required: false
+    },
+    style: {
+      type: Object,
       required: false
     }
   },

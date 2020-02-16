@@ -31,6 +31,10 @@
 </template>
 
 <style lang="scss" scoped>
+h2 {
+  font-size: 1.12em;
+  font-weight: bold;
+}
 .entryFee {
   display: inline-block;
   margin-bottom: 20px;
