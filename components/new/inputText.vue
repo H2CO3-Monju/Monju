@@ -1,5 +1,11 @@
 <template>
-  <v-form ref="form" v-model="valid" @submit.prevent lazy-validation>
+  <v-form
+    class="inptTextWrap"
+    ref="form"
+    v-model="valid"
+    @submit.prevent
+    lazy-validation
+  >
     <v-text-field
       v-model="value"
       :id="id"
@@ -77,29 +83,34 @@ export default {
 </script>
 
 <style lang="scss">
-.focusClass {
-  border-color: #42a5f5 !important;
-}
-.v-text-field--outlined .v-input__control .v-input__slot {
-  margin-top: -12px !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-.v-text-field__details {
-  padding: 0 !important;
-}
-.v-text-field--outlined .v-input__control .v-input__slot fieldset {
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-  color: $_input_color;
-  border-radius: 5px;
-  transition-property: border-color;
-  transition-duration: 200ms;
-  transition-timing-function: ease;
-}
-.normalClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
-  border-color: $_light_blue;
-}
-.errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
-  border-color: #ff5252 !important;
+.inptTextWrap {
+  .focusClass {
+    border-color: #42a5f5 !important;
+  }
+  .v-text-field--outlined .v-input__control .v-input__slot {
+    margin-top: -12px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .v-text-field__details {
+    padding: 0 !important;
+  }
+  .v-text-field--outlined .v-input__control .v-input__slot fieldset {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: $_input_color;
+    border-radius: 5px;
+    transition-property: border-color;
+    transition-duration: 200ms;
+    transition-timing-function: ease;
+  }
+  .normalClass.v-text-field--outlined
+    .v-input__control
+    .v-input__slot
+    fieldset {
+    border-color: $_light_blue;
+  }
+  .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
+    border-color: #ff5252 !important;
+  }
 }
 </style>

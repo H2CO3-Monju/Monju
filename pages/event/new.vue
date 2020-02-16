@@ -34,17 +34,6 @@
               :placeholder="'簡潔かつ目が惹かれるようなタイトルを！'"
             />
           </div>
-          <!-- <div class="title-tag__tag">
-            <h2>タグ</h2>
-            <input
-              id="tag_input"
-              type="text"
-              class="title-tag__input-title--tag lightblue-input"
-              placeholder="入力してください"
-              autocomplete="off"
-            />
-            <p><small>※タグの追加は5つまでです</small></p>
-          </div> -->
           <tagWrap />
         </div>
       </div>
@@ -52,7 +41,7 @@
       <div class="termAndTime item">
         <h2>期間と日時</h2>
         <div class="time-inputs-wrap">
-          <input class="input-date" type="date" />
+          <inputDate />
           <input class="input-time" type="time" />
           <select class="select-hour" name="hour">
             <option value="one-hour">1時間</option>
@@ -215,6 +204,7 @@
 <script>
 import inputText from '@/components/new/inputText'
 import tagWrap from '@/components/new/tagWrap'
+import inputDate from '@/components/new/inputDate'
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
   icons.classList.add('hidden')
@@ -234,7 +224,8 @@ const showImg = () => {
 export default {
   components: {
     inputText,
-    tagWrap
+    tagWrap,
+    inputDate
   },
   data() {
     return {
@@ -260,23 +251,6 @@ export default {
         this.isEventTypePresentation = false
       }
     }
-    // addTag() {
-    //   const input = document.getElementById('tag_input')
-    //   input.addEventListener('keydown', (e) => {
-    //     if (e.keyCode !== 13) return
-    //     const message = { message: input.value }
-    //     this.tags.push(message)
-    //   })
-    // },
-    // deleteTag(event) {
-    //   const targetLi = event.target.parentNode
-    //   const ul = targetLi.parentNode
-    //   const liNodes = ul.querySelectorAll('li')
-    //   const liArray = Array.from(liNodes)
-    //   const targetIndex = liArray.findIndex((element) => element === targetLi)
-    //   // tags配列のtargetIndex番目の要素から1つ目までを削除
-    //   this.tags.splice(targetIndex, 1)
-    // }
   }
 }
 </script>
@@ -395,21 +369,21 @@ ul {
     h2 {
       margin-bottom: 5px;
     }
-    input,
-    select {
-      margin: 0 5px 5px;
-      padding: 6px 0;
-      height: 24.8px;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-      outline: none;
-      background: $_keyRimePie;
-      color: #fff;
-      font-size: 0.96em;
-      font-weight: bold;
-      text-align: center;
-    }
+    // input,
+    // select {
+    //   margin: 0 5px 5px;
+    //   padding: 6px 0;
+    //   height: 24.8px;
+    //   border: none;
+    //   border-radius: 5px;
+    //   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    //   outline: none;
+    //   background: $_keyRimePie;
+    //   color: #fff;
+    //   font-size: 0.96em;
+    //   font-weight: bold;
+    //   text-align: center;
+    // }
   }
 
   .event-type {
