@@ -65,7 +65,7 @@
         <h2>締め切り</h2>
         <div class="time-input-wrap">
           <inputDate />
-          <input type="time" />
+          <timeSelect />
         </div>
       </div>
 
@@ -380,8 +380,10 @@ ul {
     .time-inputs-wrap {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
       align-content: center;
+      max-width: 330px;
     }
   }
 

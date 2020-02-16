@@ -33,6 +33,7 @@ export default {
 <style lang="scss" scoped>
 .select-component {
   position: relative;
+  height: 30px;
   &__inner {
     cursor: pointer;
     position: relative;

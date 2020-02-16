@@ -66,7 +66,10 @@ export default {
 .timeSelect {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  height: 30px;
   &__colon {
+    margin: 0 3px;
     font-size: 1.2em;
     font-weight: bold;
   }

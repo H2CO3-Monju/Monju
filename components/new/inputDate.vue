@@ -48,6 +48,7 @@ export default {
 }
 .inputDateWrap {
   position: relative;
+  height: 30px;
   width: 130px;
   .v-text-field--outlined .v-input__control .v-input__slot input {
     cursor: pointer;
