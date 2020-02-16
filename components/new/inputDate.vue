@@ -55,7 +55,7 @@ export default {
     font-weight: bold;
   }
   .v-text-field--outlined .v-input__control .v-input__slot {
-    margin-top: -12px !important;
+    margin-top: -11px !important;
     background-color: transparent !important;
     box-shadow: none !important;
   }
