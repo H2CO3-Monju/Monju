@@ -73,17 +73,19 @@
       </div>
 
       <div class="userInfo-userPlans column">
-        <h3 class="userPlan_title subtitle is-3">開催予定&予約済み勉強会</h3>
+        <h3 class="userPlans_title title is-4">開催予定&予約済み勉強会</h3>
         <ul id="userPlans">
           <li v-for="item in items" v-bind:key="item.id">
             <div class="userPlan_content">
-              <span>
-                {{ item.title }}
-              </span>
-              <span>
-                {{ item.time }}
-              </span>
-              <div>
+              <div class="plan_date">
+                <span class="plan_title">
+                  {{ item.title }}
+                </span>
+                <span class="plan_time">
+                  {{ item.time }}
+                </span>
+              </div>
+              <div class="plan_icon">
                 <img v-bind:src="item.icon" />
               </div>
             </div>

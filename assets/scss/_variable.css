@@ -14,3 +14,7 @@ a {
 .greenIcon {
   color: #C4D929;
 }
+
+.v-input__icon--prepend-inner .fas {
+  font-size: 18px;
+}
