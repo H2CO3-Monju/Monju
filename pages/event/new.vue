@@ -40,7 +40,7 @@
 
       <div class="termAndTime item">
         <h2>期間と日時</h2>
-        <div class="time-inputs-wrap">
+        <div class="termAndTime__inputs-wrap">
           <inputDate />
           <timeSelect />
           <selectComponent
@@ -63,7 +63,7 @@
 
       <div class="deadline item">
         <h2>締め切り</h2>
-        <div class="time-input-wrap">
+        <div class="deadline__inputs-wrap">
           <inputDate />
           <timeSelect />
         </div>
@@ -372,18 +372,27 @@ ul {
     margin-bottom: 20px;
   }
 
-  .termAndTime,
-  .deadline {
-    h2 {
-      margin-bottom: 5px;
-    }
-    .time-inputs-wrap {
+  .termAndTime {
+    &__inputs-wrap {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-between;
       align-content: center;
       max-width: 330px;
+      margin-top: 5px;
+    }
+  }
+
+  .deadline {
+    &__inputs-wrap {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-content: center;
+      max-width: 242.71px;
+      margin-top: 5px;
     }
   }
 
