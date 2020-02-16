@@ -97,62 +97,12 @@
 
       <div v-if="isEventTypePresentation">
         <entryFee />
-
         <presenterSelect />
-
-        <div class="fixed-member item">
-          <h2>定員</h2>
-          <div>
-            <input
-              id="fixed-member_input"
-              type="number"
-              class="fixed-member_input lightblue-input"
-            />
-            <label for="fixed-member_input">人</label>
-          </div>
-          <p><small>※発表勉強会の参加者の上限は10人です</small></p>
-        </div>
-
-        <div class="autoCloseText item">
-          <p>
-            <small>
-              <span class="riceMark">＊</span>定員が締め切りまでに
-              <input
-                class="autoCloseText_input lightblue-input"
-                type="number"
-              />
-              人集まらなかったら自動的にイベントを閉鎖する
-            </small>
-          </p>
-        </div>
+        <fixedMember :small="'※発表勉強会の参加者の上限は10人です'" />
       </div>
 
       <div v-else>
-        <div class="fixed-member item">
-          <h2>定員</h2>
-          <div>
-            <input
-              id="fixed-member_input"
-              type="number"
-              class="fixed-member_input lightblue-input"
-            />
-            <label for="fixed-member_input">人</label>
-          </div>
-          <p><small>※交流勉強会の参加者の上限は5人です</small></p>
-        </div>
-
-        <div class="autoCloseText item">
-          <p>
-            <small>
-              <span class="riceMark">＊</span>定員が締め切りまでに
-              <input
-                class="autoCloseText_input lightblue-input"
-                type="number"
-              />
-              人集まらなかったら自動的にイベントを閉鎖する
-            </small>
-          </p>
-        </div>
+        <fixedMember :small="'※交流勉強会の参加者の上限は5人です'" />
       </div>
 
       <div class="details item">
@@ -177,6 +127,7 @@ import selectComponent from '@/components/new/selectComponent'
 import timeSelect from '@/components/new/timeSelect'
 import entryFee from '@/components/new/entryFee'
 import presenterSelect from '@/components/new/presenterSelect'
+import fixedMember from '@/components/new/fixedMember'
 
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
@@ -202,7 +153,8 @@ export default {
     selectComponent,
     timeSelect,
     entryFee,
-    presenterSelect
+    presenterSelect,
+    fixedMember
   },
   data() {
     return {
@@ -381,32 +333,6 @@ ul {
 
   hr {
     border-top: $_light_blue 1px solid;
-  }
-
-  .presenterSelect {
-    .presenterSelect_input {
-      height: 2em;
-      margin: 0 5px 5px;
-    }
-  }
-
-  .fixed-member {
-    .fixed-member_input {
-      margin: 0 5px 5px;
-      width: 100px;
-      height: 2em;
-    }
-  }
-
-  .autoCloseText {
-    .riceMark {
-      color: #f34573;
-      font-weight: bold;
-    }
-    .autoCloseText_input {
-      width: 50px;
-      height: 1.4em;
-    }
   }
 
   .details {
