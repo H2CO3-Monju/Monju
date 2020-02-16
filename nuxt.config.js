@@ -62,6 +62,10 @@ export default {
   styleResources: {
     scss: ['@/assets/scss/_variable.scss']
   },
+  vuetify: {
+    customVariables: ['~/assets/scss/_variable.scss'],
+    treeShake: true,
+  },
   /*
    ** FontAwesome
    */

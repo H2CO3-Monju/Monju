@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import monHead from '@/components/common/mon-loginhead'
+import monHead from '@/components/common/mon-userHead'
 import monFoot from '@/components/common/mon-foot'
 
 export default {

@@ -1,6 +1,6 @@
 a {
   text-decoration: none;
-  color: #53585F;
+  color: #53585f;
 }
 
 .pd-1 {
@@ -9,10 +9,6 @@ a {
 
 .pd-2 {
   padding: 5vh;
-}
-
-.greenIcon {
-  color: #C4D929;
 }
 
 .v-input__icon--prepend-inner .fas {

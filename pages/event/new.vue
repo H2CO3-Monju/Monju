@@ -27,39 +27,25 @@
         <div class="title-tag">
           <div class="title-tag__title">
             <h2>タイトル</h2>
-            <input
-              type="text"
-              class="title-tag__input-title lightblue-input"
-              placeholder="簡潔かつ目が惹かれるようなタイトルを！"
+            <inputText
+              :id="'title_input'"
+              :rules="titleRules"
+              :counter="255"
+              :placeholder="'簡潔かつ目が惹かれるようなタイトルを！'"
             />
           </div>
-          <div class="title-tag__tag">
+          <!-- <div class="title-tag__tag">
             <h2>タグ</h2>
             <input
               id="tag_input"
               type="text"
               class="title-tag__input-title--tag lightblue-input"
               placeholder="入力してください"
+              autocomplete="off"
             />
             <p><small>※タグの追加は5つまでです</small></p>
-          </div>
-          <ul id="tags" class="tags">
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>javascript
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>GoogleAppsScript
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>GoogleCloudPlatform
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>関数型プログラミング
-            </li>
-            <li class="tags__tag">
-              <i class="fas fa-times tags__fontawesome"></i>初心者歓迎
-            </li>
-          </ul>
+          </div> -->
+          <tagWrap />
         </div>
       </div>
 
@@ -93,7 +79,7 @@
 
       <div class="event-type item">
         <h2>勉強会の種類</h2>
-        <div v-on:click="switchContent" class="event-type_inputs">
+        <div @click="switchContent" class="event-type_inputs">
           <div>
             <label for="presentation_input">
               <input
@@ -227,6 +213,8 @@
 </template>
 
 <script>
+import inputText from '@/components/new/inputText'
+import tagWrap from '@/components/new/tagWrap'
 const hideIcon = () => {
   const icons = document.getElementById('image-icons-span')
   icons.classList.add('hidden')
@@ -242,33 +230,24 @@ const showImg = () => {
     hideIcon()
   })
 }
-// const addTag = () => {
-//   const input = document.getElementById('tag_input')
-//   const tags = document.getElementById('tags')
-//   input.addEventListener('keydown', (e) => {
-//     if (e.keyCode !== 13) return
-//     const liElement = new Vue({
-//       tagName: 'li',
-//       className: 'tags__tag',
-//       template: 'display text'
-//     })
-//     const fontawesomeElement = new Vue({
-//       tagName: 'i',
-//       className: 'fas fa-times tags__fontawesome'
-//     })
-//     tags.appendChild(liElement.$el)
-//   })
-// }
+
 export default {
+  components: {
+    inputText,
+    tagWrap
+  },
   data() {
     return {
-      isEventTypePresentation: true
+      isEventTypePresentation: true,
+      titleRules: [
+        (v) => !!v || 'タイトルは必須項目です',
+        (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
+      ]
     }
   },
   mounted() {
     this.$nextTick(() => {
       showImg()
-      // addTag()
     })
   },
   methods: {
@@ -281,10 +260,283 @@ export default {
         this.isEventTypePresentation = false
       }
     }
+    // addTag() {
+    //   const input = document.getElementById('tag_input')
+    //   input.addEventListener('keydown', (e) => {
+    //     if (e.keyCode !== 13) return
+    //     const message = { message: input.value }
+    //     this.tags.push(message)
+    //   })
+    // },
+    // deleteTag(event) {
+    //   const targetLi = event.target.parentNode
+    //   const ul = targetLi.parentNode
+    //   const liNodes = ul.querySelectorAll('li')
+    //   const liArray = Array.from(liNodes)
+    //   const targetIndex = liArray.findIndex((element) => element === targetLi)
+    //   // tags配列のtargetIndex番目の要素から1つ目までを削除
+    //   this.tags.splice(targetIndex, 1)
+    // }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/scss/new.scss';
+ul {
+  padding: 0;
+}
+.bg {
+  padding: 5vh 0;
+  background-color: $_bg_color;
+}
+.container {
+  width: 70%;
+  height: 2000px;
+  margin: 0 auto;
+  padding: 50px 60px;
+  border-radius: 20px;
+  color: $_font_color;
+  background-color: $_container_white;
+  h1 {
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 1.12em;
+    font-weight: bold;
+  }
+  .lightblue-input {
+    padding-left: 0.5em;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: $_input_color;
+    font-size: 1.12em;
+    border: $_light_blue 1px solid;
+    border-radius: 5px;
+  }
+  .mainContents-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    .event-img-wrap {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 330px;
+      margin-right: 40px;
+      margin-bottom: 20px;
+      color: $_light_blue;
+      .event-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 320px;
+        height: 213px;
+        border: $_light_blue 3px dashed;
+        .image-icon-wrap {
+          position: relative;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          .image-icons {
+            cursor: pointer;
+            position: relative;
+            &::after {
+              position: absolute;
+              top: -6px;
+              right: -6px;
+              font-size: 2em;
+              font-family: 'Font Awesome 5 Free';
+              font-weight: bold;
+              text-shadow: 3px 3px 0 $_container_white,
+                -3px -3px 0 $_container_white, -3px 3px 0 $_container_white,
+                3px -3px 0 $_container_white, 0px 3px 0 $_container_white,
+                0 -3px 0 $_container_white, -3px 0 0 $_container_white,
+                -3px 0 0 $_container_white, 3px 0 0 $_container_white;
+              content: '\f067';
+            }
+            .image-icons-fontawesome {
+              font-size: 5em;
+            }
+          }
+          .event-image {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
+          }
+          .hidden {
+            display: none;
+          }
+        }
+      }
+    }
+    .title-tag {
+      flex-grow: 1;
+      flex-basis: 330px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .item {
+    margin-bottom: 20px;
+  }
+
+  .termAndTime,
+  .deadline {
+    h2 {
+      margin-bottom: 5px;
+    }
+    input,
+    select {
+      margin: 0 5px 5px;
+      padding: 6px 0;
+      height: 24.8px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+      outline: none;
+      background: $_keyRimePie;
+      color: #fff;
+      font-size: 0.96em;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .event-type {
+    .event-type_inputs {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-around;
+      margin-left: 5px;
+      font-size: 0.96em;
+    }
+    label {
+      cursor: pointer;
+      margin-right: 15px;
+    }
+  }
+
+  hr {
+    border-top: $_light_blue 1px solid;
+  }
+
+  .entryFee {
+    display: inline-block;
+    h2 {
+      margin-bottom: 5px;
+    }
+    &__inner {
+      display: inline-flex;
+      align-items: center;
+      position: relative;
+      margin: 0 5px 5px;
+      &:before {
+        z-index: 1;
+        position: absolute;
+        top: 0.8em;
+        right: 2.3em;
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 6px solid $_font_color;
+        pointer-events: none;
+      }
+    }
+    &__inner-select {
+      height: 2em;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding: 5px 38px 5px 6px;
+      outline: none;
+      color: $_input_color;
+      text-align: center;
+      background-color: $_container_white;
+    }
+    &__inner-fontawesome {
+      margin-left: 0.3em;
+      font-size: 1.3em;
+    }
+  }
+
+  .presenterSelect {
+    .presenterSelect_input {
+      height: 2em;
+      margin: 0 5px 5px;
+    }
+  }
+
+  .fixed-member {
+    .fixed-member_input {
+      margin: 0 5px 5px;
+      width: 100px;
+      height: 2em;
+    }
+  }
+
+  .autoCloseText {
+    .riceMark {
+      color: #f34573;
+      font-weight: bold;
+    }
+    .autoCloseText_input {
+      width: 50px;
+      height: 1.4em;
+    }
+  }
+
+  .details {
+    h2 {
+      margin-bottom: 5px;
+    }
+    &__inner-tabs {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    %__inner-tab {
+      cursor: pointer;
+      width: 125px;
+      padding: 7px 7px 5px 7px;
+      border-width: 1px 1px 0 1px;
+      border-style: solid;
+      border-radius: 40px 40px 0 0;
+      font-size: 0.88em;
+      text-align: center;
+    }
+    &__inner-tab {
+      @extend %__inner-tab;
+      border-color: $_light_blue;
+      &--active {
+        @extend %__inner-tab;
+        font-weight: bold;
+        border-color: $_keyRimePie;
+        background-color: $_keyRimePie;
+        color: $_container_white;
+      }
+    }
+    &__inner-markdown {
+      width: 100%;
+      height: 400px;
+      padding: 6px 12px;
+      border: solid 1px $_light_blue;
+      color: $_input_color;
+      font-size: 1em;
+    }
+  }
+}
 </style>

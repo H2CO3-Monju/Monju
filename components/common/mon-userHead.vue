@@ -1,108 +1,100 @@
 <template>
-  <header class="st-userHeader .navbar is-black">
-    <div class="st-userHeader_container">
-      <div class="st-userHeader_start navbar-brand">
-        <!-- ロゴ -->
-        <a class="logo navbar-item" href="#">
-          <img src="~/assets/images/logo_green.svg" alt="ロゴ" />
-        </a>
+  <div class="userHeader">
+    <v-app-bar
+      :elevation="elevationHead"
+      dense
+      width="100%"
+      height="70px"
+      style="background: #fff;"
+      class="userHeader_container"
+    >
+      <!-- ロゴ -->
+      <v-img
+        :src="require('@/assets/images/logo_green.svg')"
+        class="navbar_logo"
+        max-width="125px"
+      >
+      </v-img>
 
-        <!-- 検索バー -->
-        <form class="st-userHeader_serch" action="#" method="get">
-          <div class="control has-addons">
-            <i class="fa fa-search"></i>
-            <input
-              class="st-userHeader_searchInput"
-              placeholder="キーワードを入力"
-              type="search"
-              autocomplete="off"
-              name="m"
-            />
-          </div>
-        </form>
+      <searchInput class="pd-1" />
+
+      <v-spacer></v-spacer>
+
+      <eventcreation />
+
+      <div class="pl-5">
+        {{ havePoint }}
+        <v-icon>fab fa-product-hunt fa-lg</v-icon>
       </div>
 
-      <div class="st-userHeader_end">
-        <nuxt-link class="st-userHeader_Link" to="/event/new">
-          <button class="button">
-            イベント作成
-          </button>
-        </nuxt-link>
-        <span class="pd-1"></span>
+      <v-btn text icon>
+        <v-icon>fas fa-bell</v-icon>
+      </v-btn>
 
-        <div class="st-userHead_point">
-          {{ havePoint }}
-          <i class="fab fa-product-hunt fa-lg"></i>
-        </div>
-        <span class="pd-1"></span>
+      <v-btn text icon>
+        <v-icon>fas fa-envelope</v-icon>
+      </v-btn>
 
-        <nuxt-link class="st-userHead_info" to="/">
-          <i class="fas fa-bell fa-lg"></i>
-        </nuxt-link>
-        <span class="pd-1"></span>
-
-        <nuxt-link class="st-userHead_meil" to="/">
-          <i class="fas fa-envelope fa-lg"></i>
-        </nuxt-link>
-        <span class="pd-1"></span>
-
-        <div class="userCard dropdown" :class="{ 'is-active': isActive }">
-          <div class="dropdown-trigger">
-            <button
-              class="button"
-              aria-haspopup="true"
-              aria-controls="dropdown-menu2"
-              @click="isActive = !isActive"
-            >
-              <img
-                class="userIcon"
-                src="~/assets/images/user.jpg"
-                alt="user-icon"
-              />
+      <div class="text-center">
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on">
+              <v-avatar class="mr-2" color="teal" size="24">
+                <img
+                  class="userIcon"
+                  src="~/assets/images/user.jpg"
+                  alt="user-icon"
+                />
+              </v-avatar>
               <span class="userName">
                 {{ userName }}
                 <small>さん</small>
               </span>
-              <i class="fas fa-caret-down fa-lg greenIcon"></i>
-            </button>
-          </div>
-          <div class="dropdown-menu" id="dropdown-menu2" role="menu">
-            <div class="dropdown-content">
-              <div class="dropdown-item">
-                <nuxt-link to="/mytop">マイページ</nuxt-link>
-              </div>
-              <div class="dropdown-item">
-                <nuxt-link to="/SetUp/setting-Pro">設定</nuxt-link>
-              </div>
-              <div class="dropdown-item">
-                <nuxt-link to="/info/info">お知らせ</nuxt-link>
-              </div>
-              <div class="dropdown-item">
-                <nuxt-link to="/info/qa">ヘルプ</nuxt-link>
-              </div>
-              <div class="dropdown-item">
-                <span>ログアウト</span>
-              </div>
-            </div>
-          </div>
-        </div>
+              <v-icon class="pl-2" color="#C4D929">fas fa-caret-down</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item>
+              <nuxt-link to="/mytop">マイページ</nuxt-link>
+            </v-list-item>
+            <v-list-item>
+              <nuxt-link to="/SetUp/setting-Pro">設定</nuxt-link>
+            </v-list-item>
+            <v-list-item>
+              <nuxt-link to="/info/info">お知らせ</nuxt-link>
+            </v-list-item>
+            <v-list-item>
+              <nuxt-link to="/info/qa">ヘルプ</nuxt-link>
+            </v-list-item>
+            <v-list-item>
+              <span>ログアウト</span>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </div>
-    </div>
-  </header>
+    </v-app-bar>
+  </div>
 </template>
 
-<script>
+<script lang="js">
+import searchInput from '@/components/inputs/searchBar'
+import eventcreation from '@/components/btns/event_creation'
 export default {
+  components: {
+    searchInput,
+    eventcreation
+  },
   data() {
     return {
       havePoint: '1000',
-      userName: '五文字以上',
-      isActive: false
+      userName: '五文字以上'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~assets/scss/header.scss';
+.userHeader {
+  border-top: 5px solid $_color-primary;
+}
 </style>
