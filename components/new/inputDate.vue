@@ -20,15 +20,12 @@
         ></v-text-field>
       </div>
     </template>
-    <v-date-picker v-model="date" color="green lighten-1" no-title scrollable>
+    <v-date-picker v-model="date" color="#BBC61D" no-title scrollable>
       <v-spacer></v-spacer>
-      <v-btn text color="green lighten-1" @click="menu = false">Cancel</v-btn>
-      <v-btn text color="green lighten-1" @click="$refs.menu.save(date)"
-        >OK</v-btn
-      >
+      <v-btn text color="#BBC61D" @click="menu = false">Cancel</v-btn>
+      <v-btn text color="#BBC61D" @click="$refs.menu.save(date)">OK</v-btn>
     </v-date-picker>
   </v-menu>
-  <!-- <input class="input-date" type="date" /> -->
 </template>
 
 <script>
