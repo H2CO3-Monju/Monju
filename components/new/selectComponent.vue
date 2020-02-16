@@ -3,7 +3,11 @@
     :class="[isTime ? 'upDownTriangle' : 'downTriangle', 'select-component']"
   >
     <select class="select-component__inner" :name="name">
-      <option :value="content.value" v-for="content in contents">
+      <option
+        :value="content.value"
+        :key="index"
+        v-for="(content, index) in contents"
+      >
         {{ content.text }}
       </option>
     </select>
