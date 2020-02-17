@@ -3,26 +3,7 @@
     <div class="container">
       <h1>新規イベント作成</h1>
       <div class="mainContents-wrap">
-        <div class="event-img-wrap">
-          <div class="event-img">
-            <label class="image-icon-wrap">
-              <span id="image-icons-span" class="image-icons">
-                <i
-                  class="far fa-image image-icons-fontawesome"
-                  aria-hidden="true"
-                ></i>
-              </span>
-              <img id="preview" class="event-image" />
-              <input
-                id="eventImg"
-                class="hidden"
-                type="file"
-                name="s_file"
-                accept="image/*"
-              />
-            </label>
-          </div>
-        </div>
+        <eventImage />
 
         <div class="title-tag">
           <div class="title-tag__title">
@@ -120,22 +101,7 @@ import entryFee from '@/components/new/entryFee'
 import presenterSelect from '@/components/new/presenterSelect'
 import fixedMember from '@/components/new/fixedMember'
 import detailsComponent from '@/components/new/detailsComponent'
-
-const hideIcon = () => {
-  const icons = document.getElementById('image-icons-span')
-  icons.classList.add('hidden')
-}
-const showImg = () => {
-  const eventImg = document.getElementById('eventImg')
-  eventImg.addEventListener('change', (e) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      document.getElementById('preview').setAttribute('src', e.target.result)
-    }
-    reader.readAsDataURL(e.target.files[0])
-    hideIcon()
-  })
-}
+import eventImage from '@/components/new/eventImage'
 
 export default {
   components: {
@@ -147,7 +113,8 @@ export default {
     entryFee,
     presenterSelect,
     fixedMember,
-    detailsComponent
+    detailsComponent,
+    eventImage
   },
   data() {
     return {
@@ -157,11 +124,6 @@ export default {
         (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
       ]
     }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      showImg()
-    })
   },
   methods: {
     switchContent() {
@@ -215,66 +177,6 @@ ul {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    .event-img-wrap {
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: 330px;
-      margin-right: 40px;
-      margin-bottom: 20px;
-      color: $_light_blue;
-      .event-img {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 320px;
-        height: 213px;
-        border: $_light_blue 3px dashed;
-        .image-icon-wrap {
-          position: relative;
-          display: inline-flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          .image-icons {
-            cursor: pointer;
-            position: relative;
-            &::after {
-              position: absolute;
-              top: -6px;
-              right: -6px;
-              font-size: 2em;
-              font-family: 'Font Awesome 5 Free';
-              font-weight: bold;
-              text-shadow: 3px 3px 0 $_container_white,
-                -3px -3px 0 $_container_white, -3px 3px 0 $_container_white,
-                3px -3px 0 $_container_white, 0px 3px 0 $_container_white,
-                0 -3px 0 $_container_white, -3px 0 0 $_container_white,
-                -3px 0 0 $_container_white, 3px 0 0 $_container_white;
-              content: '\f067';
-            }
-            .image-icons-fontawesome {
-              font-size: 5em;
-            }
-          }
-          .event-image {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: auto;
-            width: auto;
-            max-width: 100%;
-            max-height: 100%;
-            margin: auto;
-          }
-          .hidden {
-            display: none;
-          }
-        }
-      }
-    }
     .title-tag {
       flex-grow: 1;
       flex-basis: 330px;
