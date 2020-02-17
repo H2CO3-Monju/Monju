@@ -89,14 +89,6 @@ h2 {
   &__small {
     margin-top: -10px;
   }
-  // &__inner {
-  //   margin-bottom: 20px;
-  // }
-  // &__input {
-  //   margin: 0 5px 5px;
-  //   width: 100px;
-  //   height: 2em;
-  // }
 }
 .autoCloseText {
   .riceMark {
