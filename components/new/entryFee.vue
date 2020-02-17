@@ -46,7 +46,7 @@ h2 {
     &:before {
       z-index: 1;
       position: absolute;
-      top: 0.8em;
+      top: 1em;
       right: 2.3em;
       width: 0;
       height: 0;

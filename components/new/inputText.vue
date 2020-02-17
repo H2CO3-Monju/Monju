@@ -15,6 +15,9 @@
       :counter="counter"
       :placeholder="placeholder"
       :autocomplete="autocomplete"
+      :type="type"
+      :max="max"
+      :min="min"
       dense
       outlined
       solo
@@ -36,11 +39,11 @@ export default {
     },
     counter: {
       type: Number,
-      required: true
+      required: false
     },
     placeholder: {
       type: String,
-      required: true
+      required: false
     },
     autocomplete: {
       type: String,
@@ -49,6 +52,18 @@ export default {
     },
     style: {
       type: Object,
+      required: false
+    },
+    type: {
+      type: String,
+      required: false
+    },
+    max: {
+      type: Number,
+      required: false
+    },
+    min: {
+      type: Number,
       required: false
     }
   },
