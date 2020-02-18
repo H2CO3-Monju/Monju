@@ -25,7 +25,13 @@
         </li>
       </ul>
     </div>
+    <div
+      v-if="shouldShowPreview"
+      v-html="htmlPreview"
+      class="details__inner-markdown"
+    ></div>
     <textarea
+      v-else
       v-model="markdownText"
       class="details__inner-markdown"
       rows="20"
@@ -41,8 +47,9 @@ export default {
   },
   data() {
     return {
+      shouldShowPreview: false,
       markdownText: '',
-      shouldShowPreview: false
+      htmlPreview: ''
     }
   },
   methods: {
@@ -50,14 +57,53 @@ export default {
       this.shouldShowPreview = !this.shouldShowPreview
       if (this.shouldShowPreview) {
         // 外部リソースの関数を使うときは"window."が必要
-        const html = window.marked(this.markdownText)
-        console.log(html)
+        this.htmlPreview = window.marked(this.markdownText)
       }
     }
   }
 }
 </script>
 
+<style lang="scss">
+.details__inner-markdown {
+  $border-color: $_keyRimePie;
+  h1 {
+    margin: 15px 0 10px 0;
+    font-size: 1.6em;
+    font-weight: bold;
+    border-bottom: double 3px $border-color;
+  }
+  h2 {
+    margin: 15px 0 10px 0;
+    font-size: 1.37em;
+    font-weight: bold;
+    border-bottom: solid 3px $border-color;
+  }
+  h3 {
+    margin: 15px 0 10px 0;
+    font-size: 1.17em;
+    font-weight: bold;
+    border-bottom: solid 3px $border-color;
+  }
+  h4 {
+    margin: 15px 0 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+    border-bottom: dashed 3px $border-color;
+  }
+  h5 {
+    margin: 15px 0 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+    border-bottom: dotted 3px $border-color;
+  }
+  h6 {
+    margin: 15px 0 10px 0;
+    font-size: 0.9em;
+    font-weight: bold;
+  }
+}
+</style>
 <style lang="scss" scoped>
 ul {
   padding: 0;
@@ -96,8 +142,9 @@ ul {
     }
   }
   &__inner-markdown {
+    word-wrap: break-word;
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     padding: 6px 12px;
     border: solid 1px $_light_blue;
     color: $_input_color;

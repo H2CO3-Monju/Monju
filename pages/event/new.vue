@@ -161,7 +161,7 @@ ul {
     font-weight: bold;
   }
   h2 {
-    font-size: 1.12em;
+    font-size: 1.17em;
     font-weight: bold;
   }
   .lightblue-input {
