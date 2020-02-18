@@ -60,7 +60,7 @@ export default {
     preventInput() {
       const input = document.getElementById('fixed-member__input')
       input.addEventListener('keydown', (e) => {
-        // マイナスの入力の拒否
+        // マイナス(-)の入力の拒否
         if (e.keyCode === 189) {
           e.preventDefault()
         }

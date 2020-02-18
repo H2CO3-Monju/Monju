@@ -3,13 +3,51 @@
     <h2>詳細</h2>
     <div class="details__inner">
       <ul class="details__inner-tabs">
-        <li class="details__inner-tab--active">マークダウン</li>
-        <li class="details__inner-tab">プレビュー</li>
+        <li
+          @click="toggleTab"
+          :class="
+            shouldShowPreview
+              ? 'details__inner-tab'
+              : 'details__inner-tab--active'
+          "
+        >
+          マークダウン
+        </li>
+        <li
+          @click="toggleTab"
+          :class="
+            shouldShowPreview
+              ? 'details__inner-tab--active'
+              : 'details__inner-tab'
+          "
+        >
+          プレビュー
+        </li>
       </ul>
     </div>
     <textarea class="details__inner-markdown" rows="20"></textarea>
+    <div class="details__processed-markdown"></div>
   </div>
 </template>
+
+<script>
+export default {
+  head: {
+    script: [{ src: '~/assets/js/marked.min.js' }]
+  },
+  data() {
+    return {
+      markdownText: '',
+      shouldShowPreview: false
+    }
+  },
+  methods: {
+    toggleTab() {
+      this.shouldShowPreview = !this.shouldShowPreview
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 ul {
