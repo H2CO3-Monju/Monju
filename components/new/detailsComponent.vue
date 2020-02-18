@@ -25,7 +25,11 @@
         </li>
       </ul>
     </div>
-    <textarea class="details__inner-markdown" rows="20"></textarea>
+    <textarea
+      v-model="markdownText"
+      class="details__inner-markdown"
+      rows="20"
+    ></textarea>
     <div class="details__processed-markdown"></div>
   </div>
 </template>
@@ -33,7 +37,7 @@
 <script>
 export default {
   head: {
-    script: [{ src: '~/assets/js/marked.min.js' }]
+    script: [{ src: '/marked.min.js' }]
   },
   data() {
     return {
@@ -44,6 +48,11 @@ export default {
   methods: {
     toggleTab() {
       this.shouldShowPreview = !this.shouldShowPreview
+      if (this.shouldShowPreview) {
+        // 外部リソースの関数を使うときは"window."が必要
+        const html = window.marked(this.markdownText)
+        console.log(html)
+      }
     }
   }
 }
