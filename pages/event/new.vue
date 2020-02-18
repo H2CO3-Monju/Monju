@@ -149,7 +149,7 @@ ul {
 }
 .container {
   width: 70%;
-  height: 2000px;
+  height: auto;
   margin: 0 auto;
   padding: 50px 60px;
   border-radius: 20px;

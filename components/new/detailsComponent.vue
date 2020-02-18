@@ -66,7 +66,11 @@ export default {
 
 <style lang="scss">
 .details__inner-markdown {
+  $markdown-font-color: #444;
   $border-color: $_keyRimePie;
+  $code-font-color: #2257ca;
+  $code-bg-color: #e8f0f7;
+  $pre-bg-color: #f5f5f5;
   *:first-child {
     margin-top: 0;
   }
@@ -108,6 +112,15 @@ export default {
     margin-bottom: 10px;
     font-size: 1em;
   }
+  ul {
+    list-style-type: disc;
+    ul {
+      list-style-type: circle;
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
   blockquote {
     padding: 10px 20px 10px 10px;
     border-left: solid 5px $border_color;
@@ -115,9 +128,16 @@ export default {
   code {
     display: inline;
     padding: 2px 4px;
-    color: #2257ca;
-    background-color: rgb(232, 240, 247);
+    color: $code-font-color;
+    background-color: $code-bg-color;
     box-shadow: none;
+  }
+  pre {
+    background-color: $pre-bg-color;
+    code {
+      color: $markdown-font-color;
+      background-color: $pre-bg-color;
+    }
   }
 }
 </style>
@@ -168,4 +188,30 @@ ul {
     font-size: 1em;
   }
 }
+// # これはh1タグです
+// ## これはh2タグです
+// ### これはh3タグです
+// #### これはh4タグです
+// ##### これはh5タグです
+// ###### これはh6タグです
+// kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk<br/>
+// j
+
+// j
+
+// > 引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用引用
+// > 引用
+// >> 多重引用
+
+// `バッククォート一つで改行テスト(改行)
+// してみた
+// できるやんけ！`
+// `バッククォート1つ`
+// ```バッククォート<br/>2つ```
+
+//     pre表示の
+//         挙動
+//             むずくね
+
+// a
 </style>
