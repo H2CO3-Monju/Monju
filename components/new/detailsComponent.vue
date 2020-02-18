@@ -113,6 +113,7 @@ export default {
     border-left: solid 5px $border_color;
   }
   code {
+    display: inline;
     padding: 2px 4px;
     color: #2257ca;
     background-color: rgb(232, 240, 247);
