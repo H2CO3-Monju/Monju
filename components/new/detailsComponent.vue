@@ -67,40 +67,56 @@ export default {
 <style lang="scss">
 .details__inner-markdown {
   $border-color: $_keyRimePie;
+  *:first-child {
+    margin-top: 0;
+  }
   h1 {
     margin: 15px 0 10px 0;
     font-size: 1.6em;
     font-weight: bold;
-    border-bottom: double 3px $border-color;
+    border-bottom: double 4px $border-color;
   }
   h2 {
     margin: 15px 0 10px 0;
     font-size: 1.37em;
     font-weight: bold;
-    border-bottom: solid 3px $border-color;
+    border-bottom: solid 2px $border-color;
   }
   h3 {
     margin: 15px 0 10px 0;
     font-size: 1.17em;
     font-weight: bold;
-    border-bottom: solid 3px $border-color;
+    border-bottom: dashed 2px $border-color;
   }
   h4 {
     margin: 15px 0 10px 0;
     font-size: 1em;
     font-weight: bold;
-    border-bottom: dashed 3px $border-color;
+    border-bottom: dotted 1px $border-color;
   }
   h5 {
     margin: 15px 0 10px 0;
     font-size: 1em;
     font-weight: bold;
-    border-bottom: dotted 3px $border-color;
   }
   h6 {
     margin: 15px 0 10px 0;
     font-size: 0.9em;
     font-weight: bold;
+  }
+  p {
+    margin-bottom: 10px;
+    font-size: 1em;
+  }
+  blockquote {
+    padding: 10px 20px 10px 10px;
+    border-left: solid 5px $border_color;
+  }
+  code {
+    padding: 2px 4px;
+    color: #2257ca;
+    background-color: rgb(232, 240, 247);
+    box-shadow: none;
   }
 }
 </style>
