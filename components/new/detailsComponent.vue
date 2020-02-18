@@ -121,6 +121,10 @@ export default {
       }
     }
   }
+  hr {
+    height: 1px;
+    background-color: $border_color;
+  }
   blockquote {
     padding: 10px 20px 10px 10px;
     border-left: solid 5px $border_color;
@@ -211,7 +215,19 @@ ul {
 
 //     pre表示の
 //         挙動
-//             むずくね
+//             テストするよ
 
-// a
+// hrテスト
+// ***
+// 水平線テスト
+// ___
+// horizontal lineテスト
+
+// - リスト1
+//     - リスト1_1
+//         - リスト1_1_1
+//         - リスト1_1_2
+//     - リスト1_2
+// - リスト2
+// - リスト3
 </style>
