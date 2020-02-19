@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import inputText from '@/components/new/inputText'
+import inputText from '@/components/pages/event/inputText'
 export default {
   components: {
     inputText

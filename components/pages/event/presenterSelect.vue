@@ -1,19 +1,18 @@
 <template>
-  <div>
-    <div class="title-tag__tag">
-      <h2>タグ</h2>
-      <inputText
-        :id="'tag_input'"
-        :rules="tagRules"
-        :counter="24"
-        :placeholder="'入力してください'"
-        :autocomplete="'off'"
-        ref="inputText"
-      />
-    </div>
-    <ul id="tags" class="tags">
+  <div class="presenterSelect item">
+    <h2>発表者の選択</h2>
+    <inputText
+      :id="'presenterSelect_input'"
+      :rules="presenterSelectRules"
+      :counter="24"
+      :placeholder="'入力してください'"
+      :autocomplete="'off'"
+      :style="{ width: '300px' }"
+      ref="inputText"
+    />
+    <ul id="presenterItems" class="presenters">
       <tag
-        class="tags__tag"
+        class="presenters__presenter"
         :value="tag"
         :key="index"
         @delete="deleteFromTags"
@@ -24,8 +23,8 @@
 </template>
 
 <script>
-import inputText from '@/components/new/inputText'
-import tag from '@/components/new/tag'
+import inputText from '@/components/pages/event/inputText'
+import tag from '@/components/pages/event/tag'
 export default {
   components: {
     inputText,
@@ -34,21 +33,22 @@ export default {
   data() {
     return {
       tags: [],
-      tagRules: [
+      presenterSelectRules: [
         (v) =>
-          document.activeElement === document.getElementById('tag_input') ||
+          document.activeElement ===
+            document.getElementById('presenterSelect_input') ||
           this.tags.length !== 0 ||
-          'タグは最低でも1つは必要です',
-        (v) => v.length <= 24 || 'タグは24文字以内で入力してください。',
+          '発表者は最低でも1人は必要です',
+        (v) => v.length <= 24 || '発表者の名前は24文字以内で入力してください。',
         (v) =>
-          this.tags.length <= 5 ||
-          `タグの追加は5個までです。${this.tags.length -
-            5}個削除してください。`,
+          this.tags.length <= 10 ||
+          `発表者の追加は10人までです。${this.tags.length -
+            10}人削除してください。`,
         (v) => {
           const isNotDouble = !this.tags.find(
             (element) => element.message === v
           )
-          return isNotDouble || 'そのタグは既に追加済みです'
+          return isNotDouble || 'その発表者は既に追加済みです'
         }
       ]
     }
@@ -60,11 +60,11 @@ export default {
   },
   methods: {
     addTag() {
-      const input = document.getElementById('tag_input')
+      const input = document.getElementById('presenterSelect_input')
       input.addEventListener('keydown', (e) => {
         if (e.keyCode !== 13) return
         if (input.value === '') return
-        if (this.tags.length >= 10) return
+        if (this.tags.length >= 11) return
         const isDouble = !!this.tags.find(
           (element) => element.message === input.value
         )
@@ -88,13 +88,13 @@ h2 {
   font-size: 1.17em;
   font-weight: bold;
 }
-.tags {
+.presenters {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 0 2px;
-  &__tag {
+  &__presenter {
     margin-right: 8px;
     margin-bottom: 8px;
     padding-right: 8px;

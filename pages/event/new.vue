@@ -92,16 +92,16 @@
 </template>
 
 <script>
-import inputText from '@/components/new/inputText'
-import tagWrap from '@/components/new/tagWrap'
-import inputDate from '@/components/new/inputDate'
-import selectComponent from '@/components/new/selectComponent'
-import timeSelect from '@/components/new/timeSelect'
-import entryFee from '@/components/new/entryFee'
-import presenterSelect from '@/components/new/presenterSelect'
-import fixedMember from '@/components/new/fixedMember'
-import detailsComponent from '@/components/new/detailsComponent'
-import eventImage from '@/components/new/eventImage'
+import inputText from '@/components/pages/event/inputText'
+import tagWrap from '@/components/pages/event/tagWrap'
+import inputDate from '@/components/pages/event/inputDate'
+import selectComponent from '@/components/pages/event/selectComponent'
+import timeSelect from '@/components/pages/event/timeSelect'
+import entryFee from '@/components/pages/event/entryFee'
+import presenterSelect from '@/components/pages/event/presenterSelect'
+import fixedMember from '@/components/pages/event/fixedMember'
+import detailsComponent from '@/components/pages/event/detailsComponent'
+import eventImage from '@/components/pages/event/eventImage'
 
 export default {
   components: {
