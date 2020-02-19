@@ -68,6 +68,9 @@ export default {
 .details__inner-markdown {
   $markdown-font-color: #444;
   $border-color: $_keyRimePie;
+  $table-border-color: #606060;
+  $th-bg-color: $_keyRimePie;
+  $td-bg-color: #fefff2;
   $code-font-color: #2257ca;
   $code-bg-color: #e8f0f7;
   $pre-bg-color: #f5f5f5;
@@ -120,6 +123,29 @@ export default {
         list-style-type: square;
       }
     }
+  }
+  ol {
+    list-style-type: decimal;
+    ol {
+      list-style-type: upper-roman;
+      ol {
+        list-style-type: lower-roman;
+      }
+    }
+  }
+  %__table-element {
+    padding: 6px 13px;
+    border: solid 1px $table-border-color;
+    color: #fff;
+  }
+  table th {
+    @extend %__table-element;
+    background-color: $th-bg-color;
+  }
+  table td {
+    @extend %__table-element;
+    color: #444;
+    background-color: $td-bg-color;
   }
   hr {
     height: 1px;
@@ -192,6 +218,7 @@ ul {
     font-size: 1em;
   }
 }
+// # マークダウン確認用
 // # これはh1タグです
 // ## これはh2タグです
 // ### これはh3タグです
@@ -230,4 +257,33 @@ ul {
 //     - リスト1_2
 // - リスト2
 // - リスト3
+
+// 1. 番号付きリスト1
+//     1. 番号付きリスト1-1
+//         1. リスト1_1_1
+//         1. リスト1_1_2
+//     1. 番号付きリスト1-2
+// 1. 番号付きリスト2
+// 1. 番号付きリスト3
+
+// [Google](https://www.google.co.jp/)
+
+// これは *イタリック* です
+// これは _イタリック_ です
+// これは **ボールド** です
+// これは __ボールド__ です
+// これは ***イタリック＆ボールド*** です
+// これは ___イタリック＆ボールド___ です
+
+// | TH1 | TH2 |
+// ----|----
+// | TD1 | TD3 |
+// | TD2 | TD4 |
+
+// | 左揃え | 中央揃え | 右揃え |
+// |:---|:---:|---:|
+// |1 |2 |3 |
+// |4 |5 |6 |
+
+// ![テスト](https://1.bp.blogspot.com/-3gqINuDMzXY/Xexq_4Ou2NI/AAAAAAABWkk/l_rwwkmYskQiVdLz3_y3J5hkh0SiW0WYgCNcBGAsYHQ/s1600/music_tympani_fortissimo_fffff.png)
 </style>
