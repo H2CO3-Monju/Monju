@@ -34,9 +34,7 @@
       v-else
       v-model="markdownText"
       class="details__inner-markdown"
-      rows="20"
     ></textarea>
-    <div class="details__processed-markdown"></div>
   </div>
 </template>
 

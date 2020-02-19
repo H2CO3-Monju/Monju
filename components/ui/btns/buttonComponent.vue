@@ -1,9 +1,7 @@
 <template>
   <div class="text-center">
     <v-btn class="white--text" color="#C4D929">
-      <nuxt-link to="/event/new">
-        {{ text }}
-      </nuxt-link>
+      {{ text }}
     </v-btn>
   </div>
 </template>
