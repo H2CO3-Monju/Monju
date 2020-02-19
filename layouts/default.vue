@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import monHead from '@/components/common/mon-userHead'
-import monFoot from '@/components/common/mon-foot'
+import monHead from '@/components/layouts/mon-userHead'
+import monFoot from '@/components/layouts/mon-foot'
 
 export default {
   components: {
