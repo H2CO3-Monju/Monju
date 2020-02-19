@@ -77,8 +77,8 @@
 </template>
 
 <script lang="js">
-import searchInput from '@/components/inputs/searchBar'
-import eventcreation from '@/components/btns/event_creation'
+import searchInput from '@/components/ui/inputs/searchBar'
+import eventcreation from '@/components/ui/btns/event_creation'
 export default {
   components: {
     searchInput,
