@@ -39,7 +39,7 @@
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
             <v-btn v-on="on">
-              <v-avatar class="mr-2" color="teal" size="24">
+              <v-avatar class="mr-2" color="teal" size="32">
                 <img
                   class="userIcon"
                   src="~/assets/images/user.jpg"
@@ -58,7 +58,7 @@
               <nuxt-link to="/mytop">マイページ</nuxt-link>
             </v-list-item>
             <v-list-item>
-              <nuxt-link to="/SetUp/setting-Pro">設定</nuxt-link>
+              <nuxt-link to="/setup/setting">設定</nuxt-link>
             </v-list-item>
             <v-list-item>
               <nuxt-link to="/info/info">お知らせ</nuxt-link>
