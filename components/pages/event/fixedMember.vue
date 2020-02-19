@@ -7,8 +7,8 @@
           :id="'fixed-member__input'"
           :rules="fixedMemberRules"
           :type="'number'"
-          :max="'10'"
-          :min="'1'"
+          :max="10"
+          :min="1"
           :style="{ width: '120px' }"
         />
         <label for="fixed-member__input" class="fixed-member__label">人</label>

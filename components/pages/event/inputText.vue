@@ -2,7 +2,7 @@
   <v-form
     class="inptTextWrap"
     ref="form"
-    :style="style"
+    :style="styles"
     v-model="valid"
     @submit.prevent
     lazy-validation
@@ -50,7 +50,7 @@ export default {
       default: 'on',
       required: false
     },
-    style: {
+    styles: {
       type: Object,
       required: false
     },
