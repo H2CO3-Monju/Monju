@@ -1,15 +1,13 @@
 <template>
-  <div class="footerWrap .footer">
-    <footer class="footer">
-      © Monjyu
-    </footer>
-  </div>
+  <v-footer color="#C4D929" padless>
+    <v-col lang="en" class="text-center" cols="12">
+      <small>©︎{{ new Date().getFullYear() }} - Monju </small>
+    </v-col>
+  </v-footer>
 </template>
 
-<style lang="scss">
-.footerWrap {
-  .footer {
-    color: $_color-primary;
-  }
+<style lang="scss" scoped>
+small {
+  color: #fff;
 }
 </style>

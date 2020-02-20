@@ -3,6 +3,7 @@
     <!-- コンテンツ -->
     <div class="container">
       <section class="area">
+        <defaultHead />
         1
       </section>
       <section class="area">
@@ -21,6 +22,15 @@
   </div>
 </template>
 
+<script>
+import defaultHead from '@/components/layouts/mon-head'
+export default {
+  components: {
+    defaultHead
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 .allWrap {
   // スクロール
@@ -29,6 +39,7 @@
     scroll-snap-type: y mandatory;
     height: 100vh;
     max-width: 100vw;
+    padding: 0;
     .area {
       scroll-snap-align: start;
       height: 100vh;
@@ -37,15 +48,12 @@
     .area:nth-child(1) {
       background: #dff9fb;
     }
-
     .area:nth-child(2) {
       background: #c7ecee;
     }
-
     .area:nth-child(3) {
       background: #95afc0;
     }
-
     .area:nth-child(4) {
       background: #535c68;
     }
