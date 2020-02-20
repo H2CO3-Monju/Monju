@@ -78,6 +78,12 @@ export default {
     deleteFromTags(targetIndex) {
       this.tags.splice(targetIndex, 1)
       this.$refs.inputText.checkValidate()
+    },
+    checkComponentValidate() {
+      this.$refs.inputText.checkValidate()
+    },
+    returnIsProper() {
+      return this.$refs.inputText.returnIsProper()
     }
   }
 }

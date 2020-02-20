@@ -8,7 +8,7 @@
           :id="'fixed-member__input'"
           :rules="fixedMemberRules"
           :type="'number'"
-          :max="10"
+          :max="max"
           :min="1"
           :style="{ width: '120px' }"
         />
@@ -27,7 +27,7 @@
             id="autoCloseText__input"
             class="autoCloseText__input lightblue-input"
             type="number"
-            max="10"
+            :max="max"
             min="1"
           />
           人集まらなかったら自動的にイベントを閉鎖する
@@ -49,6 +49,10 @@ export default {
     inputText
   },
   props: {
+    max: {
+      type: Number,
+      required: true
+    },
     small: {
       type: String,
       required: true
@@ -58,7 +62,7 @@ export default {
     return {
       fixedMemberRules: [
         (v) => !!v || '定員は必須項目です',
-        (v) => Number(v) <= 10 || '上限は10人です',
+        (v) => Number(v) <= this.max || `上限は${this.max}人です`,
         (v) => Number(v) >= 1 || '入力値が不正です'
       ],
       errorMsg: ''
@@ -95,14 +99,18 @@ export default {
       input.classList.add('errorColor-input')
       this.errorMsg = errorMsg
     },
+    checkComponentValidate() {
+      this.$refs.inputText.checkValidate()
+    },
     returnIsProper() {
-      const isInputTextProper = this.$refs.inputText.returnIsProper()
-      const fixedMemberInputValue = Number(this.$refs.inputText.returnValue())
+      const fixedMemberInputValue = this.$refs.inputText.returnValue()
       const autoCloseNumberInput = document.getElementById(
         'autoCloseText__input'
       )
       const autoCloseNumberInputValue = Number(autoCloseNumberInput.value)
-      if (!isInputTextProper) return false
+      const isInputTextProper = this.$refs.inputText.returnIsProper()
+      console.log('isInputTextProper', isInputTextProper)
+
       if (autoCloseNumberInputValue === '') {
         this.showErrorMsg('締め切りまでの定員数は必須項目です')
         return false
@@ -114,6 +122,8 @@ export default {
         return false
       } else if (autoCloseNumberInputValue > fixedMemberInputValue) {
         this.showErrorMsg('定員数を上回っています')
+        return false
+      } else if (!isInputTextProper) {
         return false
       } else {
         autoCloseNumberInput.classList.remove('errorColor-input')

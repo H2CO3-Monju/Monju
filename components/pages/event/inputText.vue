@@ -103,11 +103,10 @@ export default {
       this.$refs.form.validate()
     },
     returnIsProper() {
-      this.checkValidate()
       return this.$refs.form.value
     },
     returnValue() {
-      return this.$refs.textField.value
+      return Number(this.$refs.textField.value)
     },
     deleteValue() {
       this.value = ''

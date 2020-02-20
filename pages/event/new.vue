@@ -9,6 +9,7 @@
           <div class="title-tag__title">
             <h2>タイトル</h2>
             <inputText
+              ref="titleInput"
               :id="'title_input'"
               :rules="titleRules"
               :counter="255"
@@ -16,7 +17,7 @@
             />
           </div>
 
-          <tagWrap />
+          <tagWrap ref="tagWrap" />
         </div>
       </div>
 
@@ -81,12 +82,17 @@
         <presenterSelect />
         <fixedMember
           ref="fixedMember"
+          :max="10"
           :small="'※発表勉強会の参加者の上限は10人です'"
         />
       </div>
 
       <div v-else>
-        <fixedMember :small="'※交流勉強会の参加者の上限は5人です'" />
+        <fixedMember
+          ref="fixedMember"
+          :max="5"
+          :small="'※交流勉強会の参加者の上限は5人です'"
+        />
       </div>
 
       <detailsComponent />
@@ -146,9 +152,14 @@ export default {
         this.isEventTypePresentation = false
       }
     },
-    checkError() {
-      console.log('test')
-      console.log(this.$refs.fixedMember.returnIsProper())
+    async checkError() {
+      // コンポーネント内でasync/awaitは機能しないためこちらで記述
+      await this.$refs.titleInput.checkValidate()
+      await this.$refs.fixedMember.checkComponentValidate()
+      await this.$refs.tagWrap.checkComponentValidate()
+      console.log('titleInput: ', this.$refs.titleInput.returnIsProper())
+      console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
+      console.log('tagWrap: ', this.$refs.tagWrap.returnIsProper())
     }
   }
 }
