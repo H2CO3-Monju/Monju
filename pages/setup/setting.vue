@@ -64,10 +64,11 @@
 </template>
 
 <script>
-import topAnnounce from '@/components/MyPage/top-Announce'
-import topOpen from '@/components/MyPage/top-Open'
-import topLike from '@/components/MyPage/top-Like'
-import topJoin from '@/components/MyPage/top-Join'
+import topAnnounce from '@/components/pages/MyPage/top-Announce'
+import topOpen from '@/components/pages/MyPage/top-Open'
+import topLike from '@/components/pages/MyPage/top-Like'
+import topJoin from '@/components/pages/MyPage/top-Join'
+
 export default {
   components: {
     topAnnounce,

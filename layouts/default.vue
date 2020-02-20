@@ -1,19 +1,27 @@
 <template>
   <v-app>
-    <mon-head />
+    <userHead v-if="state == 'userHead'" />
+    <!-- <defaultHead v-if="state == 'defaultHead'" /> -->
     <nuxt style="overflow: hidden;" />
-    <mon-foot />
+    <foot />
   </v-app>
 </template>
 
 <script>
-import monHead from '@/components/layouts/mon-userHead'
-import monFoot from '@/components/layouts/mon-foot'
+import userHead from '@/components/layouts/mon-userHead'
+// import defaultHead from '@/components/layouts/mon-head'
+import foot from '@/components/layouts/mon-foot'
 
 export default {
   components: {
-    monHead,
-    monFoot
+    userHead,
+    // defaultHead,
+    foot
+  },
+  data() {
+    return {
+      state: 'defaultHead'
+    }
   }
 }
 </script>

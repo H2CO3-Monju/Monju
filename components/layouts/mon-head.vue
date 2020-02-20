@@ -1,33 +1,49 @@
 <template>
-  <header class="st-Header .navbar">
-    <div class="st-Header_container">
-      <div class="st-Header_start">
-        <!-- ロゴ -->
-        <a class="logo mr-1" href="#">
-          <img src="~/assets/images/logo_green.svg" alt="ロゴ" />
-        </a>
+  <div class="userHeader">
+    <v-app-bar
+      :elevation="elevationHead"
+      dense
+      width="100%"
+      height="56px"
+      style="background: #fff;"
+      class="userHeader_container"
+    >
+      <!-- ロゴ -->
+      <v-img
+        :src="require('@/assets/images/logo_green.svg')"
+        class="navbar_logo"
+        max-width="125px"
+      >
+      </v-img>
 
-        <!-- 検索バー -->
-        <form class="st-Header_serch" action="#" method="get">
-          <div class="control has-addons">
-            <i class="fa fa-search"></i>
-            <input
-              class="st-Header_searchInput"
-              placeholder="キーワードを入力"
-              type="search"
-              autocomplete="off"
-              name="m"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="st-Header_end">
-        <a class="st-Header_loginLink" href="#">サインイン</a>
-      </div>
-    </div>
-  </header>
+      <searchInput class="pd-1" />
+
+      <v-spacer></v-spacer>
+
+      <eventcreation />
+    </v-app-bar>
+  </div>
 </template>
 
+<script lang="js">
+import searchInput from '@/components/ui/inputs/searchBar'
+import eventcreation from '@/components/ui/btns/event_creation'
+export default {
+  components: {
+    searchInput,
+    eventcreation
+  },
+  data() {
+    return {
+      havePoint: '1000',
+      userName: '五文字以上'
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
-@import '~assets/scss/header.scss';
+.userHeader {
+  border-top: 5px solid $_color-primary;
+}
 </style>

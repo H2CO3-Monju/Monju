@@ -4,7 +4,7 @@
       :elevation="elevationHead"
       dense
       width="100%"
-      height="70px"
+      height="56px"
       style="background: #fff;"
       class="userHeader_container"
     >
