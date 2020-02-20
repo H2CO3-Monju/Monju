@@ -25,9 +25,9 @@
           <span class="riceMark">＊</span>定員が締め切りまでに
           <input
             id="autoCloseText__input"
+            :max="max"
             class="autoCloseText__input lightblue-input"
             type="number"
-            :max="max"
             min="1"
           />
           人集まらなかったら自動的にイベントを閉鎖する
@@ -98,6 +98,17 @@ export default {
       input.classList.remove('lightblue-input')
       input.classList.add('errorColor-input')
       this.errorMsg = errorMsg
+    },
+    deleteValue() {
+      const autoCloseNumberInput = document.getElementById(
+        'autoCloseText__input'
+      )
+      this.$refs.inputText.deleteValue()
+      autoCloseNumberInput.value = ''
+      this.$refs.inputText.resetValidation()
+      this.errorMsg = ''
+      autoCloseNumberInput.classList.remove('errorColor-input')
+      autoCloseNumberInput.classList.add('lightblue-input')
     },
     checkComponentValidate() {
       this.$refs.inputText.checkValidate()

@@ -54,11 +54,12 @@
 
       <div class="event-type item">
         <h2>勉強会の種類</h2>
-        <div @click="switchContent" class="event-type_inputs">
+        <div class="event-type_inputs">
           <div>
             <label for="presentation_input">
               <input
                 id="presentation_input"
+                @click="switchContent"
                 type="radio"
                 name="event-type"
                 checked
@@ -68,7 +69,12 @@
           </div>
           <div>
             <label for="communication_input">
-              <input id="communication_input" type="radio" name="event-type" />
+              <input
+                id="communication_input"
+                @click="switchContent"
+                type="radio"
+                name="event-type"
+              />
               交流勉強会
             </label>
           </div>
@@ -142,6 +148,9 @@ export default {
       ]
     }
   },
+  updated() {
+    this.$refs.fixedMember.deleteValue()
+  },
   methods: {
     switchContent() {
       const inputs = document.getElementsByName('event-type')
@@ -151,6 +160,9 @@ export default {
       } else {
         this.isEventTypePresentation = false
       }
+      // この処理ではv-ifでfixedMemberが切り替わる前のcssを元に戻す
+      // updatedでv-else後にcssを適用する
+      this.$refs.fixedMember.deleteValue()
     },
     async checkError() {
       // コンポーネント内でasync/awaitは機能しないためこちらで記述

@@ -110,6 +110,16 @@ export default {
     },
     deleteValue() {
       this.value = ''
+    },
+    resetValidation() {
+      const input = document.getElementById(this.id)
+      const vTextFieldSlot = input.parentNode
+      const vInputSlot = vTextFieldSlot.parentNode
+      const vInputControl = vInputSlot.parentNode
+      const target = vInputControl.parentNode
+      this.$refs.textField.resetValidation()
+      target.classList.remove('errorClass')
+      target.classList.add('normalClass')
     }
   }
 }
