@@ -87,6 +87,8 @@
       </div>
 
       <detailsComponent />
+
+      <buttonComponent :text="'イベントを作成する'" />
     </div>
   </div>
 </template>
@@ -102,6 +104,7 @@ import presenterSelect from '@/components/pages/event/presenterSelect'
 import fixedMember from '@/components/pages/event/fixedMember'
 import detailsComponent from '@/components/pages/event/detailsComponent'
 import eventImage from '@/components/pages/event/eventImage'
+import buttonComponent from '@/components/ui/btns/buttonComponent'
 
 export default {
   components: {
@@ -114,7 +117,8 @@ export default {
     presenterSelect,
     fixedMember,
     detailsComponent,
-    eventImage
+    eventImage,
+    buttonComponent
   },
   data() {
     return {
@@ -144,11 +148,25 @@ ul {
   padding: 0;
 }
 .bg {
-  padding: 5vh 0;
   background-color: $_bg_color;
 }
+@media screen and (max-width: 600px) {
+  .container {
+    width: 95%;
+  }
+  .bg {
+    padding: 1vh 0;
+  }
+}
+@media screen and (min-width: 600px) {
+  .container {
+    width: 70%;
+  }
+  .bg {
+    padding: 5vh 0;
+  }
+}
 .container {
-  width: 70%;
   height: auto;
   margin: 0 auto;
   padding: 50px 60px;
