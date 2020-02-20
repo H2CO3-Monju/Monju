@@ -97,6 +97,7 @@ export default {
       this.$refs.form.validate()
     },
     returnIsProper() {
+      this.checkValidate()
       return this.$refs.form.value
     },
     returnValue() {

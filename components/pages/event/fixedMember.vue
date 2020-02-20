@@ -31,6 +31,9 @@
           人集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
+      <p v-if="errorMsg" class="errorColor-input">
+        締め切りまでの定員数はゼロ以上の値を入力してください
+      </p>
     </div>
   </div>
 </template>
@@ -53,7 +56,9 @@ export default {
         (v) => !!v || '定員は必須項目です',
         (v) => Number(v) <= 10 || '上限は10人です',
         (v) => Number(v) >= 1 || '入力値が不正です'
-      ]
+      ],
+      hasError: true,
+      errorMsg: ''
     }
   },
   mounted() {
@@ -81,10 +86,33 @@ export default {
         }
       })
     },
+    showErrorMsg(errorMsg) {
+      const input = document.getElementById('autoCloseText__input')
+      input.classList.remove('lightblue-input')
+      input.classList.add('errorColor-inputt')
+      this.errorMsg = errorMsg
+    },
     returnIsProper() {
+      // TODO: ピリオドのキーコードを押下時処理
       const isInputTextProper = this.$refs.inputText.returnIsProper()
-      console.log('isInputTextProper', isInputTextProper)
-      console.log(this.$refs.inputText.returnValue())
+      const fixedMemberInputValue = this.$refs.inputText.returnValue()
+      const autoCloseNumberInput = document.getElementById(
+        'autoCloseText__input'
+      )
+      const autoCloseNumberInputValue = autoCloseNumberInput.value
+      if (!isInputTextProper) return false
+      if (autoCloseNumberInputValue < 0) {
+        this.showErrorMsg('ゼロ以上の値を入力してください')
+        return false
+      } else if (!autoCloseNumberInputValue.isInteger()) {
+        this.showErrorMsg('自然数を入力してください')
+        return false
+      } else if (autoCloseNumberInputValue > fixedMemberInputValue) {
+        this.showErrorMsg('定員数を上回っています')
+        return false
+      } else {
+        return true
+      }
     }
   }
 }
