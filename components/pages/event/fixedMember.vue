@@ -10,6 +10,7 @@
           :max="10"
           :min="1"
           :style="{ width: '120px' }"
+          ref="inputText"
         />
         <label for="fixed-member__input" class="fixed-member__label">人</label>
       </div>
@@ -60,6 +61,7 @@ export default {
     preventInput() {
       const input = document.getElementById('fixed-member__input')
       input.addEventListener('keydown', (e) => {
+        console.log(this.$refs.inputText.returnHasNoError())
         // マイナス(-)の入力の拒否
         if (e.keyCode === 189) {
           e.preventDefault()

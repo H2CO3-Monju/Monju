@@ -22,6 +22,7 @@
       outlined
       solo
       required
+      ref="textField"
     ></v-text-field>
   </v-form>
 </template>
@@ -94,6 +95,9 @@ export default {
     },
     checkValidate() {
       this.$refs.form.validate()
+    },
+    returnHasNoError() {
+      return this.$refs.form.value
     },
     deleteValue() {
       this.value = ''
