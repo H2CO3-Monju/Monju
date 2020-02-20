@@ -20,7 +20,7 @@
 
       <v-spacer></v-spacer>
 
-      <eventcreation />
+      <eventcreation :text="'イベントを作成'" />
     </v-app-bar>
   </div>
 </template>
