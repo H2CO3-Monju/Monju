@@ -1,3 +1,3 @@
 <template>
-  <nuxt style="overflow: hidden;" />
+  <nuxt />
 </template>

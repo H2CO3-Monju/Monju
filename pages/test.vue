@@ -1,7 +1,7 @@
 <template>
   <div class="allWrap">
     <v-container>
-      <v-row class="vrow-test">
+      <v-row>
         <v-col xl="8" lg="8" md="8" sm="12" xs="12">
           <v-row>
             <!-- ユーザーアバター -->
@@ -48,7 +48,7 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col xl="4" lg="4" md="4" class="test-display2">
+        <v-col xl="4" lg="4" md="4" class="studygroup-list">
           <v-title>
             開催予定&予約済み勉強会
           </v-title>
@@ -57,7 +57,7 @@
       </v-row>
 
       <v-row>
-        <v-col sm="12" xs="12" class="test-display3">
+        <v-col sm="12" xs="12" class="studygroup-list--middle">
           <v-title>
             開催予定&予約済み勉強会
           </v-title>
@@ -68,8 +68,8 @@
       <v-row>
         <v-col xl="8" lg="8" md="8" sm="12" xs="12">
           <v-row>
-            <v-tabs background-color="#C4D929" color="white">
-              <v-tabs-slider> </v-tabs-slider>
+            <v-tabs background-color="#C4D929" color="white" show-arrows>
+              <v-tabs-slider color="white"></v-tabs-slider>
               <v-tab v-on:click="isActive = 'topAnnounce'"
                 >発表した勉強会</v-tab
               >
@@ -125,38 +125,19 @@ export default {
 // v-row、v-colは全てmargin: 12pxされる
 .allWrap {
   background: #f5f5f5;
-  .vrow-test {
-    height: 312px;
-  }
-  .test1 {
-    background: red;
-    height: 300px;
-  }
-  .test2 {
-    background: #a9aeff;
-    height: 1000px;
-  }
-  .test3 {
-    background: #a9aeff;
-    height: 500px;
-  }
-  .test4 {
-    background: yellow;
-    height: 500px;
-  }
   @media screen and (max-width: 960px) {
-    .test-display2 {
+    .studygroup-list {
       display: none;
     }
-    .test-display3 {
+    .studygroup-list--middle {
       display: block;
     }
   }
   @media screen and (min-width: 960px) {
-    .test-display2 {
+    .studygroup-list {
       display: block;
     }
-    .test-display3 {
+    .studygroup-list--middle {
       display: none;
     }
   }
