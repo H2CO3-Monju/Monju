@@ -79,7 +79,10 @@
       <div v-if="isEventTypePresentation">
         <entryFee />
         <presenterSelect />
-        <fixedMember :small="'※発表勉強会の参加者の上限は10人です'" />
+        <fixedMember
+          ref="fixedMember"
+          :small="'※発表勉強会の参加者の上限は10人です'"
+        />
       </div>
 
       <div v-else>
@@ -88,7 +91,11 @@
 
       <detailsComponent />
 
-      <buttonComponent :text="'イベントを作成する'" />
+      <buttonComponent
+        @btnClick="checkError"
+        :needsEvent="true"
+        :text="'イベントを作成する'"
+      />
     </div>
   </div>
 </template>
@@ -138,6 +145,10 @@ export default {
       } else {
         this.isEventTypePresentation = false
       }
+    },
+    checkError() {
+      console.log('test')
+      console.log(this.$refs.fixedMember.returnIsProper())
     }
   }
 }

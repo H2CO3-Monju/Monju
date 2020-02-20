@@ -27,13 +27,15 @@
             id="autoCloseText__input"
             class="autoCloseText__input lightblue-input"
             type="number"
+            max="10"
+            min="1"
           />
           人集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
       <p v-if="!!errorMsg" class="autoCloseText__errorMsg">
         <small>
-          締め切りまでの定員数はゼロ以上の値を入力してください
+          {{ errorMsg }}
         </small>
       </p>
     </div>
@@ -90,27 +92,33 @@ export default {
     showErrorMsg(errorMsg) {
       const input = document.getElementById('autoCloseText__input')
       input.classList.remove('lightblue-input')
-      input.classList.add('errorColor-inputt')
+      input.classList.add('errorColor-input')
       this.errorMsg = errorMsg
     },
     returnIsProper() {
       const isInputTextProper = this.$refs.inputText.returnIsProper()
-      const fixedMemberInputValue = this.$refs.inputText.returnValue()
+      const fixedMemberInputValue = Number(this.$refs.inputText.returnValue())
       const autoCloseNumberInput = document.getElementById(
         'autoCloseText__input'
       )
-      const autoCloseNumberInputValue = autoCloseNumberInput.value
+      const autoCloseNumberInputValue = Number(autoCloseNumberInput.value)
       if (!isInputTextProper) return false
-      if (autoCloseNumberInputValue < 0) {
-        this.showErrorMsg('ゼロ以上の値を入力してください')
+      if (autoCloseNumberInputValue === '') {
+        this.showErrorMsg('締め切りまでの定員数は必須項目です')
         return false
-      } else if (!autoCloseNumberInputValue.isInteger()) {
+      } else if (autoCloseNumberInputValue <= 0) {
+        this.showErrorMsg('1以上の値を入力してください')
+        return false
+      } else if (!Number.isInteger(autoCloseNumberInputValue)) {
         this.showErrorMsg('自然数を入力してください')
         return false
       } else if (autoCloseNumberInputValue > fixedMemberInputValue) {
         this.showErrorMsg('定員数を上回っています')
         return false
       } else {
+        autoCloseNumberInput.classList.remove('errorColor-input')
+        autoCloseNumberInput.classList.add('lightblue-input')
+        this.errorMsg = ''
         return true
       }
     }
