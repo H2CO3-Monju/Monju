@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <userHead v-if="state == 'userHead'" />
-    <!-- <defaultHead v-if="state == 'defaultHead'" /> -->
+    <defaultHead v-if="state == 'defaultHead'" />
     <nuxt style="overflow: hidden;" />
     <foot />
   </v-app>

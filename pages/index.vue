@@ -25,6 +25,7 @@
 <script>
 import defaultHead from '@/components/layouts/mon-head'
 export default {
+  layouts: 'top',
   components: {
     defaultHead
   }
