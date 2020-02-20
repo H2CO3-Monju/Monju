@@ -11,19 +11,19 @@
     <template v-slot:activator="{ on }">
       <div class="inputDateWrap">
         <v-text-field
+          v-on="on"
           v-model="date"
           readonly
           dense
           outlined
           solo
-          v-on="on"
         ></v-text-field>
       </div>
     </template>
     <v-date-picker v-model="date" color="#BBC61D" no-title scrollable>
       <v-spacer></v-spacer>
-      <v-btn text color="#BBC61D" @click="menu = false">Cancel</v-btn>
-      <v-btn text color="#BBC61D" @click="$refs.menu.save(date)">OK</v-btn>
+      <v-btn @click="menu = false" text color="#BBC61D">Cancel</v-btn>
+      <v-btn @click="$refs.menu.save(date)" text color="#BBC61D">OK</v-btn>
     </v-date-picker>
   </v-menu>
 </template>

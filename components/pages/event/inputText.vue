@@ -1,13 +1,14 @@
 <template>
   <v-form
-    class="inptTextWrap"
     ref="form"
     :style="styles"
     v-model="valid"
     @submit.prevent
+    class="inptTextWrap"
     lazy-validation
   >
     <v-text-field
+      ref="textField"
       v-model="value"
       :id="id"
       :class="[valid ? 'normalClass' : 'errorClass']"
@@ -22,7 +23,6 @@
       outlined
       solo
       required
-      ref="textField"
     ></v-text-field>
   </v-form>
 </template>
@@ -39,11 +39,13 @@ export default {
       required: true
     },
     counter: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     },
     placeholder: {
       type: String,
+      default: '',
       required: false
     },
     autocomplete: {
@@ -52,19 +54,23 @@ export default {
       required: false
     },
     styles: {
-      type: Object,
+      type: [Object, Boolean],
+      default: false,
       required: false
     },
     type: {
       type: String,
+      default: '',
       required: false
     },
     max: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     },
     min: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     }
   },

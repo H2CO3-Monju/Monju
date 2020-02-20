@@ -2,21 +2,21 @@
   <div class="presenterSelect item">
     <h2>発表者の選択</h2>
     <inputText
+      ref="inputText"
       :id="'presenterSelect_input'"
       :rules="presenterSelectRules"
       :counter="24"
       :placeholder="'入力してください'"
       :autocomplete="'off'"
       :style="{ width: '300px' }"
-      ref="inputText"
     />
     <ul id="presenterItems" class="presenters">
       <tag
-        class="presenters__presenter"
         :value="tag"
         :key="index"
         @delete="deleteFromTags"
         v-for="(tag, index) in tags"
+        class="presenters__presenter"
       />
     </ul>
   </div>

@@ -3,21 +3,21 @@
     <div class="title-tag__tag">
       <h2>タグ</h2>
       <inputText
+        ref="inputText"
         :id="'tag_input'"
         :rules="tagRules"
         :counter="24"
         :placeholder="'入力してください'"
         :autocomplete="'off'"
-        ref="inputText"
       />
     </div>
     <ul id="tags" class="tags">
       <tag
-        class="tags__tag"
+        v-for="(tag, index) in tags"
+        @delete="deleteFromTags"
         :value="tag"
         :key="index"
-        @delete="deleteFromTags"
-        v-for="(tag, index) in tags"
+        class="tags__tag"
       />
     </ul>
   </div>

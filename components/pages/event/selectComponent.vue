@@ -2,7 +2,7 @@
   <div
     :class="[isTime ? 'upDownTriangle' : 'downTriangle', 'select-component']"
   >
-    <select class="select-component__inner" :name="name">
+    <select :name="name" class="select-component__inner">
       <option
         :value="content.value"
         :key="index"

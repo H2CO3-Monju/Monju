@@ -31,8 +31,7 @@
           人集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
-      <!-- <p v-if="errorMsg" class="errorColor-input"> -->
-      <p class="autoCloseText__errorMsg">
+      <p v-if="!!errorMsg" class="autoCloseText__errorMsg">
         <small>
           締め切りまでの定員数はゼロ以上の値を入力してください
         </small>
@@ -95,7 +94,6 @@ export default {
       this.errorMsg = errorMsg
     },
     returnIsProper() {
-      // TODO: ピリオドのキーコードを押下時処理
       const isInputTextProper = this.$refs.inputText.returnIsProper()
       const fixedMemberInputValue = this.$refs.inputText.returnValue()
       const autoCloseNumberInput = document.getElementById(
