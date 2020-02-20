@@ -96,8 +96,11 @@ export default {
     checkValidate() {
       this.$refs.form.validate()
     },
-    returnHasNoError() {
+    returnIsProper() {
       return this.$refs.form.value
+    },
+    returnValue() {
+      return this.$refs.textField.value
     },
     deleteValue() {
       this.value = ''

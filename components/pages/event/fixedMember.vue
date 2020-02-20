@@ -4,13 +4,13 @@
       <h2>定員</h2>
       <div class="fixed-member__input-wrap">
         <inputText
+          ref="inputText"
           :id="'fixed-member__input'"
           :rules="fixedMemberRules"
           :type="'number'"
           :max="10"
           :min="1"
           :style="{ width: '120px' }"
-          ref="inputText"
         />
         <label for="fixed-member__input" class="fixed-member__label">人</label>
       </div>
@@ -23,7 +23,11 @@
       <p>
         <small>
           <span class="riceMark">＊</span>定員が締め切りまでに
-          <input class="autoCloseText__input lightblue-input" type="number" />
+          <input
+            id="autoCloseText__input"
+            class="autoCloseText__input lightblue-input"
+            type="number"
+          />
           人集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
@@ -54,19 +58,33 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.preventInput()
+      this.preventFixedMemberInput()
+      this.preventAutoCloseNumberInput()
     })
   },
   methods: {
-    preventInput() {
+    preventFixedMemberInput() {
       const input = document.getElementById('fixed-member__input')
       input.addEventListener('keydown', (e) => {
-        console.log(this.$refs.inputText.returnHasNoError())
         // マイナス(-)の入力の拒否
         if (e.keyCode === 189) {
           e.preventDefault()
         }
       })
+    },
+    preventAutoCloseNumberInput() {
+      const input = document.getElementById('autoCloseText__input')
+      input.addEventListener('keydown', (e) => {
+        // マイナス(-)の入力の拒否
+        if (e.keyCode === 189) {
+          e.preventDefault()
+        }
+      })
+    },
+    returnIsProper() {
+      const isInputTextProper = this.$refs.inputText.returnIsProper()
+      console.log('isInputTextProper', isInputTextProper)
+      console.log(this.$refs.inputText.returnValue())
     }
   }
 }
