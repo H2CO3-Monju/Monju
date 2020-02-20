@@ -121,7 +121,7 @@ $_container_white: #fff;
 $_bg_color: #f2f3f6;
 $_keyRimePie: #c4d929;
 $_input_color: #444;
-$_errpr_color: #ff5252;
+$_error_color: #ff5252;
 
 .lightblue-input {
   padding-left: 0.5em;
@@ -137,6 +137,6 @@ $_errpr_color: #ff5252;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   color: $_input_color;
   font-size: 1.12em;
-  border: $_errpr_color 1px solid;
+  border: $_error_color 1px solid;
   border-radius: 5px;
 }

@@ -31,8 +31,11 @@
           人集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
-      <p v-if="errorMsg" class="errorColor-input">
-        締め切りまでの定員数はゼロ以上の値を入力してください
+      <!-- <p v-if="errorMsg" class="errorColor-input"> -->
+      <p class="autoCloseText__errorMsg">
+        <small>
+          締め切りまでの定員数はゼロ以上の値を入力してください
+        </small>
       </p>
     </div>
   </div>
@@ -57,7 +60,6 @@ export default {
         (v) => Number(v) <= 10 || '上限は10人です',
         (v) => Number(v) >= 1 || '入力値が不正です'
       ],
-      hasError: true,
       errorMsg: ''
     }
   },
@@ -71,8 +73,8 @@ export default {
     preventFixedMemberInput() {
       const input = document.getElementById('fixed-member__input')
       input.addEventListener('keydown', (e) => {
-        // マイナス(-)の入力の拒否
-        if (e.keyCode === 189) {
+        // マイナス(-)とピリオド(.)の入力の拒否
+        if (e.keyCode === 189 || e.keyCode === 190) {
           e.preventDefault()
         }
       })
@@ -80,8 +82,8 @@ export default {
     preventAutoCloseNumberInput() {
       const input = document.getElementById('autoCloseText__input')
       input.addEventListener('keydown', (e) => {
-        // マイナス(-)の入力の拒否
-        if (e.keyCode === 189) {
+        // マイナス(-)とピリオド(.)の入力の拒否
+        if (e.keyCode === 189 || e.keyCode === 190) {
           e.preventDefault()
         }
       })
@@ -149,6 +151,10 @@ h2 {
   &__input {
     width: 50px;
     height: 1.4em;
+  }
+  &__errorMsg {
+    margin-top: -16px;
+    color: $_error_color;
   }
 }
 </style>
