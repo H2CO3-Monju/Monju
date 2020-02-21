@@ -53,7 +53,7 @@
               <v-icon class="pl-2" color="#C4D929">fas fa-caret-down</v-icon>
             </v-btn>
           </template>
-          <v-list>
+          <v-list class="user-menu">
             <v-list-item>
               <nuxt-link to="/mytop">マイページ</nuxt-link>
             </v-list-item>
@@ -67,7 +67,7 @@
               <nuxt-link to="/info/qa">ヘルプ</nuxt-link>
             </v-list-item>
             <v-list-item>
-              <span>ログアウト</span>
+              <span @click="logout" class="user-menu__logout">ログアウト</span>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -77,6 +77,8 @@
 </template>
 
 <script lang="js">
+import { mapActions } from 'vuex'
+import firebase from '~/plugins/firebase'
 import searchInput from '@/components/ui/inputs/searchBar'
 import eventcreation from '@/components/ui/btns/event_creation'
 export default {
@@ -89,10 +91,32 @@ export default {
       havePoint: '1000',
       userName: '五文字以上'
     }
+  },
+  methods: {
+    ...mapActions(['setUser']),
+    logout() {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            this.setUser(null)
+          })
+          .catch((error) => {
+            alert(error)
+          })
+      }
   }
 }
 </script>
 
+<style lang="scss">
+.user-menu {
+  &__logout {
+    cursor: pointer;
+    color: #1976d2 !important;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .userHeader {
   border-top: 5px solid $_color-primary;

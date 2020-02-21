@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <userHead v-if="state == 'userHead'" />
     <defaultHead v-if="state == 'defaultHead'" />
+    <userHead v-else-if="state == 'userHead'" />
     <nuxt style="overflow: hidden;" />
     <foot />
   </v-app>
@@ -18,7 +18,6 @@ export default {
   middleware({ store, redirect }) {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
     setTimeout(() => {
-      console.log('isAuthenticated: ', store.getters.isAuthenticated)
       if (store.getters.isAuthenticated) {
         this.state = 'userHead'
       } else {
