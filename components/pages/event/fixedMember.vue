@@ -94,12 +94,14 @@ export default {
       })
     },
     showErrorMsg(errorMsg) {
+      console.log(errorMsg)
       const input = document.getElementById('autoCloseText__input')
       input.classList.remove('lightblue-input')
       input.classList.add('errorColor-input')
       this.errorMsg = errorMsg
     },
     deleteValue() {
+      console.log('deleteValue')
       const autoCloseNumberInput = document.getElementById(
         'autoCloseText__input'
       )

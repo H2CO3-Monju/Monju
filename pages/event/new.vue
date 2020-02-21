@@ -59,7 +59,7 @@
       </div>
 
       <div class="deadline item">
-        <h2>締め切り</h2>
+        <h2>締め切り日時</h2>
         <div class="deadline__inputs-wrap">
           <inputDate
             ref="deadline_date"
@@ -167,6 +167,7 @@ export default {
   data() {
     return {
       isEventTypePresentation: true,
+      tempIsEventTypePresentation: true,
       titleRules: [
         (v) => !!v || 'タイトルは必須項目です',
         (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
@@ -176,7 +177,11 @@ export default {
     }
   },
   updated() {
-    this.$refs.fixedMember.deleteValue()
+    // 勉強会の種類が切り替わった時のみ発火させる
+    if (this.isEventTypePresentation !== this.tempIsEventTypePresentation) {
+      this.tempIsEventTypePresentation = !this.tempIsEventTypePresentation
+      this.$refs.fixedMember.deleteValue()
+    }
   },
   methods: {
     switchContent() {
@@ -221,7 +226,7 @@ export default {
         this.openDateErrorMsg = ''
       }
     },
-    chackDeadlineDate(openDate, hour, minutes, now, deadlineDate) {
+    checkDeadlineDate(openDate, hour, minutes, now, deadlineDate) {
       // hourではなくminutesにすることで30分などの細かい調整が可能になる(0.5hは0hとして扱われるため)
       const nowPlusMinutes = new Date().setMinutes(
         now.getMinutes() + minutes / 2
@@ -256,18 +261,23 @@ export default {
       )
 
       this.checkOpenDate(openDate, hour, minutes, now)
-      this.chackDeadlineDate(openDate, hour, minutes, now, deadlineDate)
+      this.checkDeadlineDate(openDate, hour, minutes, now, deadlineDate)
     },
     async checkError() {
       // コンポーネント内でasync/awaitは機能しないためこちらで記述
       await this.$refs.titleInput.checkValidate()
-      await this.$refs.fixedMember.checkComponentValidate()
       await this.$refs.tagWrap.checkComponentValidate()
-      await this.$refs.presenterSelect.checkComponentValidate()
+      await this.$refs.fixedMember.checkComponentValidate()
       console.log('titleInput: ', this.$refs.titleInput.returnIsProper())
-      console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
       console.log('tagWrap: ', this.$refs.tagWrap.returnIsProper())
-      console.log('presenterSelect: ', this.$refs.tagWrap.returnIsProper())
+      console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
+      if (this.isEventTypePresentation) {
+        await this.$refs.presenterSelect.checkComponentValidate()
+        console.log(
+          'presenterSelect: ',
+          this.$refs.presenterSelect.returnIsProper()
+        )
+      }
       // const allotedTime = this.$refs.allotedTime.getValue()
       this.checkDate()
     }
