@@ -134,6 +134,9 @@ export default {
       }
     }
   }
+  table {
+    margin-bottom: 20px;
+  }
   %__table-element {
     padding: 6px 13px;
     border: solid 1px $table-border-color;

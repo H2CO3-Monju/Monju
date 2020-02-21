@@ -8,11 +8,24 @@
 </template>
 
 <script>
+import { mapActions, mapState, mapGetters } from 'vuex'
+import firebase from '~/plugins/firebase'
 import userHead from '@/components/layouts/mon-userHead'
 import defaultHead from '@/components/layouts/mon-head'
 import foot from '@/components/layouts/mon-foot'
 
 export default {
+  middleware({ store, redirect }) {
+    // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
+    setTimeout(() => {
+      console.log('isAuthenticated: ', store.getters.isAuthenticated)
+      if (store.getters.isAuthenticated) {
+        this.state = 'userHead'
+      } else {
+        this.state = 'defaultHead'
+      }
+    })
+  },
   components: {
     userHead,
     defaultHead,
@@ -22,6 +35,23 @@ export default {
     return {
       state: 'defaultHead'
     }
+  },
+  computed: {
+    ...mapState(['user']),
+    ...mapGetters(['isAuthenticated'])
+  },
+  mounted() {
+    firebase.auth().onAuthStateChanged((user) => {
+      this.setUser(user)
+      if (this.isAuthenticated) {
+        this.state = 'userHead'
+      } else {
+        this.state = 'defaultHead'
+      }
+    })
+  },
+  methods: {
+    ...mapActions(['setUser'])
   }
 }
 </script>
