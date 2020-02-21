@@ -9,13 +9,13 @@
 
 <script>
 import userHead from '@/components/layouts/mon-userHead'
-// import defaultHead from '@/components/layouts/mon-head'
+import defaultHead from '@/components/layouts/mon-head'
 import foot from '@/components/layouts/mon-foot'
 
 export default {
   components: {
     userHead,
-    // defaultHead,
+    defaultHead,
     foot
   },
   data() {
