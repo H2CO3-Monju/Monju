@@ -77,9 +77,9 @@ export default {
     }
   },
   methods: {
-    getValue() {
-      const hourValue = this.$refs.time_hour.getValue()
-      const minutesValue = this.$refs.time_minutes.getValue()
+    returnValue() {
+      const hourValue = this.$refs.time_hour.returnValue()
+      const minutesValue = this.$refs.time_minutes.returnValue()
       const time = hourValue + ':' + minutesValue
       return time
     }

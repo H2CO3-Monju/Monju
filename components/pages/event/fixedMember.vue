@@ -94,14 +94,12 @@ export default {
       })
     },
     showErrorMsg(errorMsg) {
-      console.log(errorMsg)
       const input = document.getElementById('autoCloseText__input')
       input.classList.remove('lightblue-input')
       input.classList.add('errorColor-input')
       this.errorMsg = errorMsg
     },
     deleteValue() {
-      console.log('deleteValue')
       const autoCloseNumberInput = document.getElementById(
         'autoCloseText__input'
       )
@@ -114,15 +112,15 @@ export default {
     },
     checkComponentValidate() {
       this.$refs.inputText.checkValidate()
+      this.checkAutoCloseValidate()
     },
-    returnIsProper() {
+    checkAutoCloseValidate() {
       const fixedMemberInputValue = this.$refs.inputText.returnValue()
       const autoCloseNumberInput = document.getElementById(
         'autoCloseText__input'
       )
       const autoCloseNumberInputValue = Number(autoCloseNumberInput.value)
       const isInputTextProper = this.$refs.inputText.returnIsProper()
-      console.log('isInputTextProper', isInputTextProper)
 
       if (autoCloseNumberInputValue === '') {
         this.showErrorMsg('締め切りまでの定員数は必須項目です')
@@ -143,6 +141,23 @@ export default {
         autoCloseNumberInput.classList.add('lightblue-input')
         this.errorMsg = ''
         return true
+      }
+    },
+    returnValues() {
+      const fixedMember = this.$refs.inputText.returnValue()
+      const autoCloseNumberInput = document.getElementById(
+        'autoCloseText__input'
+      )
+      const autoCloseNumber = Number(autoCloseNumberInput.value)
+      return { fixedMember, autoCloseNumber }
+    },
+    returnIsProper() {
+      const isInputTextProper = this.$refs.inputText.returnIsProper()
+      const isAutoCloseProper = this.checkAutoCloseValidate()
+      if (isInputTextProper && isAutoCloseProper) {
+        return true
+      } else {
+        return false
       }
     }
   }

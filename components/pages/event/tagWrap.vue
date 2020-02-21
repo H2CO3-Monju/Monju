@@ -82,6 +82,9 @@ export default {
     checkComponentValidate() {
       this.$refs.inputText.checkValidate()
     },
+    returnValues() {
+      return this.tags
+    },
     returnIsProper() {
       return this.$refs.inputText.returnIsProper()
     }

@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    getValue() {
+    returnValue() {
       const inputDate = document.getElementById(this.id)
       return inputDate.value
     }

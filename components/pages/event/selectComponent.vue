@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    getValue() {
+    returnValue() {
       const select = document.getElementById(this.id)
       const options = Array.from(select.options)
       const selected = options.find((option) => option.selected === true)

@@ -57,6 +57,9 @@ export default {
         // 外部リソースの関数を使うときは"window."が必要
         this.htmlPreview = window.marked(this.markdownText)
       }
+    },
+    returnValue() {
+      return this.htmlPreview
     }
   }
 }

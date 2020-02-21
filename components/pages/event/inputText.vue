@@ -106,7 +106,7 @@ export default {
       return this.$refs.form.value
     },
     returnValue() {
-      return Number(this.$refs.textField.value)
+      return this.$refs.textField.value
     },
     deleteValue() {
       this.value = ''

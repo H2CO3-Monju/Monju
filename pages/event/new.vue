@@ -59,7 +59,7 @@
       </div>
 
       <div class="deadline item">
-        <h2>締め切り日時</h2>
+        <h2>予約締め切り日時</h2>
         <div class="deadline__inputs-wrap">
           <inputDate
             ref="deadline_date"
@@ -71,10 +71,10 @@
             :id="'deadline'"
             :hasError="!!deadlineDateErrorMsg"
           />
-          <p v-if="!!deadlineDateErrorMsg" class="deadline__errorMsg">
-            <small>{{ deadlineDateErrorMsg }}</small>
-          </p>
         </div>
+        <p v-if="!!deadlineDateErrorMsg" class="deadline__errorMsg">
+          <small>{{ deadlineDateErrorMsg }}</small>
+        </p>
       </div>
 
       <div class="event-type item">
@@ -109,7 +109,7 @@
       <hr />
 
       <div v-if="isEventTypePresentation">
-        <entryFee />
+        <entryFee ref="entryFee" :id="'entryFeeSelect'" />
         <presenterSelect ref="presenterSelect" />
         <fixedMember
           ref="fixedMember"
@@ -126,7 +126,7 @@
         />
       </div>
 
-      <detailsComponent />
+      <detailsComponent ref="markdown" />
 
       <buttonComponent
         @btnClick="checkError"
@@ -252,34 +252,68 @@ export default {
       const hour = 6
       const minutes = 60 * hour
       const openDate = this.getDateType(
-        this.$refs.termAndTime_date.getValue(), // yyyymmdd
-        this.$refs.termAndTime_hour_minutes.getValue() // hhmm
+        this.$refs.termAndTime_date.returnValue(), // yyyymmdd
+        this.$refs.termAndTime_hour_minutes.returnValue() // hhmm
       )
       const deadlineDate = this.getDateType(
-        this.$refs.deadline_date.getValue(), // yyyymmdd
-        this.$refs.deadline_hour_minutes.getValue() // hhmm
+        this.$refs.deadline_date.returnValue(), // yyyymmdd
+        this.$refs.deadline_hour_minutes.returnValue() // hhmm
       )
 
       this.checkOpenDate(openDate, hour, minutes, now)
       this.checkDeadlineDate(openDate, hour, minutes, now, deadlineDate)
+    },
+    getValues() {
+      // TODO: 画像を取得
+      const title = this.$refs.titleInput.returnValue()
+      const tags = this.$refs.tagWrap.returnValues()
+      const openDate = this.getDateType(
+        this.$refs.termAndTime_date.returnValue(), // yyyymmdd
+        this.$refs.termAndTime_hour_minutes.returnValue() // hhmm
+      )
+      const allotedTime = this.$refs.allotedTime.returnValue()
+      const deadlineDate = this.getDateType(
+        this.$refs.deadline_date.returnValue(), // yyyymmdd
+        this.$refs.deadline_hour_minutes.returnValue() // hhmm
+      )
+      const eventType = this.isEventTypePresentation
+        ? '発表勉強会'
+        : '交流勉強会'
+      const {
+        fixedMember,
+        autoCloseNumber
+      } = this.$refs.fixedMember.returnValues()
+      const markdown = this.$refs.markdown.returnValue()
+      if (this.isEventTypePresentation) {
+        const entryFee = this.$refs.entryFee.returnValue()
+        const presenters = this.$refs.presenterSelect.returnValues()
+        console.log('entryFee', entryFee)
+        console.log('presenters', presenters)
+      }
+      console.log('title', title)
+      console.log('tags', tags)
+      console.log('openDate', openDate)
+      console.log('allotedTime', allotedTime)
+      console.log('deadlineDate', deadlineDate)
+      console.log('eventType', eventType)
+      console.log('fixedMember', fixedMember)
+      console.log('autoCloseNumber', autoCloseNumber)
+      console.log('markdown', markdown)
     },
     async checkError() {
       // コンポーネント内でasync/awaitは機能しないためこちらで記述
       await this.$refs.titleInput.checkValidate()
       await this.$refs.tagWrap.checkComponentValidate()
       await this.$refs.fixedMember.checkComponentValidate()
-      console.log('titleInput: ', this.$refs.titleInput.returnIsProper())
-      console.log('tagWrap: ', this.$refs.tagWrap.returnIsProper())
-      console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
+      this.checkDate()
       if (this.isEventTypePresentation) {
         await this.$refs.presenterSelect.checkComponentValidate()
-        console.log(
-          'presenterSelect: ',
-          this.$refs.presenterSelect.returnIsProper()
-        )
+        if (!this.$refs.presenterSelect.returnIsProper()) return
       }
-      // const allotedTime = this.$refs.allotedTime.getValue()
-      this.checkDate()
+      if (!this.$refs.titleInput.returnIsProper()) return
+      if (!this.$refs.tagWrap.returnIsProper()) return
+      if (!this.$refs.fixedMember.returnIsProper()) return
+      this.getValues()
     }
   }
 }
