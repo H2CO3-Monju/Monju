@@ -5,6 +5,7 @@
       :id="`${id}--timeHourSelect`"
       :name="'time-hour'"
       :isTime="true"
+      :hasError="hasError"
       :contents="{
         0: { value: '00', text: '00' },
         1: { value: '01', text: '01' },
@@ -38,6 +39,7 @@
       :id="`${id}--timeMinutesSelect`"
       :name="'time-minutes'"
       :isTime="true"
+      :hasError="hasError"
       :contents="{
         0: { value: '00', text: '00' },
         1: { value: '05', text: '05' },
@@ -67,6 +69,11 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   methods: {

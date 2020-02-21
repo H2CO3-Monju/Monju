@@ -12,6 +12,7 @@
       <div class="inputDateWrap">
         <v-text-field
           :id="id"
+          :class="[hasError ? 'errorClass' : 'normalClass']"
           v-on="on"
           v-model="date"
           readonly
@@ -35,6 +36,11 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   data() {
@@ -97,6 +103,15 @@ export default {
     border-right: 5.5px solid transparent;
     border-top: 5.5px solid #fff;
     pointer-events: none;
+  }
+  .normalClass.v-text-field--outlined
+    .v-input__control
+    .v-input__slot
+    fieldset {
+    border: none;
+  }
+  .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
+    border: solid 2px $_error_color;
   }
 }
 </style>

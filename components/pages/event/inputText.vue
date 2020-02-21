@@ -153,7 +153,7 @@ export default {
     border-color: $_light_blue;
   }
   .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
-    border-color: #ff5252 !important;
+    border-color: $_error_color !important;
   }
 }
 </style>

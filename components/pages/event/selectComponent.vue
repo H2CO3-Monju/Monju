@@ -2,7 +2,14 @@
   <div
     :class="[isTime ? 'upDownTriangle' : 'downTriangle', 'select-component']"
   >
-    <select :id="id" :name="name" class="select-component__inner">
+    <select
+      :id="id"
+      :name="name"
+      :class="[
+        hasError ? 'errorClass' : 'normalClass',
+        'select-component__inner'
+      ]"
+    >
       <option
         :value="content.value"
         :key="index"
@@ -30,6 +37,11 @@ export default {
       required: true
     },
     isTime: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
+    hasError: {
       type: Boolean,
       default: false,
       required: false
@@ -65,6 +77,12 @@ export default {
     font-size: 0.96em;
     font-weight: bold;
     text-align: center;
+  }
+  .normalClass {
+    border: none;
+  }
+  .errorClass {
+    border: solid 2px $_error_color;
   }
 }
 

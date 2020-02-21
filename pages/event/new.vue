@@ -22,14 +22,23 @@
       </div>
 
       <div class="termAndTime item">
-        <h2>期間と日時</h2>
+        <h2>開催日時と期間</h2>
         <div class="termAndTime__inputs-wrap">
-          <inputDate ref="termAndTime_date" :id="'termAndTime__inputDate'" />
-          <timeSelect ref="termAndTime_hour_minutes" :id="'termAndTime'" />
+          <inputDate
+            ref="termAndTime_date"
+            :id="'termAndTime__inputDate'"
+            :hasError="!!openDateErrorMsg"
+          />
+          <timeSelect
+            ref="termAndTime_hour_minutes"
+            :id="'termAndTime'"
+            :hasError="!!openDateErrorMsg"
+          />
           <selectComponent
             ref="allotedTime"
             :id="'termAndTime__allotedTime'"
             :name="'allotedTime'"
+            :hasError="!!openDateErrorMsg"
             :contents="{
               0: { value: '1', text: '1時間' },
               1: { value: '2', text: '2時間' },
@@ -39,6 +48,9 @@
             }"
           />
         </div>
+        <p v-if="!!openDateErrorMsg" class="termAndTime__errorMsg">
+          <small>{{ openDateErrorMsg }}</small>
+        </p>
         <p>
           <small>
             ※時間は原則1時間〜５時間までです。延長は出来ないので、時間は多めに見積もって作成してください。
@@ -49,8 +61,19 @@
       <div class="deadline item">
         <h2>締め切り</h2>
         <div class="deadline__inputs-wrap">
-          <inputDate ref="deadline_date" :id="'deadline__inputDate'" />
-          <timeSelect ref="deadline_hour_minutes" :id="'deadline'" />
+          <inputDate
+            ref="deadline_date"
+            :id="'deadline__inputDate'"
+            :hasError="!!deadlineDateErrorMsg"
+          />
+          <timeSelect
+            ref="deadline_hour_minutes"
+            :id="'deadline'"
+            :hasError="!!deadlineDateErrorMsg"
+          />
+          <p v-if="!!deadlineDateErrorMsg" class="deadline__errorMsg">
+            <small>{{ deadlineDateErrorMsg }}</small>
+          </p>
         </div>
       </div>
 
@@ -147,7 +170,9 @@ export default {
       titleRules: [
         (v) => !!v || 'タイトルは必須項目です',
         (v) => v.length <= 255 || 'タイトルは255文字以内で入力してください。'
-      ]
+      ],
+      openDateErrorMsg: '',
+      deadlineDateErrorMsg: ''
     }
   },
   updated() {
@@ -166,6 +191,73 @@ export default {
       // updatedでv-else後にcssを適用する
       this.$refs.fixedMember.deleteValue()
     },
+    getDateType(yyyymmdd, hhmm) {
+      const date = new Date(yyyymmdd + ' ' + hhmm)
+      return date
+    },
+    formatDate(date) {
+      const y = date.getFullYear()
+      let mo = date.getMonth() + 1
+      let d = date.getDate()
+      let h = date.getHours()
+      let mi = date.getMinutes()
+      if (mo < 10) mo = '0' + mo
+      if (d < 10) d = '0' + d
+      if (h < 10) h = '0' + h
+      if (mi < 10) mi = '0' + mi
+      return y + '-' + mo + '-' + d + ' ' + h + ':' + mi
+    },
+    checkOpenDate(openDate, hour, minutes, now) {
+      // hourではなくminutesにすることで30分などの細かい調整が可能になる(0.5hは0hとして扱われるため)
+      const nowPlusMinutes = new Date().setMinutes(now.getMinutes() + minutes)
+      const nowPlus1y = new Date().setFullYear(now.getFullYear() + 1)
+      if (openDate < nowPlusMinutes) {
+        this.openDateErrorMsg = `開催時間は現在時刻の${hour}時間後から有効です。`
+      } else if (openDate > nowPlus1y) {
+        let maxDate = new Date(nowPlus1y)
+        maxDate = this.formatDate(maxDate)
+        this.openDateErrorMsg = `開催時間は${maxDate}以前に設定してください。`
+      } else {
+        this.openDateErrorMsg = ''
+      }
+    },
+    chackDeadlineDate(openDate, hour, minutes, now, deadlineDate) {
+      // hourではなくminutesにすることで30分などの細かい調整が可能になる(0.5hは0hとして扱われるため)
+      const nowPlusMinutes = new Date().setMinutes(
+        now.getMinutes() + minutes / 2
+      )
+      const tempOpenDate = new Date(openDate) // new Dateをしないと参照渡しになる
+      const openDateMinusMinutes = tempOpenDate.setMinutes(
+        openDate.getMinutes() - minutes / 2
+      )
+      if (deadlineDate < nowPlusMinutes) {
+        this.deadlineDateErrorMsg = `締め切り日時は現在時刻の${hour /
+          2}時間後から有効です。`
+      } else if (openDate < deadlineDate) {
+        this.deadlineDateErrorMsg = '締め切り日時が開催日時を過ぎています。'
+      } else if (openDateMinusMinutes < deadlineDate) {
+        this.deadlineDateErrorMsg = `締め切り日時は開催日時の${hour /
+          2}時間以上前に設定してください。`
+      } else {
+        this.deadlineDateErrorMsg = ''
+      }
+    },
+    checkDate() {
+      const now = new Date()
+      const hour = 6
+      const minutes = 60 * hour
+      const openDate = this.getDateType(
+        this.$refs.termAndTime_date.getValue(), // yyyymmdd
+        this.$refs.termAndTime_hour_minutes.getValue() // hhmm
+      )
+      const deadlineDate = this.getDateType(
+        this.$refs.deadline_date.getValue(), // yyyymmdd
+        this.$refs.deadline_hour_minutes.getValue() // hhmm
+      )
+
+      this.checkOpenDate(openDate, hour, minutes, now)
+      this.chackDeadlineDate(openDate, hour, minutes, now, deadlineDate)
+    },
     async checkError() {
       // コンポーネント内でasync/awaitは機能しないためこちらで記述
       await this.$refs.titleInput.checkValidate()
@@ -176,19 +268,8 @@ export default {
       console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
       console.log('tagWrap: ', this.$refs.tagWrap.returnIsProper())
       console.log('presenterSelect: ', this.$refs.tagWrap.returnIsProper())
-
-      console.log('termAndTime-date: ', this.$refs.termAndTime_date.getValue())
-      console.log(
-        'termAndTime_hour_minutes: ',
-        this.$refs.termAndTime_hour_minutes.getValue()
-      )
-      console.log('allotedTime: ', this.$refs.allotedTime.getValue())
-
-      console.log('deadline-date: ', this.$refs.deadline_date.getValue())
-      console.log(
-        'deadline_hour_minutes: ',
-        this.$refs.deadline_hour_minutes.getValue()
-      )
+      // const allotedTime = this.$refs.allotedTime.getValue()
+      this.checkDate()
     }
   }
 }
@@ -267,6 +348,10 @@ ul {
       max-width: 330px;
       margin-top: 5px;
     }
+    &__errorMsg {
+      margin-bottom: 0;
+      color: $_error_color;
+    }
   }
 
   .deadline {
@@ -278,6 +363,9 @@ ul {
       align-content: center;
       max-width: 242.71px;
       margin-top: 5px;
+    }
+    &__errorMsg {
+      color: $_error_color;
     }
   }
 
