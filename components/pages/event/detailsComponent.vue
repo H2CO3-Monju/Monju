@@ -57,6 +57,9 @@ export default {
         // 外部リソースの関数を使うときは"window."が必要
         this.htmlPreview = window.marked(this.markdownText)
       }
+    },
+    returnValue() {
+      return this.htmlPreview
     }
   }
 }
@@ -130,6 +133,9 @@ export default {
         list-style-type: lower-roman;
       }
     }
+  }
+  table {
+    margin-bottom: 20px;
   }
   %__table-element {
     padding: 6px 13px;

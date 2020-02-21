@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <v-btn class="white--text" color="#C4D929">
+    <v-btn @click="clickEvent" class="white--text" color="#C4D929">
       {{ text }}
     </v-btn>
   </div>
@@ -12,6 +12,18 @@ export default {
     text: {
       type: String,
       required: true
+    },
+    needsEvent: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
+  methods: {
+    clickEvent() {
+      if (this.needsEvent) {
+        this.$emit('btnClick')
+      }
     }
   }
 }

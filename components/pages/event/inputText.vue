@@ -1,13 +1,14 @@
 <template>
   <v-form
-    class="inptTextWrap"
     ref="form"
     :style="styles"
     v-model="valid"
     @submit.prevent
+    class="inptTextWrap"
     lazy-validation
   >
     <v-text-field
+      ref="textField"
       v-model="value"
       :id="id"
       :class="[valid ? 'normalClass' : 'errorClass']"
@@ -38,11 +39,13 @@ export default {
       required: true
     },
     counter: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     },
     placeholder: {
       type: String,
+      default: '',
       required: false
     },
     autocomplete: {
@@ -51,19 +54,23 @@ export default {
       required: false
     },
     styles: {
-      type: Object,
+      type: [Object, Boolean],
+      default: false,
       required: false
     },
     type: {
       type: String,
+      default: '',
       required: false
     },
     max: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     },
     min: {
-      type: Number,
+      type: [Number, Boolean],
+      default: false,
       required: false
     }
   },
@@ -95,8 +102,24 @@ export default {
     checkValidate() {
       this.$refs.form.validate()
     },
+    returnIsProper() {
+      return this.$refs.form.value
+    },
+    returnValue() {
+      return this.$refs.textField.value
+    },
     deleteValue() {
       this.value = ''
+    },
+    resetValidation() {
+      const input = document.getElementById(this.id)
+      const vTextFieldSlot = input.parentNode
+      const vInputSlot = vTextFieldSlot.parentNode
+      const vInputControl = vInputSlot.parentNode
+      const target = vInputControl.parentNode
+      this.$refs.textField.resetValidation()
+      target.classList.remove('errorClass')
+      target.classList.add('normalClass')
     }
   }
 }
@@ -130,7 +153,7 @@ export default {
     border-color: $_light_blue;
   }
   .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
-    border-color: #ff5252 !important;
+    border-color: $_error_color !important;
   }
 }
 </style>

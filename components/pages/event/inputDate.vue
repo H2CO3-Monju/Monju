@@ -11,31 +11,52 @@
     <template v-slot:activator="{ on }">
       <div class="inputDateWrap">
         <v-text-field
+          :id="id"
+          :class="[hasError ? 'errorClass' : 'normalClass']"
+          v-on="on"
           v-model="date"
           readonly
           dense
           outlined
           solo
-          v-on="on"
         ></v-text-field>
       </div>
     </template>
     <v-date-picker v-model="date" color="#BBC61D" no-title scrollable>
       <v-spacer></v-spacer>
-      <v-btn text color="#BBC61D" @click="menu = false">Cancel</v-btn>
-      <v-btn text color="#BBC61D" @click="$refs.menu.save(date)">OK</v-btn>
+      <v-btn @click="menu = false" text color="#BBC61D">Cancel</v-btn>
+      <v-btn @click="$refs.menu.save(date)" text color="#BBC61D">OK</v-btn>
     </v-date-picker>
   </v-menu>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    date: new Date().toISOString().substr(0, 10),
-    menu: false,
-    modal: false,
-    menu2: false
-  })
+  props: {
+    id: {
+      type: String,
+      required: true
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
+  data() {
+    return {
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      modal: false,
+      menu2: false
+    }
+  },
+  methods: {
+    returnValue() {
+      const inputDate = document.getElementById(this.id)
+      return inputDate.value
+    }
+  }
 }
 </script>
 
@@ -82,6 +103,15 @@ export default {
     border-right: 5.5px solid transparent;
     border-top: 5.5px solid #fff;
     pointer-events: none;
+  }
+  .normalClass.v-text-field--outlined
+    .v-input__control
+    .v-input__slot
+    fieldset {
+    border: none;
+  }
+  .errorClass.v-text-field--outlined .v-input__control .v-input__slot fieldset {
+    border: solid 2px $_error_color;
   }
 }
 </style>

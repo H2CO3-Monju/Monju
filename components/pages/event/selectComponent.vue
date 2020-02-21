@@ -2,7 +2,14 @@
   <div
     :class="[isTime ? 'upDownTriangle' : 'downTriangle', 'select-component']"
   >
-    <select class="select-component__inner" :name="name">
+    <select
+      :id="id"
+      :name="name"
+      :class="[
+        hasError ? 'errorClass' : 'normalClass',
+        'select-component__inner'
+      ]"
+    >
       <option
         :value="content.value"
         :key="index"
@@ -17,6 +24,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -29,6 +40,19 @@ export default {
       type: Boolean,
       default: false,
       required: false
+    },
+    hasError: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
+  methods: {
+    returnValue() {
+      const select = document.getElementById(this.id)
+      const options = Array.from(select.options)
+      const selected = options.find((option) => option.selected === true)
+      return selected.value
     }
   }
 }
@@ -53,6 +77,12 @@ export default {
     font-size: 0.96em;
     font-weight: bold;
     text-align: center;
+  }
+  .normalClass {
+    border: none;
+  }
+  .errorClass {
+    border: solid 2px $_error_color;
   }
 }
 
