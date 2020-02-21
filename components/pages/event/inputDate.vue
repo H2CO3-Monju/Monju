@@ -11,6 +11,7 @@
     <template v-slot:activator="{ on }">
       <div class="inputDateWrap">
         <v-text-field
+          :id="id"
           v-on="on"
           v-model="date"
           readonly
@@ -30,12 +31,26 @@
 
 <script>
 export default {
-  data: () => ({
-    date: new Date().toISOString().substr(0, 10),
-    menu: false,
-    modal: false,
-    menu2: false
-  })
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      date: new Date().toISOString().substr(0, 10),
+      menu: false,
+      modal: false,
+      menu2: false
+    }
+  },
+  methods: {
+    getValue() {
+      const inputDate = document.getElementById(this.id)
+      return inputDate.value
+    }
+  }
 }
 </script>
 

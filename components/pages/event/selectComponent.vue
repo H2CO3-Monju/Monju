@@ -2,7 +2,7 @@
   <div
     :class="[isTime ? 'upDownTriangle' : 'downTriangle', 'select-component']"
   >
-    <select :name="name" class="select-component__inner">
+    <select :id="id" :name="name" class="select-component__inner">
       <option
         :value="content.value"
         :key="index"
@@ -17,6 +17,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -29,6 +33,14 @@ export default {
       type: Boolean,
       default: false,
       required: false
+    }
+  },
+  methods: {
+    getValue() {
+      const select = document.getElementById(this.id)
+      const options = Array.from(select.options)
+      const selected = options.find((option) => option.selected === true)
+      return selected.value
     }
   }
 }

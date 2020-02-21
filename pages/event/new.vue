@@ -24,16 +24,18 @@
       <div class="termAndTime item">
         <h2>期間と日時</h2>
         <div class="termAndTime__inputs-wrap">
-          <inputDate />
-          <timeSelect />
+          <inputDate ref="termAndTime_date" :id="'termAndTime__inputDate'" />
+          <timeSelect ref="termAndTime_hour_minutes" :id="'termAndTime'" />
           <selectComponent
-            :name="'hour'"
+            ref="allotedTime"
+            :id="'termAndTime__allotedTime'"
+            :name="'allotedTime'"
             :contents="{
-              0: { value: 'one-hour', text: '1時間' },
-              1: { value: 'two-hour', text: '2時間' },
-              2: { value: 'three-hour', text: '3時間' },
-              3: { value: 'four-hour', text: '4時間' },
-              4: { value: 'five-hour', text: '5時間' }
+              0: { value: '1', text: '1時間' },
+              1: { value: '2', text: '2時間' },
+              2: { value: '3', text: '3時間' },
+              3: { value: '4', text: '4時間' },
+              4: { value: '5', text: '5時間' }
             }"
           />
         </div>
@@ -47,8 +49,8 @@
       <div class="deadline item">
         <h2>締め切り</h2>
         <div class="deadline__inputs-wrap">
-          <inputDate />
-          <timeSelect />
+          <inputDate ref="deadline_date" :id="'deadline__inputDate'" />
+          <timeSelect ref="deadline_hour_minutes" :id="'deadline'" />
         </div>
       </div>
 
@@ -85,7 +87,7 @@
 
       <div v-if="isEventTypePresentation">
         <entryFee />
-        <presenterSelect />
+        <presenterSelect ref="presenterSelect" />
         <fixedMember
           ref="fixedMember"
           :max="10"
@@ -169,9 +171,24 @@ export default {
       await this.$refs.titleInput.checkValidate()
       await this.$refs.fixedMember.checkComponentValidate()
       await this.$refs.tagWrap.checkComponentValidate()
+      await this.$refs.presenterSelect.checkComponentValidate()
       console.log('titleInput: ', this.$refs.titleInput.returnIsProper())
       console.log('fixedMember: ', this.$refs.fixedMember.returnIsProper())
       console.log('tagWrap: ', this.$refs.tagWrap.returnIsProper())
+      console.log('presenterSelect: ', this.$refs.tagWrap.returnIsProper())
+
+      console.log('termAndTime-date: ', this.$refs.termAndTime_date.getValue())
+      console.log(
+        'termAndTime_hour_minutes: ',
+        this.$refs.termAndTime_hour_minutes.getValue()
+      )
+      console.log('allotedTime: ', this.$refs.allotedTime.getValue())
+
+      console.log('deadline-date: ', this.$refs.deadline_date.getValue())
+      console.log(
+        'deadline_hour_minutes: ',
+        this.$refs.deadline_hour_minutes.getValue()
+      )
     }
   }
 }
