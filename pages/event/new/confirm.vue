@@ -11,6 +11,8 @@ export default {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
     setTimeout(function() {
       console.log(store.state.event)
+      console.log(store.getters.getEvent)
+      // if(store.getters.getEvent)
     })
   },
   computed: {
