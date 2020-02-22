@@ -90,17 +90,12 @@ $_button-hover-percent: 20%;
 $_button-active-percent: 10%;
 $_button-transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 
-a {
-  text-decoration: none;
-  color: $_button-default-color;
-}
-
-.pd-1 {
-  padding: 13px;
-}
-
-.pd-2 {
-  padding: 5vh;
+html {
+  scroll-behavior: smooth;
+  a {
+    text-decoration: none;
+    color: $_button-default-color;
+  }
 }
 
 .v-input__icon--prepend-inner .fas {
