@@ -81,13 +81,17 @@
               <v-tab v-on:click="isActive = 'topLike'">いいねした勉強会</v-tab>
               <v-divider inset vertical></v-divider>
             </v-tabs>
-          </v-row>
-          <v-row>
             <topAnnounce v-if="isActive == 'topAnnounce'" />
             <topOpen v-if="isActive == 'topOpen'" />
             <topJoin v-if="isActive == 'topJoin'" />
             <topLike v-if="isActive == 'topLike'" />
           </v-row>
+          <!-- <v-row>
+            <topAnnounce v-if="isActive == 'topAnnounce'" />
+            <topOpen v-if="isActive == 'topOpen'" />
+            <topJoin v-if="isActive == 'topJoin'" />
+            <topLike v-if="isActive == 'topLike'" />
+          </v-row> -->
         </v-col>
       </v-row>
     </v-container>

@@ -11,9 +11,9 @@
           </v-card-title>
           <v-card-text>
             Monjuは、勉強会に参加したい<br />
-            あなたのための場です。<br />
-            実践的な力と経験を身につけて、<br />
-            気軽に勉強会を開催しましょう！
+            あなたのためのサービスです。<br />
+            いつでもどこでも、<br />
+            気軽に勉強に参加しましょう！
           </v-card-text>
         </v-card>
         <v-card class="right-card_a" width="45%" height="45%">
@@ -60,7 +60,7 @@
 <script>
 import defaultHead from '@/components/layouts/mon-head'
 import foot from '@/components/layouts/mon-foot'
-import border from '@/components/ui/ations/border'
+import border from '@/components/ui/actions/border'
 export default {
   layout: 'top',
   components: {
@@ -93,14 +93,15 @@ export default {
 
       .left-card_a {
         position: absolute;
-        top: 40%;
-        left: 40%;
-        animation: move 1.5s linear 1s;
+        top: 25%;
+        left: 25%;
+        animation: l-move 1.5s linear 1s forwards;
       }
       .right-card_a {
         position: absolute;
-        bottom: 40%;
-        right: 40%;
+        bottom: 25%;
+        right: 25%;
+        animation: r-move 1.5s linear 1s forwards;
         .topImg {
           width: 50px;
         }
@@ -120,7 +121,18 @@ export default {
 </style>
 
 <style lang="css">
-@keyframes move {
+@keyframes l-move {
+  0% {
+    transform: translateY(0) translateY(0);
+    border-radius: 0;
+  }
+
+  100% {
+    transform: translateY(-20%) translateX(-20%);
+    border-radius: 10px;
+  }
+}
+@keyframes r-move {
   0% {
     transform: translateY(0) translateY(0);
     border-radius: 0;
