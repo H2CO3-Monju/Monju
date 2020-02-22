@@ -138,6 +138,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import inputText from '@/components/pages/event/inputText'
 import tagWrap from '@/components/pages/event/tagWrap'
 import inputDate from '@/components/pages/event/inputDate'
@@ -176,6 +177,9 @@ export default {
       deadlineDateErrorMsg: ''
     }
   },
+  computed: {
+    ...mapState(['event'])
+  },
   updated() {
     // 勉強会の種類が切り替わった時のみ発火させる
     if (this.isEventTypePresentation !== this.tempIsEventTypePresentation) {
@@ -184,6 +188,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions({ setEvent: 'event/setEvent' }),
     switchContent() {
       const inputs = document.getElementsByName('event-type')
       const isPresentation = inputs[0].checked
@@ -265,40 +270,30 @@ export default {
     },
     getValues() {
       // TODO: 画像を取得
-      const title = this.$refs.titleInput.returnValue()
-      const tags = this.$refs.tagWrap.returnValues()
-      const openDate = this.getDateType(
+      const event = {}
+      event.title = this.$refs.titleInput.returnValue()
+      event.tags = this.$refs.tagWrap.returnValues()
+      event.openDate = this.getDateType(
         this.$refs.termAndTime_date.returnValue(), // yyyymmdd
         this.$refs.termAndTime_hour_minutes.returnValue() // hhmm
       )
-      const allotedTime = this.$refs.allotedTime.returnValue()
-      const deadlineDate = this.getDateType(
+      event.allotedTime = this.$refs.allotedTime.returnValue()
+      event.deadlineDate = this.getDateType(
         this.$refs.deadline_date.returnValue(), // yyyymmdd
         this.$refs.deadline_hour_minutes.returnValue() // hhmm
       )
-      const eventType = this.isEventTypePresentation
+      event.eventType = this.isEventTypePresentation
         ? '発表勉強会'
         : '交流勉強会'
-      const {
-        fixedMember,
-        autoCloseNumber
-      } = this.$refs.fixedMember.returnValues()
-      const markdown = this.$refs.markdown.returnValue()
+      const fixedMember = this.$refs.fixedMember.returnValues()
+      event.fixedMember = fixedMember.fixedMember
+      event.autoCloseNumber = fixedMember.autoCloseNumber
+      event.markdown = this.$refs.markdown.returnValue()
       if (this.isEventTypePresentation) {
-        const entryFee = this.$refs.entryFee.returnValue()
-        const presenters = this.$refs.presenterSelect.returnValues()
-        console.log('entryFee', entryFee)
-        console.log('presenters', presenters)
+        event.entryFee = this.$refs.entryFee.returnValue()
+        event.presenters = this.$refs.presenterSelect.returnValues()
       }
-      console.log('title', title)
-      console.log('tags', tags)
-      console.log('openDate', openDate)
-      console.log('allotedTime', allotedTime)
-      console.log('deadlineDate', deadlineDate)
-      console.log('eventType', eventType)
-      console.log('fixedMember', fixedMember)
-      console.log('autoCloseNumber', autoCloseNumber)
-      console.log('markdown', markdown)
+      return event
     },
     async checkError() {
       // コンポーネント内でasync/awaitは機能しないためこちらで記述
@@ -313,7 +308,9 @@ export default {
       if (!this.$refs.titleInput.returnIsProper()) return
       if (!this.$refs.tagWrap.returnIsProper()) return
       if (!this.$refs.fixedMember.returnIsProper()) return
-      this.getValues()
+      const event = this.getValues()
+      this.setEvent(event)
+      this.$router.push('new/confirm')
     }
   }
 }

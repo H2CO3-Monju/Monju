@@ -17,7 +17,7 @@ import foot from '@/components/layouts/mon-foot'
 export default {
   middleware({ store, redirect }) {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
-    setTimeout(() => {
+    setTimeout(function() {
       if (store.getters.isAuthenticated) {
         this.state = 'userHead'
       } else {
