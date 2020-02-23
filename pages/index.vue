@@ -1,10 +1,9 @@
 <template>
   <div class="allWrap">
-    <!-- コンテンツ -->
     <div class="container">
       <section class="area">
-        <defaultHead />
-        <border />
+        <!-- <defaultHead /> -->
+        <!-- <border />
         <v-card class="left-card_a" width="45%" height="45%">
           <v-card-title>
             Three eyes see more than two
@@ -50,7 +49,8 @@
         </v-card>
         <v-card class="right-card_a" width="45%" height="45%">
           iiiiii
-        </v-card>
+        </v-card> -->
+        <sample />
       </section>
       <foot />
     </div>
@@ -58,14 +58,16 @@
 </template>
 
 <script>
-import defaultHead from '@/components/layouts/mon-head'
+// import defaultHead from '@/components/layouts/mon-head'
 import foot from '@/components/layouts/mon-foot'
-import border from '@/components/ui/actions/border'
+import sample from '@/components/ui/design/sample'
+// import border from '@/components/ui/actions/border'
 export default {
   layout: 'top',
   components: {
-    defaultHead,
-    border,
+    // defaultHead,
+    sample,
+    // border,
     foot
   }
 }
@@ -80,42 +82,42 @@ export default {
     height: 100vh;
     max-width: 100vw;
     padding: 0;
-    .area {
-      scroll-snap-align: start;
-      height: 100vh;
-      width: 100vw;
-      overflow: hidden;
-    }
-    .area:nth-child(1) {
-      background: #fff;
-      color: #333;
-      position: relative;
+    // .area {
+    //   scroll-snap-align: start;
+    //   height: 100vh;
+    //   width: 100vw;
+    //   overflow: hidden;
+    // }
+    // .area:nth-child(1) {
+    //   background: #fff;
+    //   color: #333;
+    //   position: relative;
 
-      .left-card_a {
-        position: absolute;
-        top: 25%;
-        left: 25%;
-        animation: l-move 1.5s linear 1s forwards;
-      }
-      .right-card_a {
-        position: absolute;
-        bottom: 25%;
-        right: 25%;
-        animation: r-move 1.5s linear 1s forwards;
-        .topImg {
-          width: 50px;
-        }
-      }
-    }
-    .area:nth-child(2) {
-      background: #c7ecee;
-    }
-    .area:nth-child(3) {
-      background: #95afc0;
-    }
-    .area:nth-child(4) {
-      background: #535c68;
-    }
+    //   .left-card_a {
+    //     position: absolute;
+    //     top: 25%;
+    //     left: 25%;
+    //     animation: l-move 1.5s linear 1s forwards;
+    //   }
+    //   .right-card_a {
+    //     position: absolute;
+    //     bottom: 25%;
+    //     right: 25%;
+    //     animation: r-move 1.5s linear 1s forwards;
+    //     .topImg {
+    //       width: 50px;
+    //     }
+    //   }
+    // }
+    // .area:nth-child(2) {
+    //   background: #c7ecee;
+    // }
+    // .area:nth-child(3) {
+    //   background: #95afc0;
+    // }
+    // .area:nth-child(4) {
+    //   background: #535c68;
+    // }
   }
 }
 </style>
