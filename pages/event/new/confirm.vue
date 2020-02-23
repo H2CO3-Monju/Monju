@@ -8,6 +8,12 @@
               Javascriptでなんかすごいことやる in HAL東京
             </h1>
           </v-row>
+
+          <v-row>
+            <ul class="tags">
+              <tag :value="tag" :key="index" class="tags__tag" />
+            </ul>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -15,7 +21,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
+import tag from '@/components/pages/event/new/tag'
 export default {
   middleware({ store, redirect }) {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
@@ -26,7 +33,11 @@ export default {
       console.log(store.state.event.event)
     })
   },
+  components: {
+    tag
+  },
   computed: {
+    ...mapState(['event']),
     ...mapGetters({
       getEvent: 'event/getEvent'
     }),
