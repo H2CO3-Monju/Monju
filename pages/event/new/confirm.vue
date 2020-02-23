@@ -12,7 +12,7 @@
           <v-row>
             <ul class="tags">
               <tag
-                v-for="(tag, index) in this.event.tags"
+                v-for="(tag, index) in event.tags"
                 :shouldShowFontawesome="false"
                 :value="tag"
                 :key="index"
@@ -21,8 +21,9 @@
             </ul>
           </v-row>
 
-          <!-- <v-row>
-          </v-row> -->
+          <v-row>
+            <img id="preview" />
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -63,6 +64,7 @@ export default {
       // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
       const event = this.getEvent
       this.event = event
+      document.getElementById('preview').setAttribute('src', this.event.file)
     })
   }
 }

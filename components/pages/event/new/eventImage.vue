@@ -44,12 +44,12 @@ export default {
       eventImg.addEventListener('change', (e) => {
         const reader = new FileReader()
         reader.onload = (e) => {
+          this.file = e.target.result
           document
             .getElementById('preview')
             .setAttribute('src', e.target.result)
         }
         reader.readAsDataURL(e.target.files[0])
-        this.file = e.target.files[0]
         this.fileName = e.target.files[0].name
         this.hideIcon()
       })
