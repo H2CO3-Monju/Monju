@@ -12,7 +12,8 @@
           <v-row>
             <ul class="tags">
               <tag
-                v-for="(tag, index) in event.tags"
+                v-for="(tag, index) in this.event.tags"
+                :shouldShowFontawesome="false"
                 :value="tag"
                 :key="index"
                 class="tags__tag"
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 import tag from '@/components/pages/event/new/tag'
 export default {
   middleware({ store, redirect }) {
@@ -35,16 +36,19 @@ export default {
 
     // middlewareは一番初めに動くのでthisでdata内やメソッドにアクセスできない
     setTimeout(() => {
+      console.log(store.state)
       console.log(store.state.event.event)
     })
   },
   components: {
     tag
   },
+  data() {
+    return {
+      event: ''
+    }
+  },
   computed: {
-    ...mapState({
-      event: 'event'
-    }),
     ...mapGetters({
       getEvent: 'event/getEvent'
     }),
@@ -52,8 +56,10 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      console.log(this.getEvent)
-      console.log(this.isAuthenticated)
+      // storeのlocalStrage永続化の関係でmapState(['event'])を使っても
+      // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
+      const event = this.getEvent
+      this.event = event
     })
   }
 }
