@@ -22,27 +22,41 @@
 </template>
 
 <script>
-const hideIcon = () => {
-  const icons = document.getElementById('event-image__span')
-  icons.classList.add('hidden')
-}
-const showImg = () => {
-  const eventImg = document.getElementById('event-image__input')
-  eventImg.addEventListener('change', (e) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      document.getElementById('preview').setAttribute('src', e.target.result)
-    }
-    reader.readAsDataURL(e.target.files[0])
-    hideIcon()
-  })
-}
-
 export default {
+  data() {
+    return {
+      file: '',
+      fileName: ''
+    }
+  },
   mounted() {
     this.$nextTick(() => {
-      showImg()
+      this.showImg()
     })
+  },
+  methods: {
+    hideIcon() {
+      const icons = document.getElementById('event-image__span')
+      icons.classList.add('hidden')
+    },
+    showImg() {
+      const eventImg = document.getElementById('event-image__input')
+      eventImg.addEventListener('change', (e) => {
+        const reader = new FileReader()
+        reader.onload = (e) => {
+          document
+            .getElementById('preview')
+            .setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(e.target.files[0])
+        this.file = e.target.files[0]
+        this.fileName = e.target.files[0].name
+        this.hideIcon()
+      })
+    },
+    returnValue() {
+      return { file: this.file, fileName: this.fileName }
+    }
   }
 }
 </script>

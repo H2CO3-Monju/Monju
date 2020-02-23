@@ -4,7 +4,7 @@
       <h1>新規イベント作成</h1>
       <div class="mainContents-wrap">
         <div class="eventImage-wrap">
-          <eventImage />
+          <eventImage ref="eventImage" />
         </div>
 
         <div class="title-tag">
@@ -273,6 +273,9 @@ export default {
     getValues() {
       // TODO: 画像を取得
       const event = {}
+      const eventImage = this.$refs.eventImage.returnValue()
+      event.file = eventImage.file
+      event.fileName = eventImage.fileName
       event.title = this.$refs.titleInput.returnValue()
       event.tags = this.$refs.tagWrap.returnValues()
       event.openDate = this.getDateType(
