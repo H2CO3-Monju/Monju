@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import inputText from '@/components/pages/event/inputText'
-import tag from '@/components/pages/event/tag'
+import inputText from '@/components/pages/event/new/inputText'
+import tag from '@/components/pages/event/new/tag'
 export default {
   components: {
     inputText,

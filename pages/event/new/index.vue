@@ -139,16 +139,16 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import inputText from '@/components/pages/event/inputText'
-import tagWrap from '@/components/pages/event/tagWrap'
-import inputDate from '@/components/pages/event/inputDate'
-import selectComponent from '@/components/pages/event/selectComponent'
-import timeSelect from '@/components/pages/event/timeSelect'
-import entryFee from '@/components/pages/event/entryFee'
-import presenterSelect from '@/components/pages/event/presenterSelect'
-import fixedMember from '@/components/pages/event/fixedMember'
-import detailsComponent from '@/components/pages/event/detailsComponent'
-import eventImage from '@/components/pages/event/eventImage'
+import inputText from '@/components/pages/event/new/inputText'
+import tagWrap from '@/components/pages/event/new/tagWrap'
+import inputDate from '@/components/pages/event/new/inputDate'
+import selectComponent from '@/components/pages/event/new/selectComponent'
+import timeSelect from '@/components/pages/event/new/timeSelect'
+import entryFee from '@/components/pages/event/new/entryFee'
+import presenterSelect from '@/components/pages/event/new/presenterSelect'
+import fixedMember from '@/components/pages/event/new/fixedMember'
+import detailsComponent from '@/components/pages/event/new/detailsComponent'
+import eventImage from '@/components/pages/event/new/eventImage'
 import buttonComponent from '@/components/ui/btns/buttonComponent'
 
 export default {

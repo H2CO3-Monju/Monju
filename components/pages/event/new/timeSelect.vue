@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import selectComponent from '@/components/pages/event/selectComponent'
+import selectComponent from '@/components/pages/event/new/selectComponent'
 
 export default {
   components: {
