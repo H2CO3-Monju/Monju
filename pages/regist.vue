@@ -1,165 +1,163 @@
 <template>
-  <regist>
-    <div class="allWrap columns is-mobile">
-      <div class="regist-container column is-4">
-        <div v-if="isConfirm" class="regist-wrap column">
-          <di class="regist-title" data-tilt>
-            <h1>この内容でよろしかったですか？</h1>
-          </di>
-          <div class="regist-confirm">
-            <p>ユーザーネーム: {{ name }}</p>
-            <p>メールアドレス: {{ email }}</p>
-            <p v-if="isHidden" class="regist-confirm-password">
-              パスワード: {{ hidePassword }}
-              <span
-                v-on:click="switchSymbol"
-                class="regist-confirm-password-symbol"
-              >
-                <i class="fas fa-eye-slash" aria-hidden="true"></i>
+  <div class="allWrap columns is-mobile">
+    <div class="regist-container column is-4">
+      <div v-if="isConfirm" class="regist-wrap column">
+        <di class="regist-title" data-tilt>
+          <h1>この内容でよろしかったですか？</h1>
+        </di>
+        <div class="regist-confirm">
+          <p>ユーザーネーム: {{ name }}</p>
+          <p>メールアドレス: {{ email }}</p>
+          <p v-if="isHidden" class="regist-confirm-password">
+            パスワード: {{ hidePassword }}
+            <span
+              v-on:click="switchSymbol"
+              class="regist-confirm-password-symbol"
+            >
+              <i class="fas fa-eye-slash" aria-hidden="true"></i>
+            </span>
+          </p>
+          <p v-else class="regist-confirm-password">
+            パスワード: {{ password }}
+            <span
+              v-on:click="switchSymbol"
+              class="regist-confirm-password-symbol"
+            >
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </span>
+          </p>
+        </div>
+        <div class="buttons container-regist-form-btn">
+          <button v-on:click="regist" class="regist-form-btn button">
+            Regist
+          </button>
+        </div>
+      </div>
+
+      <div v-else class="regist-wrap column">
+        <div class="regist-title" data-tilt>
+          <h1>Monjuに新規登録</h1>
+        </div>
+
+        <div class="regist-form validate-form">
+          <div
+            class="input-wrap validate-input"
+            data-validate="Valid email is required: ex@abc.xyz"
+          >
+            <div class="symbolAndInput columns is-mobile">
+              <span class="inputSymbol column is-1 column">
+                <i class="fas fa-user" aria-hidden="true"></i>
               </span>
-            </p>
-            <p v-else class="regist-confirm-password">
-              パスワード: {{ password }}
-              <span
-                v-on:click="switchSymbol"
-                class="regist-confirm-password-symbol"
-              >
-                <i class="fas fa-eye" aria-hidden="true"></i>
-              </span>
+              <input
+                v-model="name"
+                class="input column is-11"
+                type="text"
+                name="name"
+                placeholder="ユーザーネーム"
+                autocomplete="off"
+              />
+            </div>
+            <p v-if="!!nameError" class="input-error-msg">
+              {{ nameError }}
             </p>
           </div>
+
+          <div
+            class="input-wrap validate-input"
+            data-validate="Valid email is required: ex@abc.xyz"
+          >
+            <div class="symbolAndInput columns is-mobile">
+              <span class="inputSymbol column is-1">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </span>
+              <input
+                v-model="email"
+                class="input column is-11"
+                type="text"
+                name="email"
+                placeholder="メールアドレス"
+                autocomplete="off"
+              />
+            </div>
+            <p v-if="!!emailError" class="input-error-msg">
+              {{ emailError }}
+            </p>
+          </div>
+
+          <div
+            class="input-wrap validate-input"
+            data-validate="Password is required"
+          >
+            <div class="symbolAndInput columns is-mobile">
+              <span class="inputSymbol column is-1">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+              <input
+                v-model="password"
+                class="input is-11"
+                type="password"
+                name="pass"
+                placeholder="パスワード"
+                autocomplete="off"
+              />
+            </div>
+            <p v-if="!!passwordError" class="input-error-msg">
+              {{ passwordError }}
+            </p>
+          </div>
+
+          <div
+            class="input-wrap validate-input"
+            data-validate="Password is required"
+          >
+            <div class="symbolAndInput columns is-mobile">
+              <span class="inputSymbol column is-1">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+              </span>
+              <input
+                v-model="password_confirm"
+                class="input is-11"
+                type="password"
+                name="pass_confirm"
+                placeholder="パスワードを確認"
+              />
+            </div>
+            <p v-if="!!passwordConfirmError" class="input-error-msg">
+              {{ passwordConfirmError }}
+            </p>
+          </div>
+
           <div class="buttons container-regist-form-btn">
-            <button v-on:click="regist" class="regist-form-btn button">
+            <a href="#confirm" class="regist-form-btn button">
               Regist
-            </button>
+            </a>
           </div>
         </div>
 
-        <div v-else class="regist-wrap column">
-          <div class="regist-title" data-tilt>
-            <h1>Monjuに新規登録</h1>
-          </div>
+        <hr class="regist_hr" />
 
-          <div class="regist-form validate-form">
-            <div
-              class="input-wrap validate-input"
-              data-validate="Valid email is required: ex@abc.xyz"
-            >
-              <div class="symbolAndInput columns is-mobile">
-                <span class="inputSymbol column is-1 column">
-                  <i class="fas fa-user" aria-hidden="true"></i>
-                </span>
-                <input
-                  v-model="name"
-                  class="input column is-11"
-                  type="text"
-                  name="name"
-                  placeholder="ユーザーネーム"
-                  autocomplete="off"
-                />
-              </div>
-              <p v-if="!!nameError" class="input-error-msg">
-                {{ nameError }}
-              </p>
-            </div>
+        <div class="regist-authentication">
+          <button class="regist-auth-facebook regist-auth_btn">
+            <span class="regist-auth-symbol">
+              <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
+            </span>
+          </button>
 
-            <div
-              class="input-wrap validate-input"
-              data-validate="Valid email is required: ex@abc.xyz"
-            >
-              <div class="symbolAndInput columns is-mobile">
-                <span class="inputSymbol column is-1">
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                </span>
-                <input
-                  v-model="email"
-                  class="input column is-11"
-                  type="text"
-                  name="email"
-                  placeholder="メールアドレス"
-                  autocomplete="off"
-                />
-              </div>
-              <p v-if="!!emailError" class="input-error-msg">
-                {{ emailError }}
-              </p>
-            </div>
+          <button class="regist-auth-twitter regist-auth_btn">
+            <span class="regist-auth-symbol">
+              <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
+            </span>
+          </button>
 
-            <div
-              class="input-wrap validate-input"
-              data-validate="Password is required"
-            >
-              <div class="symbolAndInput columns is-mobile">
-                <span class="inputSymbol column is-1">
-                  <i class="fa fa-lock" aria-hidden="true"></i>
-                </span>
-                <input
-                  v-model="password"
-                  class="input is-11"
-                  type="password"
-                  name="pass"
-                  placeholder="パスワード"
-                  autocomplete="off"
-                />
-              </div>
-              <p v-if="!!passwordError" class="input-error-msg">
-                {{ passwordError }}
-              </p>
-            </div>
-
-            <div
-              class="input-wrap validate-input"
-              data-validate="Password is required"
-            >
-              <div class="symbolAndInput columns is-mobile">
-                <span class="inputSymbol column is-1">
-                  <i class="fa fa-lock" aria-hidden="true"></i>
-                </span>
-                <input
-                  v-model="password_confirm"
-                  class="input is-11"
-                  type="password"
-                  name="pass_confirm"
-                  placeholder="パスワードを確認"
-                />
-              </div>
-              <p v-if="!!passwordConfirmError" class="input-error-msg">
-                {{ passwordConfirmError }}
-              </p>
-            </div>
-
-            <div class="buttons container-regist-form-btn">
-              <a href="#confirm" class="regist-form-btn button">
-                Regist
-              </a>
-            </div>
-          </div>
-
-          <hr class="regist_hr" />
-
-          <div class="regist-authentication">
-            <button class="regist-auth-facebook regist-auth_btn">
-              <span class="regist-auth-symbol">
-                <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
-              </span>
-            </button>
-
-            <button class="regist-auth-twitter regist-auth_btn">
-              <span class="regist-auth-symbol">
-                <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
-              </span>
-            </button>
-
-            <button class="regist-auth-github regist-auth_btn">
-              <span class="regist-auth-symbol">
-                <i class="fab fa-github github-symbol" aria-hidden="true"></i>
-              </span>
-            </button>
-          </div>
+          <button class="regist-auth-github regist-auth_btn">
+            <span class="regist-auth-symbol">
+              <i class="fab fa-github github-symbol" aria-hidden="true"></i>
+            </span>
+          </button>
         </div>
       </div>
     </div>
-  </regist>
+  </div>
 </template>
 
 <script>

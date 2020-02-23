@@ -1,7 +1,6 @@
 <template>
   <div class="userHeader">
     <v-app-bar
-      :elevation="elevationHead"
       dense
       width="100%"
       height="56px"

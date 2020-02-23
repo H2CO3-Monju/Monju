@@ -1,6 +1,10 @@
 <template>
   <li>
-    <i @click="deleteTag" class="fas fa-times tags__fontawesome"></i>
+    <i
+      v-if="shouldShowFontawesome"
+      @click="deleteTag"
+      class="fas fa-times tags__fontawesome"
+    ></i>
     {{ value.message }}
   </li>
 </template>
@@ -11,6 +15,11 @@ export default {
     value: {
       type: [Object, Boolean],
       default: false,
+      required: false
+    },
+    shouldShowFontawesome: {
+      type: Boolean,
+      default: true,
       required: false
     }
   },

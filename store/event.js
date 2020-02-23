@@ -2,14 +2,14 @@
 export const strict = false
 
 export const state = () => ({
-  user: null
+  event: null
 })
 
 // sotreの状態を算出する
 // 依存関係の一部が変更されたときにのみ再評価される
 export const getters = {
-  isAuthenticated(state) {
-    return !!state.user
+  getEvent(state) {
+    return state.event
   }
 }
 
@@ -17,15 +17,15 @@ export const getters = {
 // payloadはオブジェクトにしてpayload.userというようにした方が内容が分かりやすくなる
 // 同期的でなければならない
 export const mutations = {
-  setUser(state, payload) {
-    state.user = payload
+  setEvent(state, payload) {
+    state.event = payload
   }
 }
 
 // store内のstateやgettersにアクセスできる
 // 非同期の操作が可能
 export const actions = {
-  setUser({ commit }, payload) {
-    commit('setUser', payload)
+  setEvent({ commit }, payload) {
+    commit('setEvent', payload)
   }
 }
