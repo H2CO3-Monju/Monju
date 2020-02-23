@@ -11,7 +11,12 @@
 
           <v-row>
             <ul class="tags">
-              <tag :value="tag" :key="index" class="tags__tag" />
+              <tag
+                v-for="(tag, index) in event.tags"
+                :value="tag"
+                :key="index"
+                class="tags__tag"
+              />
             </ul>
           </v-row>
         </v-col>
@@ -37,7 +42,9 @@ export default {
     tag
   },
   computed: {
-    ...mapState(['event']),
+    ...mapState({
+      event: 'event'
+    }),
     ...mapGetters({
       getEvent: 'event/getEvent'
     }),

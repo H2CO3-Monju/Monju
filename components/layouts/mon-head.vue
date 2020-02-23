@@ -19,18 +19,18 @@
 
       <v-spacer></v-spacer>
 
-      <eventcreation :text="'イベントを作成'" />
+      <nuxtlinkButton :path="'/login'" :text="'ログイン'" />
     </v-app-bar>
   </div>
 </template>
 
 <script lang="js">
 import searchInput from '@/components/ui/inputs/searchBar'
-import eventcreation from '@/components/ui/btns/event_creation'
+import nuxtlinkButton from '@/components/ui/btns/nuxtlinkButton'
 export default {
   components: {
     searchInput,
-    eventcreation
+    nuxtlinkButton
   },
   data() {
     return {

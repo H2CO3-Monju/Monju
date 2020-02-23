@@ -19,7 +19,7 @@
 
       <v-spacer></v-spacer>
 
-      <eventcreation :text="'イベントを作成'" />
+      <nuxtlinkButton :path="'/event/new'" :text="'イベントを作成'" />
 
       <div class="pl-5">
         {{ havePoint }}
@@ -79,11 +79,11 @@
 import { mapActions } from 'vuex'
 import firebase from '~/plugins/firebase'
 import searchInput from '@/components/ui/inputs/searchBar'
-import eventcreation from '@/components/ui/btns/event_creation'
+import nuxtlinkButton from '@/components/ui/btns/nuxtlinkButton'
 export default {
   components: {
     searchInput,
-    eventcreation
+    nuxtlinkButton
   },
   data() {
     return {
