@@ -2,9 +2,9 @@
   <div class="infoCard">
     <v-container>
       <v-card class="ml-2">
-        <v-title class="pl-3">
+        <v-card-title class="pl-3" color="#7994A7">
           評価とレビュー
-        </v-title>
+        </v-card-title>
         <evalution />
       </v-card>
     </v-container>
