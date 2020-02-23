@@ -3,7 +3,9 @@
     <div class="container">
       <h1>新規イベント作成</h1>
       <div class="mainContents-wrap">
-        <eventImage />
+        <div class="eventImage-wrap">
+          <eventImage />
+        </div>
 
         <div class="title-tag">
           <div class="title-tag__title">
@@ -326,6 +328,14 @@ ul {
 @media screen and (max-width: 600px) {
   .container {
     width: 95%;
+    padding: 50px 5vw;
+    .mainContents-wrap .eventImage-wrap {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      padding-left: 50px;
+      width: 100%;
+    }
   }
   .bg {
     padding: 1vh 0;
@@ -334,6 +344,7 @@ ul {
 @media screen and (min-width: 600px) {
   .container {
     width: 70%;
+    padding: 50px 60px;
   }
   .bg {
     padding: 5vh 0;
@@ -342,7 +353,6 @@ ul {
 .container {
   height: auto;
   margin: 0 auto;
-  padding: 50px 60px;
   border-radius: 20px;
   color: $_font_color;
   background-color: $_container_white;

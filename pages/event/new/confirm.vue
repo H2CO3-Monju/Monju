@@ -83,6 +83,7 @@ ul {
 @media screen and (max-width: 600px) {
   .container {
     width: 95%;
+    padding: 50px 5vw;
   }
   .bg {
     padding: 1vh 0;
@@ -91,6 +92,7 @@ ul {
 @media screen and (min-width: 600px) {
   .container {
     width: 70%;
+    padding: 50px 60px;
   }
   .bg {
     padding: 5vh 0;
@@ -99,7 +101,6 @@ ul {
 .container {
   height: auto;
   margin: 0 auto;
-  padding: 50px 60px;
   border-radius: 20px;
   color: $_font_color;
   background-color: $_container_white;
@@ -112,6 +113,21 @@ ul {
     }
     &__event-type {
       margin-bottom: 0;
+    }
+  }
+  .tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 2px;
+    &__tag {
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 0 8px;
+      border: solid 1px $_font_color;
+      border-radius: 3px;
+      font-size: 0.8em;
     }
   }
 }
