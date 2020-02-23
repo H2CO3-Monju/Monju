@@ -7,74 +7,29 @@
         </span>
       </v-card>
     </v-col>
-    <v-col xl="3" lg="3" md="3" sm="3" xs="3">
+    <v-col xl="3" lg="3" md="4" sm="4" xs="4">
       <span class="allCnt">
         5段階評価中
       </span>
     </v-col>
-    <v-col xl="3" lg="3" md="3" sm="3" xs="3">
+    <v-col xl="3" lg="3" md="4" sm="4" xs="4">
       <span class="review_Cnt">
         {{ reviewCnt }}
         件のレビュー
       </span>
     </v-col>
-    <v-col xl="3" lg="3" md="3" sm="3" xs="3" class="mr-1">
-      <v-row>
-        <small>
-          ★★★★★
-        </small>
-        <v-progress-linear
-          value="20"
-          color="#9CD929"
-          background-color="#D5D5D5"
-        ></v-progress-linear>
-      </v-row>
-      <v-row>
-        <small>
-          ★★★★
-        </small>
-        <v-progress-linear
-          value="40"
-          color="#C4D929"
-          background-color="#D5D5D5"
-        ></v-progress-linear>
-      </v-row>
-      <v-row>
-        <small>
-          ★★★
-        </small>
-        <v-progress-linear
-          value="50"
-          color="#F0E222"
-          background-color="#D5D5D5"
-        ></v-progress-linear>
-      </v-row>
-      <v-row>
-        <small>
-          ★★
-        </small>
-        <v-progress-linear
-          value="60"
-          color="#F4A230"
-          background-color="#D5D5D5"
-        ></v-progress-linear>
-      </v-row>
-      <v-row>
-        <small>
-          ★
-        </small>
-        <v-progress-linear
-          value="70"
-          color="#F34573"
-          background-color="#D5D5D5"
-        ></v-progress-linear>
-      </v-row>
+    <v-col xl="3" lg="3" md="12" sm="12" xs="12" class="mr-1">
+      <evgraph />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import evgraph from '@/components/ui/design/ev-graph'
 export default {
+  components: {
+    evgraph
+  },
   data() {
     return {
       evalution: '4.5',
