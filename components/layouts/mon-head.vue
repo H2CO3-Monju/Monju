@@ -15,7 +15,7 @@
       >
       </v-img>
 
-      <searchInput class="pd-1" />
+      <searchInput />
 
       <v-spacer></v-spacer>
 

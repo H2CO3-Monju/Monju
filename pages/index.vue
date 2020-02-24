@@ -52,23 +52,23 @@
         </v-card> -->
         <sample />
       </section>
-      <foot />
+      <!-- <foot /> -->
     </div>
   </div>
 </template>
 
 <script>
 // import defaultHead from '@/components/layouts/mon-head'
-import foot from '@/components/layouts/mon-foot'
+// import foot from '@/components/layouts/mon-foot'
 import sample from '@/components/ui/design/sample'
 // import border from '@/components/ui/actions/border'
 export default {
   layout: 'top',
   components: {
     // defaultHead,
-    sample,
+    sample
     // border,
-    foot
+    // foot
   }
 }
 </script>

@@ -85,16 +85,20 @@
           </div>
         </div>
       </section>
+      <foot />
     </div>
   </div>
 </template>
 
 <script>
 import defaultHead from '@/components/layouts/mon-head'
+import foot from '@/components/layouts/mon-foot'
 import newBtn from '@/components/ui/btns/topBtn'
+
 export default {
   components: {
     defaultHead,
+    foot,
     newBtn
   }
 }
@@ -118,11 +122,10 @@ export default {
       overflow: hidden;
     }
     .area:nth-child(1) {
-      background: #55c500;
+      background: url('~assets/images/random-shapes.svg');
+      background-color: #55c500;
       width: 100%;
       display: block;
-      height: 689px;
-      max-height: 689px;
       overflow: auto;
       .sectionwrap {
         display: flex;
@@ -135,6 +138,7 @@ export default {
           text-align: left;
           margin-top: 8vh;
           letter-spacing: 0.06em;
+          font-weight: bold;
         }
         p {
           text-align: left;
@@ -211,7 +215,8 @@ export default {
       max-height: 689px;
       overflow: auto;
       background-color: rgb(167, 125, 194);
-      padding-bottom: 50px;
+      padding-bottom: 3vh;
+      padding-top: 3vh;
       .sectionwrap {
         text-align: center;
         padding: 0px 4%;
