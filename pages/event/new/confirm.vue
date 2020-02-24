@@ -21,8 +21,19 @@
             </ul>
           </v-row>
 
-          <v-row>
-            <img id="preview" />
+          <v-row class="event-info">
+            <v-col class="event-info__left-column">
+              <div class="event-info__image-wrap">
+                <img id="preview" class="event-info__image" />
+              </div>
+            </v-col>
+            <v-col>
+              <v-row>
+                <p>
+                  {{ openDate }}〜{{ closeTime }}（{{ event.allotedTime }}時間）
+                </p>
+              </v-row>
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -49,7 +60,10 @@ export default {
   },
   data() {
     return {
-      event: ''
+      event: '',
+      openDate: '',
+      closeTime: '',
+      deadlineDate: ''
     }
   },
   computed: {
@@ -65,7 +79,44 @@ export default {
       const event = this.getEvent
       this.event = event
       document.getElementById('preview').setAttribute('src', this.event.file)
+      this.openDate = this.processDate(this.event.openDate)
+      this.closeTime = this.getCloseTime(
+        this.event.openDate,
+        this.event.allotedTime
+      )
+      this.deadlineDate = this.processDate(this.event.deadlineDate)
     })
+  },
+  methods: {
+    processDate(date) {
+      const y = date.substring(0, 4)
+      let mo = date.substring(5, 7)
+      const d = date.substring(8, 10)
+      const h = date.substring(11, 13)
+      const mi = date.substring(14, 16)
+      const weekArray = ['日', '月', '火', '水', '木', '金', '土']
+      const dayIndex = new Date(y + '/' + mo + '/' + d).getDay()
+      const day = weekArray[dayIndex]
+      if (mo.substring(0, 1) === '0') {
+        mo = mo.slice(1)
+      }
+      const dateText =
+        y + '年' + mo + '月' + d + '日' + '(' + day + ')' + ' ' + h + ':' + mi
+      return dateText
+    },
+    getCloseTime(date, allotedTime) {
+      const h = Number(date.substring(11, 13))
+      let closeHour = h + Number(allotedTime)
+      if (closeHour > 24) {
+        closeHour -= 24
+      }
+      if (closeHour < 10) {
+        closeHour = '0' + closeHour
+      }
+      const mi = date.substring(14, 16)
+      const closeTime = closeHour + ':' + mi
+      return closeTime
+    }
   }
 }
 </script>
@@ -133,6 +184,33 @@ ul {
       border: solid 1px $_font_color;
       border-radius: 3px;
       font-size: 0.8em;
+    }
+  }
+  .event-info {
+    &__left-column {
+      flex-grow: 0;
+      margin-right: 40px;
+      width: 344px;
+    }
+    &__image-wrap {
+      position: relative;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 320px;
+      height: 213px;
+    }
+    &__image {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
     }
   }
 }
