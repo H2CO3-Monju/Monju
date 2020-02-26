@@ -3,8 +3,8 @@
     <v-container class="container">
       <v-row>
         <v-col>
-          <v-row class="title">
-            <h1 class="title__event-title">
+          <v-row class="event-title">
+            <h1 class="event-title__h1">
               Javascriptでなんかすごいことやる in HAL東京
             </h1>
           </v-row>
@@ -98,6 +98,24 @@
               </v-row>
             </v-col>
           </v-row>
+
+          <v-row>
+            <div class="markdown" v-html="event.markdown"></div>
+          </v-row>
+
+          <!-- <buttonComponent
+            @btnClick="createEvent"
+            :needsEvent="true"
+            :text="'この内容でイベントを作成する'"
+          /> -->
+          <v-row justify="center">
+            <v-col xl="4" lg="4" md="5">
+              <buttonComponent :text="'イベント編集画面に戻る'" />
+            </v-col>
+            <v-col xl="4" lg="4" md="5">
+              <buttonComponent :text="'この内容でイベントを作成する'" />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -108,6 +126,7 @@
 import { mapState, mapGetters } from 'vuex'
 import tag from '@/components/pages/event/new/tag'
 import avatar from '@/components/ui/avatar'
+import buttonComponent from '@/components/ui/btns/buttonComponent'
 export default {
   middleware({ store, redirect }) {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
@@ -121,7 +140,8 @@ export default {
   },
   components: {
     tag,
-    avatar
+    avatar,
+    buttonComponent
   },
   data() {
     return {
@@ -229,15 +249,13 @@ ul {
   border-radius: 20px;
   color: $_font_color;
   background-color: $_container_white;
-  .title {
+  .event-title {
+    margin-bottom: 12px;
     color: $_font_color;
     border-bottom: solid 4px $border-color;
-    &__event-title {
-      font-size: 1.6em;
+    &__h1 {
+      font-size: 1.8em;
       font-weight: bold;
-    }
-    &__event-type {
-      margin-bottom: 0;
     }
   }
   .tags {
@@ -323,7 +341,20 @@ ul {
     }
   }
 }
-.details__inner-markdown {
+</style>
+<style lang="scss">
+$markdown-font-color: #444;
+$border-color: $_keyRimePie;
+$table-border-color: #606060;
+$th-bg-color: $_keyRimePie;
+$td-bg-color: #fefff2;
+$code-font-color: #2257ca;
+$code-bg-color: #e8f0f7;
+$pre-bg-color: #f5f5f5;
+$deadline-color: #7da3a1;
+.markdown {
+  width: 100%;
+  padding-top: 50px;
   *:first-child {
     margin-top: 0;
   }
@@ -332,54 +363,67 @@ ul {
     font-size: 1.6em;
     font-weight: bold;
     border-bottom: double 4px $border-color;
+    word-wrap: break-word;
   }
   h2 {
     margin: 15px 0 10px 0;
     font-size: 1.37em;
     font-weight: bold;
     border-bottom: solid 2px $border-color;
+    word-wrap: break-word;
   }
   h3 {
     margin: 15px 0 10px 0;
     font-size: 1.17em;
     font-weight: bold;
     border-bottom: dashed 2px $border-color;
+    word-wrap: break-word;
   }
   h4 {
     margin: 15px 0 10px 0;
     font-size: 1em;
     font-weight: bold;
     border-bottom: dotted 1px $border-color;
+    word-wrap: break-word;
   }
   h5 {
     margin: 15px 0 10px 0;
     font-size: 1em;
     font-weight: bold;
+    word-wrap: break-word;
   }
   h6 {
     margin: 15px 0 10px 0;
     font-size: 0.9em;
     font-weight: bold;
+    word-wrap: break-word;
   }
   p {
     margin-bottom: 10px;
     font-size: 1em;
+    word-wrap: break-word;
   }
   ul {
     list-style-type: disc;
+    word-wrap: break-word;
     ul {
       list-style-type: circle;
+      word-wrap: break-word;
       ul {
         list-style-type: square;
+        word-wrap: break-word;
       }
     }
   }
   ol {
     list-style-type: decimal;
+    word-wrap: break-word;
     ol {
       list-style-type: upper-roman;
+      word-wrap: break-word;
       ol {
         list-style-type: lower-roman;
+        word-wrap: break-word;
       }
     }
   }
@@ -407,6 +451,7 @@ ul {
   blockquote {
     padding: 10px 20px 10px 10px;
     border-left: solid 5px $border_color;
+    word-wrap: break-word;
   }
   code {
     display: inline;
@@ -414,12 +459,15 @@ ul {
     color: $code-font-color;
     background-color: $code-bg-color;
     box-shadow: none;
+    word-wrap: break-word;
   }
   pre {
     background-color: $pre-bg-color;
+    word-wrap: break-word;
     code {
       color: $markdown-font-color;
       background-color: $pre-bg-color;
+      word-wrap: break-word;
     }
   }
 }
