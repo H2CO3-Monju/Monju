@@ -100,7 +100,7 @@
           </v-row>
 
           <v-row>
-            <div class="markdown" v-html="event.markdown"></div>
+            <div v-html="event.markdown" class="markdown"></div>
           </v-row>
 
           <!-- <buttonComponent
@@ -110,10 +110,18 @@
           /> -->
           <v-row justify="center">
             <v-col xl="4" lg="4" md="5">
-              <buttonComponent :text="'イベント編集画面に戻る'" />
+              <buttonComponent
+                @btnClick="backEventEdit"
+                :needsEvent="true"
+                :text="'イベント編集画面に戻る'"
+              />
             </v-col>
             <v-col xl="4" lg="4" md="5">
-              <buttonComponent :text="'この内容でイベントを作成する'" />
+              <buttonComponent
+                @btnClick="createEvent"
+                :needsEvent="true"
+                :text="'この内容でイベントを作成する'"
+              />
             </v-col>
           </v-row>
         </v-col>
@@ -124,6 +132,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import firebase from '~/plugins/firebase'
 import tag from '@/components/pages/event/new/tag'
 import avatar from '@/components/ui/avatar'
 import buttonComponent from '@/components/ui/btns/buttonComponent'
@@ -204,6 +213,54 @@ export default {
       const mi = date.substring(14, 16)
       const closeTime = closeHour + ':' + mi
       return closeTime
+    },
+    backEventEdit() {
+      this.$router.push('../new')
+    },
+    createEvent() {
+      const studyGroupIdRef = firebase.firestore().collection('study_group_id')
+      const eventTags = this.event.tags.map((tag) => tag.message)
+      const eventPresenters = this.event.presenters.map(
+        (presenter) => presenter.message
+      )
+      studyGroupIdRef
+        .add({
+          title: this.event.title,
+          tags: eventTags,
+          type: this.event.eventType,
+          owner: this.uid,
+          openDate: this.openDate,
+          closeTime: this.closeTime,
+          allotedTime: this.event.allotedTime,
+          deadlineDate: this.deadlineDate,
+          fixedMember: Number(this.event.fixedMember),
+          autoCloseNumber: this.event.autoCloseNumber,
+          entryFee: this.event.entryFee,
+          presenters: eventPresenters,
+          markdown: this.event.markdown
+        })
+        .then(async (docRef) => {
+          console.log('Document written with ID: ', docRef.id)
+          await eventPresenters.forEach((presenter) => {
+            const userRef = firebase
+              .database()
+              .ref()
+              .child(docRef.id)
+              .child(presenter)
+            userRef
+              .set({
+                uid: presenter,
+                isOnline: false,
+                type: 'presenter'
+              })
+              .catch((error) => {
+                console.error('Error adding document: ', error)
+              })
+          })
+        })
+        .catch(function(error) {
+          console.error('Error adding document: ', error)
+        })
     }
   }
 }
