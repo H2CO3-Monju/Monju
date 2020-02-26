@@ -30,7 +30,7 @@
             type="number"
             min="1"
           />
-          人集まらなかったら自動的にイベントを閉鎖する
+          人以上集まらなかったら自動的にイベントを閉鎖する
         </small>
       </p>
       <p v-if="!!errorMsg" class="autoCloseText__errorMsg">

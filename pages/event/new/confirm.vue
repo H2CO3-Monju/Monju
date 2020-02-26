@@ -22,15 +22,63 @@
           </v-row>
 
           <v-row class="event-info">
-            <v-col class="event-info__left-column">
+            <v-col class="event-info__left-column flex-grow-0">
               <div class="event-info__image-wrap">
                 <img id="preview" class="event-info__image" />
               </div>
             </v-col>
-            <v-col>
-              <v-row>
+
+            <v-col class="event-info__right-column">
+              <v-row class="event-info__openDate">
                 <p>
+                  <span class="listMark"></span>
                   {{ openDate }}〜{{ closeTime }}（{{ event.allotedTime }}時間）
+                </p>
+              </v-row>
+              <v-row class="event-info__deadlineDate">
+                <p>
+                  <span class="listMark--deadline"></span>
+                  応募締め切り：{{ deadlineDate }}
+                </p>
+                <p
+                  v-if="event.autoCloseNumber !== 1"
+                  class="event-info__autoClose"
+                >
+                  ※参加者が{{
+                    event.autoCloseNumber
+                  }}人に達さなかった場合はイベントを中止します。
+                </p>
+              </v-row>
+              <v-row class="event-info__type">
+                <p>
+                  <span class="listMark"></span>
+                  {{ event.eventType }}
+                </p>
+              </v-row>
+              <v-row class="event-info__fixedMember">
+                <p>
+                  <span class="listMark"></span>
+                  定員：0/{{ event.fixedMember }}人
+                </p>
+              </v-row>
+              <v-row class="event-info__entryFee">
+                <p>
+                  <span class="listMark"></span>
+                  <span v-if="!!event.entryFee">
+                    費用：{{ event.entryFee }}
+                    <i class="fab fa-product-hunt"></i>
+                  </span>
+                  <span v-else>費用: 無料</span>
+                </p>
+              </v-row>
+              <v-row class="event-info__presenters">
+                <p>
+                  主催者：
+                </p>
+              </v-row>
+              <v-row class="event-info__presenters">
+                <p>
+                  発表者：
                 </p>
               </v-row>
             </v-col>
@@ -130,6 +178,7 @@ $td-bg-color: #fefff2;
 $code-font-color: #2257ca;
 $code-bg-color: #e8f0f7;
 $pre-bg-color: #f5f5f5;
+$deadline-color: #7da3a1;
 ul {
   padding: 0;
 }
@@ -188,7 +237,6 @@ ul {
   }
   .event-info {
     &__left-column {
-      flex-grow: 0;
       margin-right: 40px;
       width: 344px;
     }
@@ -211,6 +259,47 @@ ul {
       width: auto;
       max-width: 100%;
       max-height: 100%;
+    }
+    &__right-column {
+      p {
+        margin-bottom: 0;
+      }
+      %listMark {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: $border-color;
+        background-image: -webkit-gradient(
+          linear,
+          0 0,
+          0 100%,
+          color-stop(0.1, #fff),
+          color-stop(0.2, transparent),
+          color-stop(0.3, #fff),
+          color-stop(0.4, transparent),
+          color-stop(0.5, #fff),
+          color-stop(0.6, transparent),
+          color-stop(0.7, #fff),
+          color-stop(0.8, transparent),
+          color-stop(0.9, #fff),
+          color-stop(1, transparent),
+          to(transparent)
+        );
+      }
+      .listMark {
+        @extend %listMark;
+        background-color: $border-color;
+        &--deadline {
+          @extend %listMark;
+          background-color: $deadline-color;
+        }
+      }
+    }
+    &__deadlineDate {
+      color: $deadline-color;
+    }
+    &__autoClose {
+      padding-left: 1em;
     }
   }
 }
