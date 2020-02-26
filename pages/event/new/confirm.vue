@@ -78,20 +78,23 @@
                 </p>
               </v-row>
               <v-row class="event-info__presenters">
-                <p>
-                  発表者：
-                  <span
-                    :value="presenter"
-                    :key="index"
-                    v-for="(presenter, index) in event.presenters"
-                  >
-                    <avatar :userName="presenter.message" />
-                    <!-- 最後の値以外は読点をつける -->
-                    <span v-if="index !== event.presenters.length - 1">
-                      、
-                    </span>
-                  </span>
-                </p>
+                <div class="d-flex">
+                  <p style="width: 68px">発表者：</p>
+                  <p class="d-flex flex-wrap flex-grow-1" style="flex: 1">
+                    <template
+                      :value="presenter"
+                      v-for="(presenter, index) in event.presenters"
+                    >
+                      <span :key="index">
+                        <avatar :userName="presenter.message" />
+                        <!-- 最後の値以外は読点をつける -->
+                        <span v-if="index !== event.presenters.length - 1">
+                          、
+                        </span>
+                      </span>
+                    </template>
+                  </p>
+                </div>
               </v-row>
             </v-col>
           </v-row>
