@@ -74,11 +74,23 @@
               <v-row class="event-info__presenters">
                 <p>
                   主催者：
+                  <avatar :userName="uid" />
                 </p>
               </v-row>
               <v-row class="event-info__presenters">
                 <p>
                   発表者：
+                  <span
+                    :value="presenter"
+                    :key="index"
+                    v-for="(presenter, index) in event.presenters"
+                  >
+                    <avatar :userName="presenter.message" />
+                    <!-- 最後の値以外は読点をつける -->
+                    <span v-if="index !== event.presenters.length - 1">
+                      、
+                    </span>
+                  </span>
                 </p>
               </v-row>
             </v-col>
@@ -90,8 +102,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import tag from '@/components/pages/event/new/tag'
+import avatar from '@/components/ui/avatar'
 export default {
   middleware({ store, redirect }) {
     // Vuexのlocalstrageを使用している場合setTimeOutをしないとstoreから値を取得できない
@@ -104,10 +117,12 @@ export default {
     })
   },
   components: {
-    tag
+    tag,
+    avatar
   },
   data() {
     return {
+      uid: '',
       event: '',
       openDate: '',
       closeTime: '',
@@ -115,6 +130,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['user']),
     ...mapGetters({
       getEvent: 'event/getEvent'
     }),
@@ -124,6 +140,7 @@ export default {
     setTimeout(() => {
       // storeのlocalStrage永続化の関係でmapState(['event'])を使っても
       // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
+      this.uid = this.user.uid
       const event = this.getEvent
       this.event = event
       document.getElementById('preview').setAttribute('src', this.event.file)
