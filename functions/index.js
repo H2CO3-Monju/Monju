@@ -2,7 +2,21 @@ const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const express = require('express');
 const app = express();
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
+
+const algoliasearch = require("algoliasearch")
+const ALGOLIA_ID = functions.config().algolia.app_id
+const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key
+const ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key
+const ALGOLIA_INDEX_NAME = "Monju"
+const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY)
+
+exports.onProductCreated = functions.firestore.document("study_group_id/{id}").onWrite((snap, context) => {
+  const data = snap.data()
+  data.objectID = context.params.id
+  const index = client.initIndex(ALGOLIA_INDEX_NAME)
+  return index.saveObject(data)
+})
 
 const checkUid = (uid) => {
   if(uid.length < 5) {
