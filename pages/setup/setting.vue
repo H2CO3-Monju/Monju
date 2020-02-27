@@ -113,3 +113,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.v-tabs {
+  .v-item-group {
+    .v-slide-group__wrapper {
+      .v-slide-group__content {
+        background-color: #333333;
+        .v-tab {
+          max-width: 200px;
+        }
+      }
+    }
+  }
+}
+</style>
