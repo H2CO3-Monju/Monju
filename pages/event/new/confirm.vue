@@ -185,6 +185,7 @@ export default {
     })
   },
   methods: {
+    // ...mapActions({ setEvent: 'event/setEvent' }),
     processDate(date) {
       const y = date.substring(0, 4)
       let mo = date.substring(5, 7)
@@ -239,9 +240,20 @@ export default {
           presenters: eventPresenters,
           markdown: this.event.markdown
         })
-        .then(async (docRef) => {
+        .then((docRef) => {
           console.log('Document written with ID: ', docRef.id)
-          await eventPresenters.forEach((presenter) => {
+          const reg = /(.*)(?:\.([^.]+$))/
+          const extension = this.event.fileName.match(reg)[2]
+          const storageRef = firebase
+            .storage()
+            .ref()
+            .child(`event/${docRef.id}.${extension}`)
+          storageRef
+            .putString(this.event.file, 'data_url')
+            .then(function(snapshot) {
+              console.log('Uploaded a data_url string!')
+            })
+          eventPresenters.forEach((presenter) => {
             const userRef = firebase
               .database()
               .ref()
@@ -261,6 +273,7 @@ export default {
         .catch(function(error) {
           console.error('Error adding document: ', error)
         })
+      // this.setEvent()
     }
   }
 }
