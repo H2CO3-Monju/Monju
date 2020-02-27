@@ -88,6 +88,3 @@ sw.*
 
 # Vim swap files
 *.swp
-
-# firebaseの認証情報
-plugins/firebase.js

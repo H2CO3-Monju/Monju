@@ -4,7 +4,7 @@
       <h1>新規イベント作成</h1>
       <div class="mainContents-wrap">
         <div class="eventImage-wrap">
-          <eventImage />
+          <eventImage ref="eventImage" />
         </div>
 
         <div class="title-tag">
@@ -273,17 +273,21 @@ export default {
     getValues() {
       // TODO: 画像を取得
       const event = {}
+      const eventImage = this.$refs.eventImage.returnValue()
+      event.file = eventImage.file
+      event.fileName = eventImage.fileName
       event.title = this.$refs.titleInput.returnValue()
       event.tags = this.$refs.tagWrap.returnValues()
-      event.openDate = this.getDateType(
-        this.$refs.termAndTime_date.returnValue(), // yyyymmdd
+      // date関数はstoreに保存すると日本時刻ではなくなるので文字列にする必要がある
+      event.openDate =
+        this.$refs.termAndTime_date.returnValue() + // yyyymmdd
+        ' ' +
         this.$refs.termAndTime_hour_minutes.returnValue() // hhmm
-      )
       event.allotedTime = this.$refs.allotedTime.returnValue()
-      event.deadlineDate = this.getDateType(
-        this.$refs.deadline_date.returnValue(), // yyyymmdd
+      event.deadlineDate =
+        this.$refs.deadline_date.returnValue() + // yyyymmdd
+        ' ' +
         this.$refs.deadline_hour_minutes.returnValue() // hhmm
-      )
       event.eventType = this.isEventTypePresentation
         ? '発表勉強会'
         : '交流勉強会'

@@ -2,13 +2,13 @@ import firebase from 'firebase'
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
-    apiKey: 'AIzaSyBm4g9bXZoYiMtPT2bPxd0DxvSMlkf-Yts',
-    authDomain: 'monju-70d76.firebaseapp.com',
-    databaseURL: 'https://monju-70d76.firebaseio.com',
-    projectId: 'monju-70d76',
-    storageBucket: 'monju-70d76.appspot.com',
-    messagingSenderId: '291661632877',
-    appId: '1:291661632877:web:073ea490981e5752037664'
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGEING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID
   })
 }
 
