@@ -269,11 +269,12 @@ export default {
                 console.error('Error adding document: ', error)
               })
           })
+          // this.setEvent()
+          this.$router.push('../' + docRef.id)
         })
         .catch(function(error) {
           console.error('Error adding document: ', error)
         })
-      // this.setEvent()
     }
   }
 }
