@@ -60,7 +60,7 @@
           <div class="content">
             <pointRedemption v-if="isActive == 'pointRedemption'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointHistory v-if="isActive == 'pointHistory'" />
           </div>
           <div class="content">
@@ -113,3 +113,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.v-tabs {
+  .v-item-group {
+    .v-slide-group__wrapper {
+      .v-slide-group__content {
+        background-color: #333333;
+        .v-tab {
+          max-width: 200px;
+        }
+      }
+    }
+  }
+}
+</style>

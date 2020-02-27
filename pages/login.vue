@@ -3,7 +3,7 @@
     <div class="login-container column is-4">
       <div class="login-wrap column">
         <div class="login-title" data-tilt>
-          <h1>Monjuにログイン</h1>
+          <h1>Monju</h1>
         </div>
 
         <div class="login-form validate-form">
@@ -53,13 +53,13 @@
         <div class="login-authentication">
           <button class="login-auth-facebook login-auth_btn">
             <span class="login-auth-symbol">
-              <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
+              <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
             </span>
           </button>
 
           <button class="login-auth-twitter login-auth_btn">
             <span class="login-auth-symbol">
-              <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
+              <i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
             </span>
           </button>
 
@@ -161,7 +161,7 @@ export default {
         max-width: 80%;
         margin: 0 auto;
         text-align: center;
-        font-size: 1.6em;
+        font-size: 2.7em;
       }
       .login-form {
         .input-wrap {
@@ -171,12 +171,15 @@ export default {
             padding-right: 0;
             padding-left: 0;
           }
+          i {
+            color: #7994a7;
+          }
           .input {
             margin: 0 auto;
             padding: 0;
             border-top: none;
             border-right: none;
-            border-bottom: solid 1px;
+            border-bottom: solid 1px #7994a7;
             border-left: none;
             border-radius: 0%;
             background-color: transparent;
@@ -205,8 +208,8 @@ export default {
         .login-auth_btn {
           cursor: pointer;
           padding: 0;
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border: none;
           border-radius: 100%;
         }
@@ -225,7 +228,7 @@ export default {
           background-color: #fff;
         }
         .github-symbol {
-          font-size: 69px;
+          font-size: 55px;
         }
       }
     }

@@ -36,7 +36,7 @@
 
       <div v-else class="regist-wrap column">
         <div class="regist-title" data-tilt>
-          <h1>Monjuに新規登録</h1>
+          <h1>新規登録</h1>
         </div>
 
         <div class="regist-form validate-form">
@@ -139,13 +139,13 @@
         <div class="regist-authentication">
           <button class="regist-auth-facebook regist-auth_btn">
             <span class="regist-auth-symbol">
-              <i class="fab fa-facebook-f fa-4x" aria-hidden="true"></i>
+              <i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
             </span>
           </button>
 
           <button class="regist-auth-twitter regist-auth_btn">
             <span class="regist-auth-symbol">
-              <i class="fab fa-twitter fa-4x" aria-hidden="true"></i>
+              <i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
             </span>
           </button>
 
@@ -404,12 +404,15 @@ p {
             padding-right: 0;
             padding-left: 0;
           }
+          i {
+            color: #7994a7;
+          }
           .input {
             margin: 0 auto;
             padding: 0;
             border-top: none;
             border-right: none;
-            border-bottom: solid 1px;
+            border-bottom: solid 1px #7994a7;
             border-left: none;
             border-radius: 0%;
             background-color: transparent;
@@ -448,8 +451,8 @@ p {
         .regist-auth_btn {
           cursor: pointer;
           padding: 0;
-          width: 70px;
-          height: 70px;
+          width: 60px;
+          height: 60px;
           border: none;
           border-radius: 100%;
         }
@@ -468,7 +471,7 @@ p {
           background-color: #fff;
         }
         .github-symbol {
-          font-size: 69px;
+          font-size: 55px;
         }
       }
     }
