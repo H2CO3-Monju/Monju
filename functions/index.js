@@ -10,12 +10,29 @@ const ALGOLIA_ADMIN_KEY = functions.config().algolia.api_key
 const ALGOLIA_SEARCH_KEY = functions.config().algolia.search_key
 const ALGOLIA_INDEX_NAME = "Monju"
 const client = algoliasearch(ALGOLIA_ID, ALGOLIA_ADMIN_KEY)
+const index = client.initIndex(ALGOLIA_INDEX_NAME)
 
-exports.onProductCreated = functions.firestore.document("study_group_id/{id}").onWrite((snap, context) => {
+// algolia全文検索API利用関数// コレクションに新規レコードが追加されると起動
+exports.onProductCreated = functions.firestore.document('study_group_id/{id}').onCreate((snap, context) => {
   const data = snap.data()
   data.objectID = context.params.id
-  const index = client.initIndex(ALGOLIA_INDEX_NAME)
   return index.saveObject(data)
+})
+
+// algolia全文検索API利用関数// コレクションのレコードが削除されると起動
+exports.onPostDeleted = functions.firestore.document('study_group_id/{id}').onDelete((snap, context) => {
+  // Index用オブジェクトを削除
+  index.deleteObject(snap.id)
+})
+
+// algolia全文検索API利用関数// コレクションのレコードが更新されると起動
+exports.onPostUpdated = functions.firestore.document('study_group_id/{id}').onUpdate((change, context) => {
+  const objectID = change.after.id
+  const newData = change.after.data();
+  return index.saveObject({
+    objectID,
+    ...newData
+  })
 })
 
 const checkUid = (uid) => {
