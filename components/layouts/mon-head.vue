@@ -15,8 +15,11 @@
       >
       </v-img>
 
+      <v-spacer></v-spacer>
+
       <searchInput />
 
+      <v-spacer></v-spacer>
       <v-spacer></v-spacer>
 
       <nuxtlinkButton :path="'/login'" :text="'ログイン'" />
