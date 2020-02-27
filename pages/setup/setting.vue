@@ -45,34 +45,34 @@
 
       <v-col lg="8" md="8" sm="12" xs="12">
         <div>
-          <div class="content">
+          <div class="container">
             <chProfile v-if="isActive == 'chProfile'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chCoordination v-if="isActive == 'chCoordination'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chKey v-if="isActive == 'chKey'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointMng v-if="isActive == 'pointMng'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointRedemption v-if="isActive == 'pointRedemption'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointHistory v-if="isActive == 'pointHistory'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chBank v-if="isActive == 'chBank'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chCard v-if="isActive == 'chCard'" />
           </div>
-          <div class="content">
+          <div class="container">
             <memberRegistration v-if="isActive == 'memberRegistration'" />
           </div>
-          <div class="content">
+          <div class="container">
             <unsubscribe v-if="isActive == 'unsubscribe'" />
           </div>
         </div>

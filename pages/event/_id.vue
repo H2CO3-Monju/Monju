@@ -11,14 +11,14 @@ const client = algoliasearch(
 const index = client.initIndex('Monju')
 export default {
   async validate({ params }) {
-    const searchResult = await index.search({ query: '' })
-    console.log(searchResult.hits)
-    // 数値でなければならない
-    return !!searchResult.hits
-  },
-  async mounted() {
-    const searchResult = await index.search({})
-    console.log(searchResult.hits)
+    const path = location.pathname
+    // "/event"の下の階層を取得する正規表現
+    const eventIdPathArray = path.match(/[^/event/]+/)
+    const eventId = eventIdPathArray ? eventIdPathArray[0] : null
+    const searchResult = await index.getObjects([eventId])
+    const denseResult = searchResult.results.filter((e) => e)
+    const existsEvent = !!denseResult.length
+    return existsEvent
   }
 }
 </script>
