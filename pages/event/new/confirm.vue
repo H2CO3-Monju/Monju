@@ -99,6 +99,12 @@
             </v-col>
           </v-row>
 
+          <v-row justify="center" align="center">
+            <v-col cols="6" class="participants my-6">
+              <p class="participants__p">参加者はまだいません</p>
+            </v-col>
+          </v-row>
+
           <v-row>
             <div v-html="event.markdown" class="markdown"></div>
           </v-row>
@@ -406,6 +412,13 @@ ul {
     }
     &__autoClose {
       padding-left: 1em;
+    }
+  }
+  .participants {
+    border: solid 3px $deadline-color;
+    &__p {
+      margin-bottom: 0;
+      text-align: center;
     }
   }
 }
