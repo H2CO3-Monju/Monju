@@ -3,10 +3,22 @@
 </template>
 
 <script>
+import * as algoliasearch from 'algoliasearch'
+const client = algoliasearch(
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_SEARCH_ONLY_API_KEY
+)
+const index = client.initIndex('Monju')
 export default {
-  validate({ params }) {
+  async validate({ params }) {
+    const searchResult = await index.search({ query: '' })
+    console.log(searchResult.hits)
     // 数値でなければならない
-    return /^\d+$/.test(params.id)
+    return !!searchResult.hits
+  },
+  async mounted() {
+    const searchResult = await index.search({})
+    console.log(searchResult.hits)
   }
 }
 </script>
