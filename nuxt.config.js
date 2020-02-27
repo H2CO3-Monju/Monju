@@ -1,3 +1,14 @@
+require('dotenv').config()
+const { FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_APP_ID,
+  FIREBASE_MESSAGEING_SENDER_ID,
+  ALGOLIA_APP_ID,
+  ALGOLIA_SEARCH_ONLY_API_KEY } = process.env
+
 export default {
   mode: 'spa',
   /*
@@ -85,5 +96,16 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    FIREBASE_API_KEY,
+    FIREBASE_AUTH_DOMAIN,
+    FIREBASE_DATABASE_URL,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_STORAGE_BUCKET,
+    FIREBASE_APP_ID,
+    FIREBASE_MESSAGEING_SENDER_ID,
+    ALGOLIA_APP_ID,
+    ALGOLIA_SEARCH_ONLY_API_KEY
   }
 }
