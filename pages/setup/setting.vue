@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-row justify="center" align-content="center">
-      <v-col lg="4" md="4" sm="12" xs="12">
-        <v-tabs vertical>
-          <v-title>
+      <v-col lg="3" md="3" sm="12" xs="12">
+        <v-tabs vertical color="#C4D929" background-color="#444444" dark>
+          <h2 class="title pl-3 pt-3">
             アカウント管理
-          </v-title>
+          </h2>
           <!-- 外部サービス連携はプロフィールないにいれる -->
           <v-tab v-on:click="isActive = 'chProfile'">
             プロフィール編集
@@ -16,9 +16,9 @@
           <v-tab v-on:click="isActive = 'chKey'">
             パスワード再設定
           </v-tab>
-          <v-title>
+          <h2 class="title pl-3 pt-3">
             ポイント管理
-          </v-title>
+          </h2>
           <v-tab v-on:click="isActive = 'pointMng'">
             ポイント購入
           </v-tab>
@@ -43,7 +43,7 @@
         </v-tabs>
       </v-col>
 
-      <v-col lg="8" md="8" sm="12" xs="12">
+      <v-col lg="9" md="9" sm="12" xs="12">
         <div>
           <div class="content">
             <chProfile v-if="isActive == 'chProfile'" />
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import chProfile from '@/components/pages/setUps/ch-Profile'
+import chProfile from '@/components/pages/setUps/account'
 import chCoordination from '@/components/pages/setUps/ch-coordination'
 import chKey from '@/components/pages/setUps/ch-key'
 import pointMng from '@/components/pages/setUps/point-mng'
@@ -113,3 +113,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+  color: #7994a7;
+}
+</style>
