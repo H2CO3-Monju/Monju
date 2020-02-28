@@ -170,13 +170,11 @@ export default {
       background-color: rgb(59, 165, 153);
       width: 100%;
       display: block;
-      height: 689px;
-      max-height: 689px;
       overflow: auto;
       .sectionwrap {
         display: flex;
         text-align: center;
-        padding: 0px 4%;
+        padding: 5% 5% 0 5%;
         margin: 0px auto;
         h2 {
           color: #fff;
@@ -211,15 +209,11 @@ export default {
     .area:nth-child(3) {
       width: 100%;
       display: block;
-      height: 689px;
-      max-height: 689px;
       overflow: auto;
       background-color: rgb(167, 125, 194);
-      padding-bottom: 3vh;
-      padding-top: 3vh;
       .sectionwrap {
         text-align: center;
-        padding: 0px 4%;
+        padding: 5% 5% 0 5%;
         margin: 0px auto;
         h2 {
           color: #fff;
@@ -252,15 +246,11 @@ export default {
     .area:nth-child(4) {
       width: 100%;
       display: block;
-      height: 689px;
-      max-height: 689px;
       overflow: auto;
       background-color: rgb(242, 153, 49);
-      padding-bottom: 50px;
-      padding-top: 5vh;
       .sectionwrap {
         text-align: center;
-        padding: 0px 4%;
+        padding: 5% 5% 0 5%;
         margin: 0px auto;
         h2 {
           color: #fff;
@@ -293,19 +283,16 @@ export default {
     .area:nth-child(5) {
       width: 100%;
       display: block;
-      height: 689px;
-      max-height: 689px;
       overflow: auto;
       background-color: rgb(253, 218, 99);
-      padding-bottom: 50px;
-      padding-top: 50px;
       .sectionwrap {
         display: flex;
         -webkit-box-align: center;
         align-items: center;
         -webkit-box-pack: center;
         justify-content: center;
-        margin-top: 100px;
+        padding: 5% 5% 0 5%;
+        margin-top: 10%;
         .sectionbox {
           max-width: 570px;
           min-height: 400px;
