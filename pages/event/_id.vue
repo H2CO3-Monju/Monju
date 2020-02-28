@@ -22,13 +22,25 @@
           </v-row>
 
           <v-row class="event-info">
-            <v-col class="event-info__left-column flex-grow-0">
+            <v-col
+              class="event-info__left-column"
+              lg="auto"
+              xl="auto"
+              md="12"
+              sm="12"
+            >
               <div class="event-info__image-wrap">
                 <img id="preview" class="event-info__image" />
               </div>
             </v-col>
 
-            <v-col class="event-info__right-column">
+            <v-col
+              class="event-info__right-column xs12"
+              lg="6"
+              xl="6"
+              md="12"
+              sm="12"
+            >
               <v-row class="event-info__openDate">
                 <p>
                   <span class="listMark"></span>
@@ -237,6 +249,12 @@ ul {
   .bg {
     padding: 1vh 0;
   }
+  // なぜかvuetifyのxsのみが効かないケースがあったのでこちらで指定
+  .xs12 {
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 @media screen and (min-width: 600px) {
   .container {
@@ -245,6 +263,20 @@ ul {
   }
   .bg {
     padding: 5vh 0;
+  }
+}
+@media screen and (min-width: 1264px) {
+  .container .event-info {
+    &__left-column {
+      margin-right: 40px;
+    }
+  }
+}
+@media screen and (max-width: 1264px) {
+  .container .event-info {
+    &__left-column {
+      text-align: center;
+    }
   }
 }
 .container {
