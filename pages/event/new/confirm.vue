@@ -5,7 +5,7 @@
         <v-col>
           <v-row class="event-title">
             <h1 class="event-title__h1">
-              Javascriptでなんかすごいことやる in HAL東京
+              {{ event.title }}
             </h1>
           </v-row>
 
@@ -99,15 +99,16 @@
             </v-col>
           </v-row>
 
+          <v-row justify="center" align="center">
+            <v-col cols="6" class="participants my-6">
+              <p class="participants__p">参加者はまだいません</p>
+            </v-col>
+          </v-row>
+
           <v-row>
             <div v-html="event.markdown" class="markdown"></div>
           </v-row>
 
-          <!-- <buttonComponent
-            @btnClick="createEvent"
-            :needsEvent="true"
-            :text="'この内容でイベントを作成する'"
-          /> -->
           <v-row justify="center">
             <v-col xl="4" lg="4" md="5">
               <buttonComponent
@@ -220,14 +221,15 @@ export default {
     },
     createEvent() {
       const studyGroupIdRef = firebase.firestore().collection('study_group_id')
-      const eventTags = this.event.tags.map((tag) => tag.message)
       const eventPresenters = this.event.presenters.map(
         (presenter) => presenter.message
       )
+      const reg = /(.*)(?:\.([^.]+$))/
+      const extension = this.event.fileName.match(reg)[2]
       studyGroupIdRef
         .add({
           title: this.event.title,
-          tags: eventTags,
+          tags: this.event.tags,
           type: this.event.eventType,
           owner: this.uid,
           openDate: this.openDate,
@@ -237,13 +239,12 @@ export default {
           fixedMember: Number(this.event.fixedMember),
           autoCloseNumber: this.event.autoCloseNumber,
           entryFee: this.event.entryFee,
-          presenters: eventPresenters,
-          markdown: this.event.markdown
+          presenters: this.event.presenters,
+          markdown: this.event.markdown,
+          extension
         })
         .then((docRef) => {
           console.log('Document written with ID: ', docRef.id)
-          const reg = /(.*)(?:\.([^.]+$))/
-          const extension = this.event.fileName.match(reg)[2]
           const storageRef = firebase
             .storage()
             .ref()
@@ -269,11 +270,12 @@ export default {
                 console.error('Error adding document: ', error)
               })
           })
+          // this.setEvent()
+          this.$router.push('../' + docRef.id)
         })
         .catch(function(error) {
           console.error('Error adding document: ', error)
         })
-      // this.setEvent()
     }
   }
 }
@@ -324,8 +326,10 @@ ul {
     color: $_font_color;
     border-bottom: solid 4px $border-color;
     &__h1 {
+      width: 100%;
       font-size: 1.8em;
       font-weight: bold;
+      word-wrap: break-word;
     }
   }
   .tags {
@@ -408,6 +412,13 @@ ul {
     }
     &__autoClose {
       padding-left: 1em;
+    }
+  }
+  .participants {
+    border: solid 3px $deadline-color;
+    &__p {
+      margin-bottom: 0;
+      text-align: center;
     }
   }
 }

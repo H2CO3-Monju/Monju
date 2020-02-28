@@ -45,34 +45,34 @@
 
       <v-col lg="9" md="9" sm="12" xs="12">
         <div>
-          <div class="content">
+          <div class="container">
             <chProfile v-if="isActive == 'chProfile'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chCoordination v-if="isActive == 'chCoordination'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chKey v-if="isActive == 'chKey'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointMng v-if="isActive == 'pointMng'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointRedemption v-if="isActive == 'pointRedemption'" />
           </div>
-          <div class="content">
+          <div class="container">
             <pointHistory v-if="isActive == 'pointHistory'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chBank v-if="isActive == 'chBank'" />
           </div>
-          <div class="content">
+          <div class="container">
             <chCard v-if="isActive == 'chCard'" />
           </div>
-          <div class="content">
+          <div class="container">
             <memberRegistration v-if="isActive == 'memberRegistration'" />
           </div>
-          <div class="content">
+          <div class="container">
             <unsubscribe v-if="isActive == 'unsubscribe'" />
           </div>
         </div>
@@ -114,8 +114,23 @@ export default {
 }
 </script>
 
+<<<<<<< HEAD
 <style lang="scss" scoped>
 .title {
   color: #7994a7;
+=======
+<style lang="scss">
+.v-tabs {
+  .v-item-group {
+    .v-slide-group__wrapper {
+      .v-slide-group__content {
+        background-color: #333333;
+        .v-tab {
+          max-width: 200px;
+        }
+      }
+    }
+  }
+>>>>>>> 7eea6f68395090c9b947cf166e3c3fbbed4daca3
 }
 </style>

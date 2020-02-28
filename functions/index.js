@@ -22,7 +22,7 @@ exports.onProductCreated = functions.firestore.document('study_group_id/{id}').o
 // algolia全文検索API利用関数// コレクションのレコードが削除されると起動
 exports.onPostDeleted = functions.firestore.document('study_group_id/{id}').onDelete((snap, context) => {
   // Index用オブジェクトを削除
-  index.deleteObject(snap.id)
+  return index.deleteObject(snap.id)
 })
 
 // algolia全文検索API利用関数// コレクションのレコードが更新されると起動
