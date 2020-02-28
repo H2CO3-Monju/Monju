@@ -96,11 +96,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
-<style lang="scss" scoped>
-.title {
-  color: #7994a7;
-=======
 <style lang="scss">
 .v-tabs {
   .v-item-group {
@@ -113,6 +108,5 @@ export default {
       }
     }
   }
->>>>>>> 7eea6f68395090c9b947cf166e3c3fbbed4daca3
 }
 </style>
