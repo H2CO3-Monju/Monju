@@ -57,7 +57,7 @@
           </template>
           <v-list class="user-menu">
             <v-list-item>
-              <nuxt-link to="/mytop">マイページ</nuxt-link>
+              <nuxt-link to="/usertop">マイページ</nuxt-link>
             </v-list-item>
             <v-list-item>
               <nuxt-link to="/setup/setting">設定</nuxt-link>
@@ -66,7 +66,7 @@
               <nuxt-link to="/info/info">お知らせ</nuxt-link>
             </v-list-item>
             <v-list-item>
-              <nuxt-link to="/info/qa">ヘルプ</nuxt-link>
+              <nuxt-link to="/info/faq">ヘルプ</nuxt-link>
             </v-list-item>
             <v-list-item>
               <span @click="logout" class="user-menu__logout">ログアウト</span>

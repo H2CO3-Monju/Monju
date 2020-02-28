@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-row justify="center" align-content="center">
-      <v-col lg="4" md="4" sm="12" xs="12">
-        <v-tabs vertical>
-          <v-title>
+      <v-col lg="3" md="3" sm="12" xs="12">
+        <v-tabs vertical color="#C4D929" background-color="#444444" dark>
+          <h2 class="title pl-3 pt-3">
             アカウント管理
-          </v-title>
+          </h2>
           <!-- 外部サービス連携はプロフィールないにいれる -->
           <v-tab v-on:click="isActive = 'chProfile'">
             プロフィール編集
@@ -16,9 +16,9 @@
           <v-tab v-on:click="isActive = 'chKey'">
             パスワード再設定
           </v-tab>
-          <v-title>
+          <h2 class="title pl-3 pt-3">
             ポイント管理
-          </v-title>
+          </h2>
           <v-tab v-on:click="isActive = 'pointMng'">
             ポイント購入
           </v-tab>
@@ -43,37 +43,19 @@
         </v-tabs>
       </v-col>
 
-      <v-col lg="8" md="8" sm="12" xs="12">
+      <v-col lg="9" md="9" sm="12" xs="12">
         <div>
-          <div class="content">
-            <chProfile v-if="isActive == 'chProfile'" />
-          </div>
-          <div class="content">
-            <chCoordination v-if="isActive == 'chCoordination'" />
-          </div>
-          <div class="content">
-            <chKey v-if="isActive == 'chKey'" />
-          </div>
-          <div class="content">
-            <pointMng v-if="isActive == 'pointMng'" />
-          </div>
-          <div class="content">
-            <pointRedemption v-if="isActive == 'pointRedemption'" />
-          </div>
           <div class="container">
-            <pointHistory v-if="isActive == 'pointHistory'" />
-          </div>
-          <div class="content">
-            <chBank v-if="isActive == 'chBank'" />
-          </div>
-          <div class="content">
-            <chCard v-if="isActive == 'chCard'" />
-          </div>
-          <div class="content">
-            <memberRegistration v-if="isActive == 'memberRegistration'" />
-          </div>
-          <div class="content">
-            <unsubscribe v-if="isActive == 'unsubscribe'" />
+            <chProfile v-if="isActive == 'chProfile'" />
+            <chCoordination v-else-if="isActive == 'chCoordination'" />
+            <chKey v-else-if="isActive == 'chKey'" />
+            <pointMng v-else-if="isActive == 'pointMng'" />
+            <pointRedemption v-else-if="isActive == 'pointRedemption'" />
+            <pointHistory v-else-if="isActive == 'pointHistory'" />
+            <chBank v-else-if="isActive == 'chBank'" />
+            <chCard v-else-if="isActive == 'chCard'" />
+            <memberRegistration v-else-if="isActive == 'memberRegistration'" />
+            <unsubscribe v-else-if="isActive == 'unsubscribe'" />
           </div>
         </div>
       </v-col>
@@ -82,7 +64,7 @@
 </template>
 
 <script>
-import chProfile from '@/components/pages/setUps/ch-Profile'
+import chProfile from '@/components/pages/setUps/account'
 import chCoordination from '@/components/pages/setUps/ch-coordination'
 import chKey from '@/components/pages/setUps/ch-key'
 import pointMng from '@/components/pages/setUps/point-mng'
@@ -114,6 +96,7 @@ export default {
 }
 </script>
 
+<<<<<<< HEAD
 <style lang="scss">
 .v-tabs {
   .v-item-group {
@@ -126,5 +109,24 @@ export default {
       }
     }
   }
+=======
+<style lang="scss" scoped>
+.title {
+  color: #7994a7;
+>>>>>>> 42755f473806c78d6e1351db6fe2fa5efd4ad552
 }
+</style>
+<style lang="scss">
+// .v-tabs {
+//   .v-item-group {
+//     .v-slide-group__wrapper {
+//       .v-slide-group__content {
+//         background-color: #333333;
+//         .v-tab {
+//           max-width: 200px;
+//         }
+//       }
+//     }
+//   }
+// }
 </style>

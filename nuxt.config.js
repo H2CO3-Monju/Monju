@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { FIREBASE_API_KEY,
+const {
+  FIREBASE_API_KEY,
   FIREBASE_AUTH_DOMAIN,
   FIREBASE_DATABASE_URL,
   FIREBASE_PROJECT_ID,
@@ -7,7 +8,8 @@ const { FIREBASE_API_KEY,
   FIREBASE_APP_ID,
   FIREBASE_MESSAGEING_SENDER_ID,
   ALGOLIA_APP_ID,
-  ALGOLIA_SEARCH_ONLY_API_KEY } = process.env
+  ALGOLIA_SEARCH_ONLY_API_KEY
+} = process.env
 
 export default {
   mode: 'spa',
@@ -47,9 +49,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: "~plugins/persistedstate.js", ssr: false }
-  ],
+  plugins: [{ src: '~plugins/persistedstate.js', ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -75,7 +75,7 @@ export default {
   },
   vuetify: {
     customVariables: ['~/assets/scss/_variable.scss'],
-    treeShake: true,
+    treeShake: true
   },
   /*
    ** FontAwesome

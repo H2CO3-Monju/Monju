@@ -5,7 +5,7 @@
         <v-col>
           <v-row class="event-title">
             <h1 class="event-title__h1">
-              Javascriptでなんかすごいことやる in HAL東京
+              {{ event.title }}
             </h1>
           </v-row>
 
@@ -22,13 +22,26 @@
           </v-row>
 
           <v-row class="event-info">
-            <v-col class="event-info__left-column flex-grow-0">
+            <!-- なぜかvuetifyのxsのみが効かないケースがあったので.xs12で指定 -->
+            <v-col
+              class="event-info__left-column"
+              lg="auto"
+              xl="auto"
+              md="12"
+              sm="12"
+            >
               <div class="event-info__image-wrap">
                 <img id="preview" class="event-info__image" />
               </div>
             </v-col>
 
-            <v-col class="event-info__right-column">
+            <v-col
+              class="event-info__right-column xs12"
+              lg="6"
+              xl="6"
+              md="12"
+              sm="12"
+            >
               <v-row class="event-info__openDate">
                 <p>
                   <span class="listMark"></span>
@@ -99,15 +112,16 @@
             </v-col>
           </v-row>
 
+          <v-row justify="center" align="center">
+            <v-col cols="6" class="participants my-6">
+              <p class="participants__p">参加者はまだいません</p>
+            </v-col>
+          </v-row>
+
           <v-row>
             <div v-html="event.markdown" class="markdown"></div>
           </v-row>
 
-          <!-- <buttonComponent
-            @btnClick="createEvent"
-            :needsEvent="true"
-            :text="'この内容でイベントを作成する'"
-          /> -->
           <v-row justify="center">
             <v-col xl="4" lg="4" md="5">
               <buttonComponent
@@ -170,7 +184,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      // storeのlocalStrage永続化の関係でmapState(['event'])を使っても
+      // storeのlocalStrage永続化の関係でmapState(['event'])などを使っても
       // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
       this.uid = this.user.uid
       const event = this.getEvent
@@ -220,14 +234,15 @@ export default {
     },
     createEvent() {
       const studyGroupIdRef = firebase.firestore().collection('study_group_id')
-      const eventTags = this.event.tags.map((tag) => tag.message)
       const eventPresenters = this.event.presenters.map(
         (presenter) => presenter.message
       )
+      const reg = /(.*)(?:\.([^.]+$))/
+      const extension = this.event.fileName.match(reg)[2]
       studyGroupIdRef
         .add({
           title: this.event.title,
-          tags: eventTags,
+          tags: this.event.tags,
           type: this.event.eventType,
           owner: this.uid,
           openDate: this.openDate,
@@ -237,13 +252,12 @@ export default {
           fixedMember: Number(this.event.fixedMember),
           autoCloseNumber: this.event.autoCloseNumber,
           entryFee: this.event.entryFee,
-          presenters: eventPresenters,
-          markdown: this.event.markdown
+          presenters: this.event.presenters,
+          markdown: this.event.markdown,
+          extension
         })
         .then((docRef) => {
           console.log('Document written with ID: ', docRef.id)
-          const reg = /(.*)(?:\.([^.]+$))/
-          const extension = this.event.fileName.match(reg)[2]
           const storageRef = firebase
             .storage()
             .ref()
@@ -269,11 +283,12 @@ export default {
                 console.error('Error adding document: ', error)
               })
           })
+          // this.setEvent()
+          this.$router.push('../' + docRef.id)
         })
         .catch(function(error) {
           console.error('Error adding document: ', error)
         })
-      // this.setEvent()
     }
   }
 }
@@ -303,6 +318,12 @@ ul {
   .bg {
     padding: 1vh 0;
   }
+  // なぜかvuetifyのxsのみが効かないケースがあったのでこちらで指定
+  .xs12 {
+    -webkit-box-flex: 0;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 @media screen and (min-width: 600px) {
   .container {
@@ -313,6 +334,21 @@ ul {
     padding: 5vh 0;
   }
 }
+@media screen and (min-width: 1264px) {
+  .container .event-info {
+    &__left-column {
+      margin-right: 40px;
+    }
+  }
+}
+@media screen and (max-width: 1264px) {
+  .container .event-info {
+    &__left-column {
+      text-align: center;
+    }
+  }
+}
+
 .container {
   height: auto;
   margin: 0 auto;
@@ -324,8 +360,10 @@ ul {
     color: $_font_color;
     border-bottom: solid 4px $border-color;
     &__h1 {
+      width: 100%;
       font-size: 1.8em;
       font-weight: bold;
+      word-wrap: break-word;
     }
   }
   .tags {
@@ -345,7 +383,6 @@ ul {
   }
   .event-info {
     &__left-column {
-      margin-right: 40px;
       width: 344px;
     }
     &__image-wrap {
@@ -408,6 +445,13 @@ ul {
     }
     &__autoClose {
       padding-left: 1em;
+    }
+  }
+  .participants {
+    border: solid 3px $deadline-color;
+    &__p {
+      margin-bottom: 0;
+      text-align: center;
     }
   }
 }

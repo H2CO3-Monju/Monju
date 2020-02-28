@@ -90,8 +90,16 @@ $_button-hover-percent: 20%;
 $_button-active-percent: 10%;
 $_button-transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 
-html {
+body {
   scroll-behavior: smooth;
+  font-family: -apple-system,
+  "Segoe UI",
+  "Helvetica Neue",
+  "Hiragino Kaku Gothic ProN",
+  メイリオ,
+  meiryo,
+  sans-serif;
+  color: #333;
   a {
     text-decoration: none;
     color: $_button-default-color;
