@@ -1,6 +1,11 @@
 <template>
   <div class="bg">
     <v-container class="container">
+      <v-dialog @click:outside="reserveEvent" v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">予約が完了しました</v-card-title>
+        </v-card>
+      </v-dialog>
       <v-row>
         <v-col>
           <v-row class="event-title">
@@ -117,6 +122,21 @@
           <v-row>
             <div v-html="markdown" class="markdown"></div>
           </v-row>
+
+          <v-row justify="center">
+            <v-col>
+              <buttonComponent
+                v-if="uid === owner"
+                :text="'イベントを編集する'"
+              />
+              <buttonComponent
+                @btnClick="showDialog"
+                :needsEvent="true"
+                v-else
+                :text="'予約する'"
+              />
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
@@ -124,11 +144,12 @@
 </template>
 
 <script>
-// firebaseの場合
-import firebase from '~/plugins/firebase'
+import { mapState } from 'vuex'
 import tag from '@/components/pages/event/new/tag'
 import avatar from '@/components/ui/avatar'
-// import buttonComponent from '@/components/ui/btns/buttonComponent'
+import buttonComponent from '@/components/ui/btns/buttonComponent'
+// firebaseの場合
+import firebase from '~/plugins/firebase'
 const storageRef = firebase.storage().ref()
 const eventRef = firebase.firestore().collection('study_group_id')
 const confirmEventId = (studyGroupIdRef) => {
@@ -167,10 +188,12 @@ export default {
   },
   components: {
     tag,
-    avatar
+    avatar,
+    buttonComponent
   },
   data() {
     return {
+      uid: '',
       eventId: '',
       allotedTime: '',
       autoCloseNumber: '',
@@ -184,10 +207,19 @@ export default {
       presenters: [],
       tags: [],
       title: '',
-      type: ''
+      type: '',
+      dialog: false
     }
   },
+  computed: {
+    ...mapState(['user'])
+  },
   mounted() {
+    setTimeout(() => {
+      // storeのlocalStrage永続化の関係でmapState(['user'])を使っても
+      // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
+      this.uid = this.user.uid
+    })
     const path = location.pathname
     // "/event/"の下の階層を取得する正規表現
     // path.match(/(?<=^\/event\/{1}).+/) //肯定後読みを使うならこの書き方
@@ -221,6 +253,15 @@ export default {
       .catch((error) => {
         console.log('Error getting document:', error)
       })
+  },
+  methods: {
+    showDialog() {
+      console.log('reserve')
+      this.dialog = true
+    },
+    reserveEvent() {
+      console.log('aaaaaaaaaaaaa')
+    }
   }
 }
 </script>

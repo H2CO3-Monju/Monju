@@ -184,7 +184,7 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      // storeのlocalStrage永続化の関係でmapState(['event'])を使っても
+      // storeのlocalStrage永続化の関係でmapState(['event'])などを使っても
       // v-forでthis.eventの値を取得できないので一旦ここでdata内にeventを保存する
       this.uid = this.user.uid
       const event = this.getEvent
