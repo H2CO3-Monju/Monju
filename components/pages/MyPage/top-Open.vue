@@ -6,6 +6,7 @@
           評価とレビュー
         </v-card-title>
         <evalution />
+        <events />
       </v-card>
     </v-container>
   </div>
@@ -13,9 +14,11 @@
 
 <script>
 import evalution from '@/components/ui/design/evaluationUI'
+import events from '@/components/pages/event/event'
 export default {
   components: {
-    evalution
+    evalution,
+    events
   }
 }
 </script>
