@@ -22,13 +22,13 @@
           </v-row>
 
           <v-row class="event-info">
-            <v-col class="event-info__left-column flex-grow-0">
+            <v-col class="event-info__left-column flex-grow-0" align="center">
               <div class="event-info__image-wrap">
                 <img id="preview" class="event-info__image" />
               </div>
             </v-col>
 
-            <v-col class="event-info__right-column">
+            <v-col class="event-info__right-column" md="12" sm="12" xs="12">
               <v-row class="event-info__openDate">
                 <p>
                   <span class="listMark"></span>
