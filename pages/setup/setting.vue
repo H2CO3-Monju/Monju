@@ -47,33 +47,15 @@
         <div>
           <div class="container">
             <chProfile v-if="isActive == 'chProfile'" />
-          </div>
-          <div class="container">
-            <chCoordination v-if="isActive == 'chCoordination'" />
-          </div>
-          <div class="container">
-            <chKey v-if="isActive == 'chKey'" />
-          </div>
-          <div class="container">
-            <pointMng v-if="isActive == 'pointMng'" />
-          </div>
-          <div class="container">
-            <pointRedemption v-if="isActive == 'pointRedemption'" />
-          </div>
-          <div class="container">
-            <pointHistory v-if="isActive == 'pointHistory'" />
-          </div>
-          <div class="container">
-            <chBank v-if="isActive == 'chBank'" />
-          </div>
-          <div class="container">
-            <chCard v-if="isActive == 'chCard'" />
-          </div>
-          <div class="container">
-            <memberRegistration v-if="isActive == 'memberRegistration'" />
-          </div>
-          <div class="container">
-            <unsubscribe v-if="isActive == 'unsubscribe'" />
+            <chCoordination v-else-if="isActive == 'chCoordination'" />
+            <chKey v-else-if="isActive == 'chKey'" />
+            <pointMng v-else-if="isActive == 'pointMng'" />
+            <pointRedemption v-else-if="isActive == 'pointRedemption'" />
+            <pointHistory v-else-if="isActive == 'pointHistory'" />
+            <chBank v-else-if="isActive == 'chBank'" />
+            <chCard v-else-if="isActive == 'chCard'" />
+            <memberRegistration v-else-if="isActive == 'memberRegistration'" />
+            <unsubscribe v-else-if="isActive == 'unsubscribe'" />
           </div>
         </div>
       </v-col>
